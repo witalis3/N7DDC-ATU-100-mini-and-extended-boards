@@ -1,4 +1,4 @@
-#line 1 "E:/ATU-100/fw_EXT_3.1/2520_EXT_board_sources_V_3.1/pic_init.c"
+#line 1 "D:/mikroC PRO for PIC/Examples/ATU_100_memo/N7DDC-ATU-100-mini-and-extended-boards/ATU_100_EXT_board/FirmWare_PIC18F2520/2520_EXT_board_sources_V_3.1/pic_init.c"
 
 
 

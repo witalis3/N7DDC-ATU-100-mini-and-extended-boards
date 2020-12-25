@@ -1063,119 +1063,119 @@ L_oled_wr_str55:
 	GOTO        L_oled_wr_str58
 ;oled_control.c,284 :: 		w2.B7 = w1.B3;
 	BTFSC       oled_wr_str_w1_L0+0, 3 
-	GOTO        L__oled_wr_str104
+	GOTO        L__oled_wr_str115
 	BCF         oled_wr_str_w2_L0+0, 7 
-	GOTO        L__oled_wr_str105
-L__oled_wr_str104:
+	GOTO        L__oled_wr_str116
+L__oled_wr_str115:
 	BSF         oled_wr_str_w2_L0+0, 7 
-L__oled_wr_str105:
+L__oled_wr_str116:
 ;oled_control.c,285 :: 		w2.B6 = w1.B3;
 	BTFSC       oled_wr_str_w1_L0+0, 3 
-	GOTO        L__oled_wr_str106
+	GOTO        L__oled_wr_str117
 	BCF         oled_wr_str_w2_L0+0, 6 
-	GOTO        L__oled_wr_str107
-L__oled_wr_str106:
+	GOTO        L__oled_wr_str118
+L__oled_wr_str117:
 	BSF         oled_wr_str_w2_L0+0, 6 
-L__oled_wr_str107:
+L__oled_wr_str118:
 ;oled_control.c,286 :: 		w2.B5 = w1.B2;
 	BTFSC       oled_wr_str_w1_L0+0, 2 
-	GOTO        L__oled_wr_str108
+	GOTO        L__oled_wr_str119
 	BCF         oled_wr_str_w2_L0+0, 5 
-	GOTO        L__oled_wr_str109
-L__oled_wr_str108:
+	GOTO        L__oled_wr_str120
+L__oled_wr_str119:
 	BSF         oled_wr_str_w2_L0+0, 5 
-L__oled_wr_str109:
+L__oled_wr_str120:
 ;oled_control.c,287 :: 		w2.B4 = w1.B2;
 	BTFSC       oled_wr_str_w1_L0+0, 2 
-	GOTO        L__oled_wr_str110
+	GOTO        L__oled_wr_str121
 	BCF         oled_wr_str_w2_L0+0, 4 
-	GOTO        L__oled_wr_str111
-L__oled_wr_str110:
+	GOTO        L__oled_wr_str122
+L__oled_wr_str121:
 	BSF         oled_wr_str_w2_L0+0, 4 
-L__oled_wr_str111:
+L__oled_wr_str122:
 ;oled_control.c,288 :: 		w2.B3 = w1.B1;
 	BTFSC       oled_wr_str_w1_L0+0, 1 
-	GOTO        L__oled_wr_str112
+	GOTO        L__oled_wr_str123
 	BCF         oled_wr_str_w2_L0+0, 3 
-	GOTO        L__oled_wr_str113
-L__oled_wr_str112:
+	GOTO        L__oled_wr_str124
+L__oled_wr_str123:
 	BSF         oled_wr_str_w2_L0+0, 3 
-L__oled_wr_str113:
+L__oled_wr_str124:
 ;oled_control.c,289 :: 		w2.B2 = w1.B1;
 	BTFSC       oled_wr_str_w1_L0+0, 1 
-	GOTO        L__oled_wr_str114
+	GOTO        L__oled_wr_str125
 	BCF         oled_wr_str_w2_L0+0, 2 
-	GOTO        L__oled_wr_str115
-L__oled_wr_str114:
+	GOTO        L__oled_wr_str126
+L__oled_wr_str125:
 	BSF         oled_wr_str_w2_L0+0, 2 
-L__oled_wr_str115:
+L__oled_wr_str126:
 ;oled_control.c,290 :: 		w2.B1 = w1.B0;
 	BTFSC       oled_wr_str_w1_L0+0, 0 
-	GOTO        L__oled_wr_str116
+	GOTO        L__oled_wr_str127
 	BCF         oled_wr_str_w2_L0+0, 1 
-	GOTO        L__oled_wr_str117
-L__oled_wr_str116:
+	GOTO        L__oled_wr_str128
+L__oled_wr_str127:
 	BSF         oled_wr_str_w2_L0+0, 1 
-L__oled_wr_str117:
+L__oled_wr_str128:
 ;oled_control.c,291 :: 		w2.B0 = w1.B0;
 	BTFSC       oled_wr_str_w1_L0+0, 0 
-	GOTO        L__oled_wr_str118
+	GOTO        L__oled_wr_str129
 	BCF         oled_wr_str_w2_L0+0, 0 
-	GOTO        L__oled_wr_str119
-L__oled_wr_str118:
+	GOTO        L__oled_wr_str130
+L__oled_wr_str129:
 	BSF         oled_wr_str_w2_L0+0, 0 
-L__oled_wr_str119:
+L__oled_wr_str130:
 ;oled_control.c,292 :: 		}
 	GOTO        L_oled_wr_str59
 L_oled_wr_str58:
 ;oled_control.c,294 :: 		w2.B7 = w1.B2;
 	BTFSC       oled_wr_str_w1_L0+0, 2 
-	GOTO        L__oled_wr_str120
+	GOTO        L__oled_wr_str131
 	BCF         oled_wr_str_w2_L0+0, 7 
-	GOTO        L__oled_wr_str121
-L__oled_wr_str120:
+	GOTO        L__oled_wr_str132
+L__oled_wr_str131:
 	BSF         oled_wr_str_w2_L0+0, 7 
-L__oled_wr_str121:
+L__oled_wr_str132:
 ;oled_control.c,295 :: 		w2.B6 = w1.B2;
 	BTFSC       oled_wr_str_w1_L0+0, 2 
-	GOTO        L__oled_wr_str122
+	GOTO        L__oled_wr_str133
 	BCF         oled_wr_str_w2_L0+0, 6 
-	GOTO        L__oled_wr_str123
-L__oled_wr_str122:
+	GOTO        L__oled_wr_str134
+L__oled_wr_str133:
 	BSF         oled_wr_str_w2_L0+0, 6 
-L__oled_wr_str123:
+L__oled_wr_str134:
 ;oled_control.c,296 :: 		w2.B5 = w1.B1;
 	BTFSC       oled_wr_str_w1_L0+0, 1 
-	GOTO        L__oled_wr_str124
+	GOTO        L__oled_wr_str135
 	BCF         oled_wr_str_w2_L0+0, 5 
-	GOTO        L__oled_wr_str125
-L__oled_wr_str124:
+	GOTO        L__oled_wr_str136
+L__oled_wr_str135:
 	BSF         oled_wr_str_w2_L0+0, 5 
-L__oled_wr_str125:
+L__oled_wr_str136:
 ;oled_control.c,297 :: 		w2.B4 = w1.B1;
 	BTFSC       oled_wr_str_w1_L0+0, 1 
-	GOTO        L__oled_wr_str126
+	GOTO        L__oled_wr_str137
 	BCF         oled_wr_str_w2_L0+0, 4 
-	GOTO        L__oled_wr_str127
-L__oled_wr_str126:
+	GOTO        L__oled_wr_str138
+L__oled_wr_str137:
 	BSF         oled_wr_str_w2_L0+0, 4 
-L__oled_wr_str127:
+L__oled_wr_str138:
 ;oled_control.c,298 :: 		w2.B3 = w1.B0;
 	BTFSC       oled_wr_str_w1_L0+0, 0 
-	GOTO        L__oled_wr_str128
+	GOTO        L__oled_wr_str139
 	BCF         oled_wr_str_w2_L0+0, 3 
-	GOTO        L__oled_wr_str129
-L__oled_wr_str128:
+	GOTO        L__oled_wr_str140
+L__oled_wr_str139:
 	BSF         oled_wr_str_w2_L0+0, 3 
-L__oled_wr_str129:
+L__oled_wr_str140:
 ;oled_control.c,299 :: 		w2.B2 = w1.B0;
 	BTFSC       oled_wr_str_w1_L0+0, 0 
-	GOTO        L__oled_wr_str130
+	GOTO        L__oled_wr_str141
 	BCF         oled_wr_str_w2_L0+0, 2 
-	GOTO        L__oled_wr_str131
-L__oled_wr_str130:
+	GOTO        L__oled_wr_str142
+L__oled_wr_str141:
 	BSF         oled_wr_str_w2_L0+0, 2 
-L__oled_wr_str131:
+L__oled_wr_str142:
 ;oled_control.c,300 :: 		w2.B1 = 0;
 	BCF         oled_wr_str_w2_L0+0, 1 
 ;oled_control.c,301 :: 		w2.B0 = 0;
@@ -1320,134 +1320,134 @@ L_oled_wr_str66:
 	GOTO        L_oled_wr_str69
 ;oled_control.c,316 :: 		w2.B7 = w1.B7;
 	BTFSC       oled_wr_str_w1_L0+0, 7 
-	GOTO        L__oled_wr_str132
+	GOTO        L__oled_wr_str143
 	BCF         oled_wr_str_w2_L0+0, 7 
-	GOTO        L__oled_wr_str133
-L__oled_wr_str132:
+	GOTO        L__oled_wr_str144
+L__oled_wr_str143:
 	BSF         oled_wr_str_w2_L0+0, 7 
-L__oled_wr_str133:
+L__oled_wr_str144:
 ;oled_control.c,317 :: 		w2.B6 = w1.B7;
 	BTFSC       oled_wr_str_w1_L0+0, 7 
-	GOTO        L__oled_wr_str134
+	GOTO        L__oled_wr_str145
 	BCF         oled_wr_str_w2_L0+0, 6 
-	GOTO        L__oled_wr_str135
-L__oled_wr_str134:
+	GOTO        L__oled_wr_str146
+L__oled_wr_str145:
 	BSF         oled_wr_str_w2_L0+0, 6 
-L__oled_wr_str135:
+L__oled_wr_str146:
 ;oled_control.c,318 :: 		w2.B5 = w1.B6;
 	BTFSC       oled_wr_str_w1_L0+0, 6 
-	GOTO        L__oled_wr_str136
+	GOTO        L__oled_wr_str147
 	BCF         oled_wr_str_w2_L0+0, 5 
-	GOTO        L__oled_wr_str137
-L__oled_wr_str136:
+	GOTO        L__oled_wr_str148
+L__oled_wr_str147:
 	BSF         oled_wr_str_w2_L0+0, 5 
-L__oled_wr_str137:
+L__oled_wr_str148:
 ;oled_control.c,319 :: 		w2.B4 = w1.B6;
 	BTFSC       oled_wr_str_w1_L0+0, 6 
-	GOTO        L__oled_wr_str138
+	GOTO        L__oled_wr_str149
 	BCF         oled_wr_str_w2_L0+0, 4 
-	GOTO        L__oled_wr_str139
-L__oled_wr_str138:
+	GOTO        L__oled_wr_str150
+L__oled_wr_str149:
 	BSF         oled_wr_str_w2_L0+0, 4 
-L__oled_wr_str139:
+L__oled_wr_str150:
 ;oled_control.c,320 :: 		w2.B3 = w1.B5;
 	BTFSC       oled_wr_str_w1_L0+0, 5 
-	GOTO        L__oled_wr_str140
+	GOTO        L__oled_wr_str151
 	BCF         oled_wr_str_w2_L0+0, 3 
-	GOTO        L__oled_wr_str141
-L__oled_wr_str140:
+	GOTO        L__oled_wr_str152
+L__oled_wr_str151:
 	BSF         oled_wr_str_w2_L0+0, 3 
-L__oled_wr_str141:
+L__oled_wr_str152:
 ;oled_control.c,321 :: 		w2.B2 = w1.B5;
 	BTFSC       oled_wr_str_w1_L0+0, 5 
-	GOTO        L__oled_wr_str142
+	GOTO        L__oled_wr_str153
 	BCF         oled_wr_str_w2_L0+0, 2 
-	GOTO        L__oled_wr_str143
-L__oled_wr_str142:
+	GOTO        L__oled_wr_str154
+L__oled_wr_str153:
 	BSF         oled_wr_str_w2_L0+0, 2 
-L__oled_wr_str143:
+L__oled_wr_str154:
 ;oled_control.c,322 :: 		w2.B1 = w1.B4;
 	BTFSC       oled_wr_str_w1_L0+0, 4 
-	GOTO        L__oled_wr_str144
+	GOTO        L__oled_wr_str155
 	BCF         oled_wr_str_w2_L0+0, 1 
-	GOTO        L__oled_wr_str145
-L__oled_wr_str144:
+	GOTO        L__oled_wr_str156
+L__oled_wr_str155:
 	BSF         oled_wr_str_w2_L0+0, 1 
-L__oled_wr_str145:
+L__oled_wr_str156:
 ;oled_control.c,323 :: 		w2.B0 = w1.B4; }
 	BTFSC       oled_wr_str_w1_L0+0, 4 
-	GOTO        L__oled_wr_str146
+	GOTO        L__oled_wr_str157
 	BCF         oled_wr_str_w2_L0+0, 0 
-	GOTO        L__oled_wr_str147
-L__oled_wr_str146:
+	GOTO        L__oled_wr_str158
+L__oled_wr_str157:
 	BSF         oled_wr_str_w2_L0+0, 0 
-L__oled_wr_str147:
+L__oled_wr_str158:
 	GOTO        L_oled_wr_str70
 L_oled_wr_str69:
 ;oled_control.c,325 :: 		w2.B7 = w1.B6;
 	BTFSC       oled_wr_str_w1_L0+0, 6 
-	GOTO        L__oled_wr_str148
+	GOTO        L__oled_wr_str159
 	BCF         oled_wr_str_w2_L0+0, 7 
-	GOTO        L__oled_wr_str149
-L__oled_wr_str148:
+	GOTO        L__oled_wr_str160
+L__oled_wr_str159:
 	BSF         oled_wr_str_w2_L0+0, 7 
-L__oled_wr_str149:
+L__oled_wr_str160:
 ;oled_control.c,326 :: 		w2.B6 = w1.B6;
 	BTFSC       oled_wr_str_w1_L0+0, 6 
-	GOTO        L__oled_wr_str150
+	GOTO        L__oled_wr_str161
 	BCF         oled_wr_str_w2_L0+0, 6 
-	GOTO        L__oled_wr_str151
-L__oled_wr_str150:
+	GOTO        L__oled_wr_str162
+L__oled_wr_str161:
 	BSF         oled_wr_str_w2_L0+0, 6 
-L__oled_wr_str151:
+L__oled_wr_str162:
 ;oled_control.c,327 :: 		w2.B5 = w1.B5;
 	BTFSC       oled_wr_str_w1_L0+0, 5 
-	GOTO        L__oled_wr_str152
+	GOTO        L__oled_wr_str163
 	BCF         oled_wr_str_w2_L0+0, 5 
-	GOTO        L__oled_wr_str153
-L__oled_wr_str152:
+	GOTO        L__oled_wr_str164
+L__oled_wr_str163:
 	BSF         oled_wr_str_w2_L0+0, 5 
-L__oled_wr_str153:
+L__oled_wr_str164:
 ;oled_control.c,328 :: 		w2.B4 = w1.B5;
 	BTFSC       oled_wr_str_w1_L0+0, 5 
-	GOTO        L__oled_wr_str154
+	GOTO        L__oled_wr_str165
 	BCF         oled_wr_str_w2_L0+0, 4 
-	GOTO        L__oled_wr_str155
-L__oled_wr_str154:
+	GOTO        L__oled_wr_str166
+L__oled_wr_str165:
 	BSF         oled_wr_str_w2_L0+0, 4 
-L__oled_wr_str155:
+L__oled_wr_str166:
 ;oled_control.c,329 :: 		w2.B3 = w1.B4;
 	BTFSC       oled_wr_str_w1_L0+0, 4 
-	GOTO        L__oled_wr_str156
+	GOTO        L__oled_wr_str167
 	BCF         oled_wr_str_w2_L0+0, 3 
-	GOTO        L__oled_wr_str157
-L__oled_wr_str156:
+	GOTO        L__oled_wr_str168
+L__oled_wr_str167:
 	BSF         oled_wr_str_w2_L0+0, 3 
-L__oled_wr_str157:
+L__oled_wr_str168:
 ;oled_control.c,330 :: 		w2.B2 = w1.B4;
 	BTFSC       oled_wr_str_w1_L0+0, 4 
-	GOTO        L__oled_wr_str158
+	GOTO        L__oled_wr_str169
 	BCF         oled_wr_str_w2_L0+0, 2 
-	GOTO        L__oled_wr_str159
-L__oled_wr_str158:
+	GOTO        L__oled_wr_str170
+L__oled_wr_str169:
 	BSF         oled_wr_str_w2_L0+0, 2 
-L__oled_wr_str159:
+L__oled_wr_str170:
 ;oled_control.c,331 :: 		w2.B1 = w1.B3;
 	BTFSC       oled_wr_str_w1_L0+0, 3 
-	GOTO        L__oled_wr_str160
+	GOTO        L__oled_wr_str171
 	BCF         oled_wr_str_w2_L0+0, 1 
-	GOTO        L__oled_wr_str161
-L__oled_wr_str160:
+	GOTO        L__oled_wr_str172
+L__oled_wr_str171:
 	BSF         oled_wr_str_w2_L0+0, 1 
-L__oled_wr_str161:
+L__oled_wr_str172:
 ;oled_control.c,332 :: 		w2.B0 = w1.B3;
 	BTFSC       oled_wr_str_w1_L0+0, 3 
-	GOTO        L__oled_wr_str162
+	GOTO        L__oled_wr_str173
 	BCF         oled_wr_str_w2_L0+0, 0 
-	GOTO        L__oled_wr_str163
-L__oled_wr_str162:
+	GOTO        L__oled_wr_str174
+L__oled_wr_str173:
 	BSF         oled_wr_str_w2_L0+0, 0 
-L__oled_wr_str163:
+L__oled_wr_str174:
 ;oled_control.c,333 :: 		}
 L_oled_wr_str70:
 ;oled_control.c,334 :: 		Soft_I2C_Write(w2);
@@ -1684,44 +1684,143 @@ L_end_Soft_I2C_Write:
 	RETURN      0
 ; end of _Soft_I2C_Write
 
-_Soft_I2C_Stop:
+_Soft_I2C_Read:
 
-;oled_control.c,398 :: 		void Soft_I2C_Stop () {
-;oled_control.c,399 :: 		if(led_type!=0) {
+;oled_control.c,397 :: 		unsigned char Soft_I2C_Read () {
+;oled_control.c,399 :: 		unsigned char readByte = 0;
+	CLRF        Soft_I2C_Read_readByte_L0+0 
+;oled_control.c,400 :: 		if(led_type!=0) {
 	MOVF        oled_control_led_type+0, 0 
 	XORLW       0
 	BTFSC       STATUS+0, 2 
-	GOTO        L_Soft_I2C_Stop91
-;oled_control.c,400 :: 		Soft_I2C_Sda_Direction = 0;
-	BCF         TRISB7_bit+0, BitPos(TRISB7_bit+0) 
-;oled_control.c,401 :: 		Delay_us(5);
-	MOVLW       6
-	MOVWF       R13, 0
-L_Soft_I2C_Stop92:
-	DECFSZ      R13, 1, 1
-	BRA         L_Soft_I2C_Stop92
-	NOP
-;oled_control.c,402 :: 		Soft_I2C_Scl_Direction = 1;
-	BSF         TRISB6_bit+0, BitPos(TRISB6_bit+0) 
-;oled_control.c,403 :: 		Delay_us(5);
-	MOVLW       6
-	MOVWF       R13, 0
-L_Soft_I2C_Stop93:
-	DECFSZ      R13, 1, 1
-	BRA         L_Soft_I2C_Stop93
-	NOP
-;oled_control.c,404 :: 		Soft_I2C_Sda_Direction = 1;
+	GOTO        L_Soft_I2C_Read91
+;oled_control.c,401 :: 		Soft_I2C_Sda_Direction = 1;
 	BSF         TRISB7_bit+0, BitPos(TRISB7_bit+0) 
+;oled_control.c,402 :: 		for(i=0; i<=7; i++) {
+	CLRF        R1 
+L_Soft_I2C_Read92:
+	MOVF        R1, 0 
+	SUBLW       7
+	BTFSS       STATUS+0, 0 
+	GOTO        L_Soft_I2C_Read93
+;oled_control.c,403 :: 		readByte <<= 1;
+	RLCF        Soft_I2C_Read_readByte_L0+0, 1 
+	BCF         Soft_I2C_Read_readByte_L0+0, 0 
+;oled_control.c,404 :: 		readByte &= 0xFE;
+	MOVLW       254
+	ANDWF       Soft_I2C_Read_readByte_L0+0, 1 
 ;oled_control.c,405 :: 		Delay_us(5);
 	MOVLW       6
 	MOVWF       R13, 0
-L_Soft_I2C_Stop94:
+L_Soft_I2C_Read95:
 	DECFSZ      R13, 1, 1
-	BRA         L_Soft_I2C_Stop94
+	BRA         L_Soft_I2C_Read95
 	NOP
-;oled_control.c,406 :: 		}
-L_Soft_I2C_Stop91:
-;oled_control.c,407 :: 		}
+;oled_control.c,406 :: 		Soft_I2C_Scl_Direction = 1;
+	BSF         TRISB6_bit+0, BitPos(TRISB6_bit+0) 
+;oled_control.c,407 :: 		Delay_us(5);
+	MOVLW       6
+	MOVWF       R13, 0
+L_Soft_I2C_Read96:
+	DECFSZ      R13, 1, 1
+	BRA         L_Soft_I2C_Read96
+	NOP
+;oled_control.c,408 :: 		if (PORTB & 0x80) {
+	BTFSS       PORTB+0, 7 
+	GOTO        L_Soft_I2C_Read97
+;oled_control.c,409 :: 		readByte += 1;
+	INCF        Soft_I2C_Read_readByte_L0+0, 1 
+;oled_control.c,410 :: 		}
+L_Soft_I2C_Read97:
+;oled_control.c,411 :: 		Soft_I2C_Scl_Direction = 0;
+	BCF         TRISB6_bit+0, BitPos(TRISB6_bit+0) 
+;oled_control.c,412 :: 		Delay_us(5);
+	MOVLW       6
+	MOVWF       R13, 0
+L_Soft_I2C_Read98:
+	DECFSZ      R13, 1, 1
+	BRA         L_Soft_I2C_Read98
+	NOP
+;oled_control.c,402 :: 		for(i=0; i<=7; i++) {
+	INCF        R1, 1 
+;oled_control.c,413 :: 		}
+	GOTO        L_Soft_I2C_Read92
+L_Soft_I2C_Read93:
+;oled_control.c,414 :: 		Soft_I2C_Sda_Direction = 1; //ACK
+	BSF         TRISB7_bit+0, BitPos(TRISB7_bit+0) 
+;oled_control.c,415 :: 		Delay_us(5);
+	MOVLW       6
+	MOVWF       R13, 0
+L_Soft_I2C_Read99:
+	DECFSZ      R13, 1, 1
+	BRA         L_Soft_I2C_Read99
+	NOP
+;oled_control.c,416 :: 		Soft_I2C_Scl_Direction = 1;
+	BSF         TRISB6_bit+0, BitPos(TRISB6_bit+0) 
+;oled_control.c,417 :: 		Delay_us(5);
+	MOVLW       6
+	MOVWF       R13, 0
+L_Soft_I2C_Read100:
+	DECFSZ      R13, 1, 1
+	BRA         L_Soft_I2C_Read100
+	NOP
+;oled_control.c,418 :: 		Soft_I2C_Scl_Direction = 0;
+	BCF         TRISB6_bit+0, BitPos(TRISB6_bit+0) 
+;oled_control.c,419 :: 		Delay_us(5);
+	MOVLW       6
+	MOVWF       R13, 0
+L_Soft_I2C_Read101:
+	DECFSZ      R13, 1, 1
+	BRA         L_Soft_I2C_Read101
+	NOP
+;oled_control.c,420 :: 		}
+L_Soft_I2C_Read91:
+;oled_control.c,422 :: 		return readByte;
+	MOVF        Soft_I2C_Read_readByte_L0+0, 0 
+	MOVWF       R0 
+;oled_control.c,423 :: 		}
+L_end_Soft_I2C_Read:
+	RETURN      0
+; end of _Soft_I2C_Read
+
+_Soft_I2C_Stop:
+
+;oled_control.c,425 :: 		void Soft_I2C_Stop () {
+;oled_control.c,426 :: 		if(led_type!=0) {
+	MOVF        oled_control_led_type+0, 0 
+	XORLW       0
+	BTFSC       STATUS+0, 2 
+	GOTO        L_Soft_I2C_Stop102
+;oled_control.c,427 :: 		Soft_I2C_Sda_Direction = 0;
+	BCF         TRISB7_bit+0, BitPos(TRISB7_bit+0) 
+;oled_control.c,428 :: 		Delay_us(5);
+	MOVLW       6
+	MOVWF       R13, 0
+L_Soft_I2C_Stop103:
+	DECFSZ      R13, 1, 1
+	BRA         L_Soft_I2C_Stop103
+	NOP
+;oled_control.c,429 :: 		Soft_I2C_Scl_Direction = 1;
+	BSF         TRISB6_bit+0, BitPos(TRISB6_bit+0) 
+;oled_control.c,430 :: 		Delay_us(5);
+	MOVLW       6
+	MOVWF       R13, 0
+L_Soft_I2C_Stop104:
+	DECFSZ      R13, 1, 1
+	BRA         L_Soft_I2C_Stop104
+	NOP
+;oled_control.c,431 :: 		Soft_I2C_Sda_Direction = 1;
+	BSF         TRISB7_bit+0, BitPos(TRISB7_bit+0) 
+;oled_control.c,432 :: 		Delay_us(5);
+	MOVLW       6
+	MOVWF       R13, 0
+L_Soft_I2C_Stop105:
+	DECFSZ      R13, 1, 1
+	BRA         L_Soft_I2C_Stop105
+	NOP
+;oled_control.c,433 :: 		}
+L_Soft_I2C_Stop102:
+;oled_control.c,434 :: 		}
 L_end_Soft_I2C_Stop:
 	RETURN      0
 ; end of _Soft_I2C_Stop

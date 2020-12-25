@@ -71,15 +71,22 @@ main
 	Dec2Bcd
 		Div_8X8_U
 	EEPROM_Write
-	set_ind
-		VDelay_ms
-			Mul_32x32_U
-	set_cap
-		VDelay_ms
-			Mul_32x32_U
-	set_sw
-		VDelay_ms
-			Mul_32x32_U
+	read_i2c_inputs
+		Soft_I2C_Start
+		Soft_I2C_Write
+		Soft_I2C_Stop
+		Soft_I2C_Read
+	load_settings
+		EEPROM_Read
+		set_ind
+			VDelay_ms
+				Mul_32x32_U
+		set_cap
+			VDelay_ms
+				Mul_32x32_U
+		set_sw
+			VDelay_ms
+				Mul_32x32_U
 	lcd_prep
 		led_wr_str
 			oled_wr_str

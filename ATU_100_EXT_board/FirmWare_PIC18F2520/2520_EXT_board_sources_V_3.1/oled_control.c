@@ -394,6 +394,33 @@ void Soft_I2C_Write (char d) {
          Delay_us(5);
    }
 }
+unsigned char Soft_I2C_Read () {
+   char i;
+   unsigned char readByte = 0;
+   if(led_type!=0) {
+      Soft_I2C_Sda_Direction = 1;
+      for(i=0; i<=7; i++) {
+         readByte <<= 1;
+         readByte &= 0xFE;
+         Delay_us(5);
+         Soft_I2C_Scl_Direction = 1;
+         Delay_us(5);
+         if (PORTB & 0x80) {
+          readByte += 1;
+         }
+         Soft_I2C_Scl_Direction = 0;
+         Delay_us(5);
+      }
+      Soft_I2C_Sda_Direction = 1; //ACK
+      Delay_us(5);
+      Soft_I2C_Scl_Direction = 1;
+      Delay_us(5);
+      Soft_I2C_Scl_Direction = 0;
+      Delay_us(5);
+   }
+
+   return readByte;
+}
 
 void Soft_I2C_Stop () {
    if(led_type!=0) {

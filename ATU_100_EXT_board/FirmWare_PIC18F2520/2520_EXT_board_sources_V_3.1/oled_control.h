@@ -27,4 +27,5 @@ void dysp_off(void);
 void Soft_I2C_Init (void);
 void Soft_I2C_Start (void);
 void Soft_I2C_Write (char);
+unsigned char Soft_I2C_Read ();
 void Soft_I2C_Stop (void);

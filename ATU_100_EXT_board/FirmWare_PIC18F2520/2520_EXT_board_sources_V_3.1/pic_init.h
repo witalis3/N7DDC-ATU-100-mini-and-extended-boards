@@ -1,7 +1,8 @@
 // Connections
 //
 sbit n_Tx at LATA6_bit;
-sbit p_Tx at LATA7_bit;
+// A7 wykorzystany do włączania C8
+//sbit p_Tx at LATA7_bit;
 //
 //sbit Button at RB0_bit;
 //sbit BYP_button at RB2_bit;
@@ -14,6 +15,9 @@ sbit Cap_100 at LATC2_bit;
 sbit Cap_220 at LATC5_bit;
 sbit Cap_470 at LATC1_bit;
 sbit Cap_1000 at LATC4_bit;
+// C8 na 160m i 3,5MHz
+sbit Cap_1820 at LATA7_bit;
+
 sbit Cap_sw  at LATC0_bit;
 //
 sbit Ind_005 at LATB3_bit;

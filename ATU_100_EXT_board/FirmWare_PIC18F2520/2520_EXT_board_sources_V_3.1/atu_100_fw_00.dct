@@ -167,6 +167,7 @@ c2out_porta_bit
 cap_10
 cap_100
 cap_1000
+cap_1820
 cap_22
 cap_220
 cap_47
@@ -420,6 +421,12 @@ go_done
 go_done_bit
 go_not_done
 go_not_done_bit
+hextobyte
+hextoint
+hextolong
+hextolongint
+hextoshort
+hextoword
 hlvdcon
 hlvden
 hlvden_bit
@@ -598,6 +605,7 @@ lcd_swr
 led_init
 led_send
 led_wr_str
+load_settings
 longint2double
 longinttohex
 longinttostrwithzeros
@@ -639,6 +647,7 @@ lvv3_bit
 main
 mclr
 mclr_bit
+mem_offset
 mul_16x16_s
 mul_16x16_u
 mul_32x32_fp
@@ -704,7 +713,6 @@ p
 p_bit
 p_cnt
 p_max
-p_tx
 pc
 pcfg0
 pcfg0_bit
@@ -888,6 +896,7 @@ rd16_bit
 rd16_t1con_bit
 re3
 re3_bit
+read_i2c_inputs
 res032
 restart
 ri
@@ -950,6 +959,7 @@ show_reset
 smp
 smp_bit
 soft_i2c_init
+soft_i2c_read
 soft_i2c_scl
 soft_i2c_scl
 soft_i2c_scl_direction
@@ -1011,6 +1021,13 @@ stkovf_bit
 stkptr
 stkunf
 stkunf_bit
+strtobyte
+strtofloat
+strtoint
+strtolong
+strtolongint
+strtoshort
+strtoword
 sub_32x32_fp
 sub_tune
 sw_mem

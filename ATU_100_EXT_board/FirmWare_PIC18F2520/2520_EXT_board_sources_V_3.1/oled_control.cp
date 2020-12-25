@@ -1,5 +1,5 @@
-#line 1 "E:/ATU-100/fw_EXT_3.1/2520_EXT_board_sources_V_3.1/oled_control.c"
-#line 1 "e:/atu-100/fw_ext_3.1/2520_ext_board_sources_v_3.1/oled_control.h"
+#line 1 "D:/mikroC PRO for PIC/Examples/ATU_100_memo/N7DDC-ATU-100-mini-and-extended-boards/ATU_100_EXT_board/FirmWare_PIC18F2520/2520_EXT_board_sources_V_3.1/oled_control.c"
+#line 1 "d:/mikroc pro for pic/examples/atu_100_memo/n7ddc-atu-100-mini-and-extended-boards/atu_100_ext_board/firmware_pic18f2520/2520_ext_board_sources_v_3.1/oled_control.h"
 
 
 sbit Soft_I2C_Scl at LATB6_bit;
@@ -29,8 +29,9 @@ void dysp_off(void);
 void Soft_I2C_Init (void);
 void Soft_I2C_Start (void);
 void Soft_I2C_Write (char);
+unsigned char Soft_I2C_Read ();
 void Soft_I2C_Stop (void);
-#line 1 "e:/atu-100/fw_ext_3.1/2520_ext_board_sources_v_3.1/font5x8.h"
+#line 1 "d:/mikroc pro for pic/examples/atu_100_memo/n7ddc-atu-100-mini-and-extended-boards/atu_100_ext_board/firmware_pic18f2520/2520_ext_board_sources_v_3.1/font5x8.h"
  static const char font5x8[] = {
 
 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -130,7 +131,7 @@ void Soft_I2C_Stop (void);
 0x08, 0x08, 0x2A, 0x1C, 0x08,
 0x08, 0x1C, 0x2A, 0x08, 0x08
 };
-#line 6 "E:/ATU-100/fw_EXT_3.1/2520_EXT_board_sources_V_3.1/oled_control.c"
+#line 6 "D:/mikroC PRO for PIC/Examples/ATU_100_memo/N7DDC-ATU-100-mini-and-extended-boards/ATU_100_EXT_board/FirmWare_PIC18F2520/2520_EXT_board_sources_V_3.1/oled_control.c"
 void led_send (char nible) {
  char sdata;
  sdata = 0;
@@ -521,6 +522,33 @@ void Soft_I2C_Write (char d) {
  Soft_I2C_Scl_Direction = 0;
  Delay_us(5);
  }
+}
+unsigned char Soft_I2C_Read () {
+ char i;
+ unsigned char readByte = 0;
+ if(led_type!=0) {
+ Soft_I2C_Sda_Direction = 1;
+ for(i=0; i<=7; i++) {
+ readByte <<= 1;
+ readByte &= 0xFE;
+ Delay_us(5);
+ Soft_I2C_Scl_Direction = 1;
+ Delay_us(5);
+ if (PORTB & 0x80) {
+ readByte += 1;
+ }
+ Soft_I2C_Scl_Direction = 0;
+ Delay_us(5);
+ }
+ Soft_I2C_Sda_Direction = 1;
+ Delay_us(5);
+ Soft_I2C_Scl_Direction = 1;
+ Delay_us(5);
+ Soft_I2C_Scl_Direction = 0;
+ Delay_us(5);
+ }
+
+ return readByte;
 }
 
 void Soft_I2C_Stop () {
