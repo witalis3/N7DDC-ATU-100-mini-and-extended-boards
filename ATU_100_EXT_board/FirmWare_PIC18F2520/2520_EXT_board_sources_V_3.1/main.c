@@ -1,6 +1,11 @@
 //   ATU-100 project
 //   David Fainitski
 //   2016
+/*
+ * 2020
+ * wersja z obsługą pamięci 16 ustawień na bazie SP4MK
+ * sp3jdz
+ */
 
 #include    "oled_control.h"
 
@@ -40,7 +45,8 @@ void main() {
     asm CLRWDT;
     cells_init();
     Soft_I2C_Init();
-    if (type == 0) { // 2-colors led  reset
+    if (type == 0)
+    { // 2-colors led  reset
         LATB.B6 = 1;
         LATB.B7 = 1;
     }
@@ -48,7 +54,8 @@ void main() {
     //
     Delay_ms(300);
     asm CLRWDT;
-    if (PORTB.B1 == 0 & PORTB.B2 == 0) { // Test mode
+    if (PORTB.B1 == 0 & PORTB.B2 == 0)
+    { // Test mode
         Test = 1;
         Auto = 0;
     }
@@ -69,7 +76,8 @@ void main() {
     asm CLRWDT;
     led_init();
     //
-    if (Button( & PORTB, 0, 100, 0)) { //  Fider loss input
+    if (Button( & PORTB, 0, 100, 0))
+    { //  Fider loss input
         if (type == 4 | type == 5) {
             led_wr_str(0, 6, "Fider Loss", 10); // 128*64
             led_wr_str(2, 6, "input", 5);
@@ -134,7 +142,9 @@ void main() {
         if (Test == 0)
         {
             button_proc();	// główna procedura
-        } else {
+        }
+        else
+        {
             button_proc_test();
         }
 
@@ -188,7 +198,8 @@ void button_proc_test(void) {
                     led_wr_str(0, 8, "c", 1);
             }
         }
-        while (Button( & PORTB, 0, 50, 0)) {
+        while (Button( & PORTB, 0, 50, 0))
+        {
             lcd_pwr();
             asm CLRWDT;
         }
@@ -211,7 +222,8 @@ void button_proc_test(void) {
         }
     } // end of BYP button
     //
-    if (Button( & PORTB, 1, 50, 0) & Bypas == 0) { // Auto button
+    if (Button( & PORTB, 1, 50, 0) & Bypas == 0)
+    { // Auto button
         asm CLRWDT;
         while (PORTB.B1 == 0) {
             if (L & ind > 0) {
@@ -230,8 +242,10 @@ void button_proc_test(void) {
     return;
 }
 
-void button_proc(void) {
-    if (Button( & PORTB, 0, 50, 0) | Soft_tune) {
+void button_proc(void)
+{
+    if (Button( & PORTB, 0, 50, 0) | Soft_tune)
+    {
         dysp_on();
         dysp_cnt = Dysp_delay * dysp_cnt_mult;
         Delay_ms(250);
@@ -239,13 +253,16 @@ void button_proc(void) {
         if (Soft_tune == 0 & PORTB.B0 == 1) { // short press button
             show_reset();
             bypas = 0;
-        } else { // long press button
+        }
+        else
+        { // long press button
             // C8 p_Tx = 1; //
             n_Tx = 0; // TX request
             Delay_ms(250); //
             btn_push();
             bypas = 0;
-            while (Button( & PORTB, 0, 50, 0)) {
+            while (Button( & PORTB, 0, 50, 0))
+            {
                 lcd_pwr();
                 asm CLRWDT;
             }
@@ -378,7 +395,8 @@ void show_reset() {
     return;
 }
 
-void btn_push() {
+void btn_push()
+{
     asm CLRWDT;
     if (type == 4 | type == 5) { // 128*64 OLED
         led_wr_str(2, 16 + 12 * 4, "TUNE", 4);
@@ -388,8 +406,9 @@ void btn_push() {
         LATB.B6 = 1;
         LATB.B7 = 1;
     }
-    tune();
-    if (type == 0) { // real-time 2-colors led work
+    tune();		// strojenie
+    if (type == 0)
+    { // real-time 2-colors led work
         if (swr <= 150) {
             LATB.B6 = 0;
             LATB.B7 = 1;
@@ -402,7 +421,8 @@ void btn_push() {
             PORTB.B6 = 1;
             PORTB.B7 = 0;
         } // Red
-    } else if (Loss_mode == 0 | Loss_ind == 0)
+    }
+    else if (Loss_mode == 0 | Loss_ind == 0)
         lcd_ind();
     EEPROM_Write(255 - mem_offset * 5, cap);
     EEPROM_Write(254 - mem_offset * 5, ind);
@@ -426,7 +446,7 @@ void lcd_prep() {
             led_wr_str(0, 22, "ATU-100", 7);
             led_wr_str(2, 6, "EXT board", 9);
             led_wr_str(4, 16, "by N7DDC", 8);
-            led_wr_str(6, 4, "FW ver 3.1", 10);
+            led_wr_str(6, 4, "FW ver 3.1m", 11);
             asm CLRWDT;
             Delay_ms(600);
             asm CLRWDT;
@@ -455,7 +475,7 @@ void lcd_prep() {
             Delay_ms(500);
             asm CLRWDT;
             led_wr_str(0, 4, "by N7DDC", 8);
-            led_wr_str(1, 3, "FW ver 3.1", 10);
+            led_wr_str(1, 3, "FW ver 3.1m", 11);
             asm CLRWDT;
             Delay_ms(600);
             asm CLRWDT;
@@ -880,6 +900,8 @@ void lcd_ind() {
             work_int += Cap6;
         if (cap.B6)
             work_int += Cap7;
+        if (mem_offset == band_160m)
+        	work_int += C8_value;
         IntToStr(work_int, work_str);
         work_str_2[0] = work_str[2];
         work_str_2[1] = work_str[3];

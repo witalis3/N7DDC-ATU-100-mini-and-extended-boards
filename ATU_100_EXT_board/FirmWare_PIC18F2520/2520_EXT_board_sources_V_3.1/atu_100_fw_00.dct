@@ -117,6 +117,7 @@ b4
 b5
 b6
 b7
+band_160m
 banked
 baudcon
 baudctl
@@ -164,6 +165,7 @@ c2out_cmcon
 c2out_cmcon_bit
 c2out_porta
 c2out_porta_bit
+c8_value
 cap_10
 cap_100
 cap_1000

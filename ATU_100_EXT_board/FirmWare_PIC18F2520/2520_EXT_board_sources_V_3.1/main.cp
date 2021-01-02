@@ -78,6 +78,9 @@ static int Rel_Del, min_for_start, max_for_start, max_swr;
 int SWR, PWR, P_max, swr_a;
 char rready = 0, p_cnt = 0;
 
+char band_160m = 1;
+int C8_value = 1820;
+
 void btn_push(void);
 void lcd_prep(void);
 void lcd_swr(int);
@@ -264,7 +267,7 @@ void set_cap(char Cap) {
  Cap_220 = Cap.B4;
  Cap_470 = Cap.B5;
  Cap_1000 = Cap.B6;
- if (mem_offset == 14)
+ if (mem_offset == band_160m)
  {
  Cap_1820 = 1;
  }
@@ -526,7 +529,8 @@ void sub_tune()
  if (SWR < 120)
  return;
 
- if (SWR > swr_mem) {
+ if (SWR > swr_mem)
+ {
  if (SW == 1)
  SW = 0;
  else
@@ -606,7 +610,7 @@ void tune()
  asm CLRWDT;
  return;
 }
-#line 12 "D:/mikroC PRO for PIC/Examples/ATU_100_memo/N7DDC-ATU-100-mini-and-extended-boards/ATU_100_EXT_board/FirmWare_PIC18F2520/2520_EXT_board_sources_V_3.1/main.c"
+#line 17 "D:/mikroC PRO for PIC/Examples/ATU_100_memo/N7DDC-ATU-100-mini-and-extended-boards/ATU_100_EXT_board/FirmWare_PIC18F2520/2520_EXT_board_sources_V_3.1/main.c"
 int SWR_fixed_old = 0, work_int;
 char work_char, work_str[7], work_str_2[7];
 float Forward;
@@ -638,7 +642,8 @@ void main() {
  asm CLRWDT;
  cells_init();
  Soft_I2C_Init();
- if (type == 0) {
+ if (type == 0)
+ {
  LATB.B6 = 1;
  LATB.B7 = 1;
  }
@@ -646,7 +651,8 @@ void main() {
 
  Delay_ms(300);
  asm CLRWDT;
- if (PORTB.B1 == 0 & PORTB.B2 == 0) {
+ if (PORTB.B1 == 0 & PORTB.B2 == 0)
+ {
  Test = 1;
  Auto = 0;
  }
@@ -667,7 +673,8 @@ void main() {
  asm CLRWDT;
  led_init();
 
- if (Button( & PORTB, 0, 100, 0)) {
+ if (Button( & PORTB, 0, 100, 0))
+ {
  if (type == 4 | type == 5) {
  led_wr_str(0, 6, "Fider Loss", 10);
  led_wr_str(2, 6, "input", 5);
@@ -703,7 +710,7 @@ void main() {
  }
 
  if (Test == 0) {
-#line 116 "D:/mikroC PRO for PIC/Examples/ATU_100_memo/N7DDC-ATU-100-mini-and-extended-boards/ATU_100_EXT_board/FirmWare_PIC18F2520/2520_EXT_board_sources_V_3.1/main.c"
+#line 124 "D:/mikroC PRO for PIC/Examples/ATU_100_memo/N7DDC-ATU-100-mini-and-extended-boards/ATU_100_EXT_board/FirmWare_PIC18F2520/2520_EXT_board_sources_V_3.1/main.c"
  read_i2c_inputs();
  load_settings();
  if (Restart == 1)
@@ -725,7 +732,9 @@ void main() {
  if (Test == 0)
  {
  button_proc();
- } else {
+ }
+ else
+ {
  button_proc_test();
  }
 
@@ -779,7 +788,8 @@ void button_proc_test(void) {
  led_wr_str(0, 8, "c", 1);
  }
  }
- while (Button( & PORTB, 0, 50, 0)) {
+ while (Button( & PORTB, 0, 50, 0))
+ {
  lcd_pwr();
  asm CLRWDT;
  }
@@ -802,7 +812,8 @@ void button_proc_test(void) {
  }
  }
 
- if (Button( & PORTB, 1, 50, 0) & Bypas == 0) {
+ if (Button( & PORTB, 1, 50, 0) & Bypas == 0)
+ {
  asm CLRWDT;
  while (PORTB.B1 == 0) {
  if (L & ind > 0) {
@@ -821,8 +832,10 @@ void button_proc_test(void) {
  return;
 }
 
-void button_proc(void) {
- if (Button( & PORTB, 0, 50, 0) | Soft_tune) {
+void button_proc(void)
+{
+ if (Button( & PORTB, 0, 50, 0) | Soft_tune)
+ {
  dysp_on();
  dysp_cnt = Dysp_delay * dysp_cnt_mult;
  Delay_ms(250);
@@ -830,13 +843,16 @@ void button_proc(void) {
  if (Soft_tune == 0 & PORTB.B0 == 1) {
  show_reset();
  bypas = 0;
- } else {
+ }
+ else
+ {
 
  n_Tx = 0;
  Delay_ms(250);
  btn_push();
  bypas = 0;
- while (Button( & PORTB, 0, 50, 0)) {
+ while (Button( & PORTB, 0, 50, 0))
+ {
  lcd_pwr();
  asm CLRWDT;
  }
@@ -969,7 +985,8 @@ void show_reset() {
  return;
 }
 
-void btn_push() {
+void btn_push()
+{
  asm CLRWDT;
  if (type == 4 | type == 5) {
  led_wr_str(2, 16 + 12 * 4, "TUNE", 4);
@@ -980,7 +997,8 @@ void btn_push() {
  LATB.B7 = 1;
  }
  tune();
- if (type == 0) {
+ if (type == 0)
+ {
  if (swr <= 150) {
  LATB.B6 = 0;
  LATB.B7 = 1;
@@ -993,7 +1011,8 @@ void btn_push() {
  PORTB.B6 = 1;
  PORTB.B7 = 0;
  }
- } else if (Loss_mode == 0 | Loss_ind == 0)
+ }
+ else if (Loss_mode == 0 | Loss_ind == 0)
  lcd_ind();
  EEPROM_Write(255 - mem_offset * 5, cap);
  EEPROM_Write(254 - mem_offset * 5, ind);
@@ -1017,7 +1036,7 @@ void lcd_prep() {
  led_wr_str(0, 22, "ATU-100", 7);
  led_wr_str(2, 6, "EXT board", 9);
  led_wr_str(4, 16, "by N7DDC", 8);
- led_wr_str(6, 4, "FW ver 3.1", 10);
+ led_wr_str(6, 4, "FW ver 3.1m", 11);
  asm CLRWDT;
  Delay_ms(600);
  asm CLRWDT;
@@ -1046,7 +1065,7 @@ void lcd_prep() {
  Delay_ms(500);
  asm CLRWDT;
  led_wr_str(0, 4, "by N7DDC", 8);
- led_wr_str(1, 3, "FW ver 3.1", 10);
+ led_wr_str(1, 3, "FW ver 3.1m", 11);
  asm CLRWDT;
  Delay_ms(600);
  asm CLRWDT;
@@ -1383,7 +1402,7 @@ void lcd_pwr() {
  }
  return;
 }
-#line 798 "D:/mikroC PRO for PIC/Examples/ATU_100_memo/N7DDC-ATU-100-mini-and-extended-boards/ATU_100_EXT_board/FirmWare_PIC18F2520/2520_EXT_board_sources_V_3.1/main.c"
+#line 818 "D:/mikroC PRO for PIC/Examples/ATU_100_memo/N7DDC-ATU-100-mini-and-extended-boards/ATU_100_EXT_board/FirmWare_PIC18F2520/2520_EXT_board_sources_V_3.1/main.c"
 void lcd_ind() {
  char column;
  asm CLRWDT;
@@ -1469,6 +1488,8 @@ void lcd_ind() {
  work_int += Cap6;
  if (cap.B6)
  work_int += Cap7;
+ if (mem_offset == band_160m)
+ work_int += C8_value;
  IntToStr(work_int, work_str);
  work_str_2[0] = work_str[2];
  work_str_2[1] = work_str[3];

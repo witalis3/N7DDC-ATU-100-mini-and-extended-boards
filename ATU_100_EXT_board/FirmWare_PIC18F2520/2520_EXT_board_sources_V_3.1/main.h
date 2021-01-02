@@ -11,6 +11,9 @@ static char ind = 0, cap = 0, SW = 0, step_cap = 0, step_ind = 0, L_linear = 0,
 static int Rel_Del, min_for_start, max_for_start, max_swr;
 int SWR, PWR, P_max, swr_a;
 char rready = 0, p_cnt = 0;
+// memo
+char band_160m = 1;	// kod dla pasma 160m
+int C8_value = 1820;	// wartość kondensatora C8
 //
 void btn_push(void);
 void lcd_prep(void);
@@ -198,7 +201,7 @@ void set_cap(char Cap) { // 0 - 31
     Cap_220 = Cap.B4;
     Cap_470 = Cap.B5;
     Cap_1000 = Cap.B6;
-    if (mem_offset == 14)        // kod pasma 160m
+    if (mem_offset == band_160m)        // kod pasma 160m
     {
             Cap_1820 = 1;
     }
@@ -460,7 +463,8 @@ void sub_tune()
     if (SWR < 120)
         return;
     //
-    if (SWR > swr_mem) {
+    if (SWR > swr_mem)
+    {
         if (SW == 1)
             SW = 0;
         else
