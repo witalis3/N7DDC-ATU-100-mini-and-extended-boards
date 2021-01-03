@@ -137,23 +137,30 @@ void get_pwr() {
 
 void get_swr() {
     get_pwr();
-    if (p_cnt != 100) {
+    if (p_cnt != 100)
+    {
         p_cnt += 1;
         if (PWR > P_max)
             P_max = PWR;
-    } else {
+    }
+    else
+    {
         p_cnt = 0;
-        show_pwr(P_max, SWR); // raz na 100 pomiarów pokazuje maksymalną wartośc mocy
+        show_pwr(P_max, SWR); // raz na 100 pomiarów pokazuje maksymalną wartość mocy
         P_max = 0;
     }
-    while (PWR < min_for_start | (PWR > max_for_start & max_for_start > 0)) { // waiting for good power
+    while (PWR < min_for_start | (PWR > max_for_start & max_for_start > 0))
+    { // waiting for good power
         asm CLRWDT;
         get_pwr();
-        if (p_cnt != 100) {
+        if (p_cnt != 100)
+        {
             p_cnt += 1;
             if (PWR > P_max)
                 P_max = PWR;
-        } else {
+        }
+        else
+        {
             p_cnt = 0;
             show_pwr(P_max, SWR);
             P_max = 0;
@@ -161,9 +168,10 @@ void get_swr() {
         //
         if (Button( & PORTB, 0, 5, 1))
             rready = 1;
-        if (rready == 1 & Button( & PORTB, 0, 5, 0)) { //  press button  Tune
+        if (rready == 1 & Button( & PORTB, 0, 5, 0))
+        { //  press button  Tune
             show_reset();
-            SWR = 0;
+            SWR = 0;	// wskaźnik przerwania oczekiwania na właściwą moc - reset
             return;
         }
     } //  good power
@@ -305,7 +313,8 @@ void coarse_tune() {
     return;
 }
 
-void sharp_cap() {
+void sharp_cap()
+{
     char range, count, max_range, min_range;
     int min_swr;
     range = step_cap * C_mult;
@@ -348,7 +357,8 @@ void sharp_cap() {
     return;
 }
 
-void sharp_ind() {
+void sharp_ind()
+{
     char range, count, max_range, min_range;
     int min_SWR;
     range = step_ind * L_mult;
@@ -502,7 +512,8 @@ void tune()
     swr_a = SWR;
     if (SWR < 110)
         return;
-    if (max_swr > 110 & SWR > max_swr)        // max_swr - zawartość komórki 9 (domyślnie 0)
+    if (max_swr > 110 & SWR > max_swr)
+    	// max_swr - zawartość komórki 9 (domyślnie 0)
         return;
     //
 
@@ -517,14 +528,16 @@ void tune()
     if (C_q == 5 & L_q == 5)
         return;
 
-    if (L_q > 5) {
+    if (L_q > 5)
+    {
         step_ind = L_mult;
         L_mult = 1;
         sharp_ind();
     }
     if (SWR < 120)
         return;
-    if (C_q > 5) {
+    if (C_q > 5)
+    {
         step_cap = C_mult; // = C_mult
         C_mult = 1;
         sharp_cap();

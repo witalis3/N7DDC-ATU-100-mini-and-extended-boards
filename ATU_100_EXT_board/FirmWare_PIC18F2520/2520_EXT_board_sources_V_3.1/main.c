@@ -207,11 +207,15 @@ void button_proc_test(void) {
     //
     if (Button( & PORTB, 2, 50, 0)) { // BYP button
         asm CLRWDT;
-        while (PORTB.B2 == 0) {
-            if (L & ind < 32 * L_mult - 1) {
+        while (PORTB.B2 == 0)
+        {
+            if (L & ind < 32 * L_mult - 1)
+            {
                 ind++;
                 set_ind(ind);
-            } else if (!L & cap < 32 * L_mult - 1) {
+            }
+            else if (!L & cap < 32 * L_mult - 1)
+            {
                 cap++;
                 set_cap(cap);
             }
@@ -256,7 +260,7 @@ void button_proc(void)
         }
         else
         { // long press button
-            // C8 p_Tx = 1; //
+            // C8: p_Tx = 1; //
             n_Tx = 0; // TX request
             Delay_ms(250); //
             btn_push();
@@ -368,7 +372,7 @@ void show_reset() {
     EEPROM_Write(251 - mem_offset * 5, 0);
     lcd_ind();
     Loss_mode = 0;
-    // C8 p_Tx = 0;
+    // C8: p_Tx = 0;
     n_Tx = 1;
     SWR = 0;
     PWR = 0;
@@ -433,7 +437,7 @@ void btn_push()
     Power_old = 10000;
     lcd_pwr();
     SWR_fixed_old = SWR;
-    // C8 p_Tx = 0;
+    // C8: p_Tx = 0;
     n_Tx = 1;
     asm CLRWDT;
     return;
@@ -455,7 +459,7 @@ void lcd_prep() {
             led_wr_str(0, 16, "        ", 8);
             led_wr_str(2, 4, "          ", 10);
             led_wr_str(4, 16, "        ", 8);
-            led_wr_str(6, 4, "          ", 10);
+            led_wr_str(6, 4, "          ", 11);
         }
         Delay_ms(150);
         if (P_High == 1)
@@ -482,7 +486,7 @@ void lcd_prep() {
             Delay_ms(500);
             asm CLRWDT;
             led_wr_str(0, 4, "        ", 8);
-            led_wr_str(1, 3, "          ", 10);
+            led_wr_str(1, 3, "          ", 11);
         }
         Delay_ms(150);
         if (P_High == 1)

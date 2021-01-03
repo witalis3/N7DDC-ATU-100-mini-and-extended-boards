@@ -203,23 +203,30 @@ void get_pwr() {
 
 void get_swr() {
  get_pwr();
- if (p_cnt != 100) {
+ if (p_cnt != 100)
+ {
  p_cnt += 1;
  if (PWR > P_max)
  P_max = PWR;
- } else {
+ }
+ else
+ {
  p_cnt = 0;
  show_pwr(P_max, SWR);
  P_max = 0;
  }
- while (PWR < min_for_start | (PWR > max_for_start & max_for_start > 0)) {
+ while (PWR < min_for_start | (PWR > max_for_start & max_for_start > 0))
+ {
  asm CLRWDT;
  get_pwr();
- if (p_cnt != 100) {
+ if (p_cnt != 100)
+ {
  p_cnt += 1;
  if (PWR > P_max)
  P_max = PWR;
- } else {
+ }
+ else
+ {
  p_cnt = 0;
  show_pwr(P_max, SWR);
  P_max = 0;
@@ -227,7 +234,8 @@ void get_swr() {
 
  if (Button( & PORTB, 0, 5, 1))
  rready = 1;
- if (rready == 1 & Button( & PORTB, 0, 5, 0)) {
+ if (rready == 1 & Button( & PORTB, 0, 5, 0))
+ {
  show_reset();
  SWR = 0;
  return;
@@ -371,7 +379,8 @@ void coarse_tune() {
  return;
 }
 
-void sharp_cap() {
+void sharp_cap()
+{
  char range, count, max_range, min_range;
  int min_swr;
  range = step_cap * C_mult;
@@ -414,7 +423,8 @@ void sharp_cap() {
  return;
 }
 
-void sharp_ind() {
+void sharp_ind()
+{
  char range, count, max_range, min_range;
  int min_SWR;
  range = step_ind * L_mult;
@@ -569,6 +579,7 @@ void tune()
  if (SWR < 110)
  return;
  if (max_swr > 110 & SWR > max_swr)
+
  return;
 
 
@@ -583,14 +594,16 @@ void tune()
  if (C_q == 5 & L_q == 5)
  return;
 
- if (L_q > 5) {
+ if (L_q > 5)
+ {
  step_ind = L_mult;
  L_mult = 1;
  sharp_ind();
  }
  if (SWR < 120)
  return;
- if (C_q > 5) {
+ if (C_q > 5)
+ {
  step_cap = C_mult;
  C_mult = 1;
  sharp_cap();
@@ -797,11 +810,15 @@ void button_proc_test(void) {
 
  if (Button( & PORTB, 2, 50, 0)) {
  asm CLRWDT;
- while (PORTB.B2 == 0) {
- if (L & ind < 32 * L_mult - 1) {
+ while (PORTB.B2 == 0)
+ {
+ if (L & ind < 32 * L_mult - 1)
+ {
  ind++;
  set_ind(ind);
- } else if (!L & cap < 32 * L_mult - 1) {
+ }
+ else if (!L & cap < 32 * L_mult - 1)
+ {
  cap++;
  set_cap(cap);
  }
@@ -1045,7 +1062,7 @@ void lcd_prep() {
  led_wr_str(0, 16, "        ", 8);
  led_wr_str(2, 4, "          ", 10);
  led_wr_str(4, 16, "        ", 8);
- led_wr_str(6, 4, "          ", 10);
+ led_wr_str(6, 4, "          ", 11);
  }
  Delay_ms(150);
  if (P_High == 1)
@@ -1072,7 +1089,7 @@ void lcd_prep() {
  Delay_ms(500);
  asm CLRWDT;
  led_wr_str(0, 4, "        ", 8);
- led_wr_str(1, 3, "          ", 10);
+ led_wr_str(1, 3, "          ", 11);
  }
  Delay_ms(150);
  if (P_High == 1)
@@ -1402,7 +1419,7 @@ void lcd_pwr() {
  }
  return;
 }
-#line 818 "D:/mikroC PRO for PIC/Examples/ATU_100_memo/N7DDC-ATU-100-mini-and-extended-boards/ATU_100_EXT_board/FirmWare_PIC18F2520/2520_EXT_board_sources_V_3.1/main.c"
+#line 822 "D:/mikroC PRO for PIC/Examples/ATU_100_memo/N7DDC-ATU-100-mini-and-extended-boards/ATU_100_EXT_board/FirmWare_PIC18F2520/2520_EXT_board_sources_V_3.1/main.c"
 void lcd_ind() {
  char column;
  asm CLRWDT;
