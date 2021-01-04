@@ -2606,19 +2606,19 @@ L_end_sub_tune:
 
 _tune:
 
-;main.h,494 :: 		void tune()
-;main.h,498 :: 		asm CLRWDT;
+;main.h,496 :: 		void tune()
+;main.h,500 :: 		asm CLRWDT;
 	CLRWDT
-;main.h,500 :: 		p_cnt = 0;
+;main.h,502 :: 		p_cnt = 0;
 	CLRF        _p_cnt+0 
-;main.h,501 :: 		P_max = 0;
+;main.h,503 :: 		P_max = 0;
 	CLRF        _P_max+0 
 	CLRF        _P_max+1 
-;main.h,503 :: 		rready = 0;
+;main.h,505 :: 		rready = 0;
 	CLRF        _rready+0 
-;main.h,504 :: 		get_swr();
+;main.h,506 :: 		get_swr();
 	CALL        _get_swr+0, 0
-;main.h,505 :: 		if (SWR < 110)
+;main.h,507 :: 		if (SWR < 110)
 	MOVLW       128
 	XORWF       _SWR+1, 0 
 	MOVWF       R0 
@@ -2631,20 +2631,20 @@ _tune:
 L__tune595:
 	BTFSC       STATUS+0, 0 
 	GOTO        L_tune124
-;main.h,506 :: 		return;
+;main.h,508 :: 		return;
 	GOTO        L_end_tune
 L_tune124:
-;main.h,507 :: 		atu_reset();
+;main.h,509 :: 		atu_reset();
 	CALL        _atu_reset+0, 0
-;main.h,508 :: 		if (Loss_ind == 0)
+;main.h,510 :: 		if (Loss_ind == 0)
 	MOVF        main_Loss_ind+0, 0 
 	XORLW       0
 	BTFSS       STATUS+0, 2 
 	GOTO        L_tune125
-;main.h,509 :: 		lcd_ind();                // wyświetlenie wartości L i C
+;main.h,511 :: 		lcd_ind();                // wyświetlenie wartości L i C
 	CALL        _lcd_ind+0, 0
 L_tune125:
-;main.h,510 :: 		Delay_ms(50);
+;main.h,512 :: 		Delay_ms(50);
 	MOVLW       2
 	MOVWF       R11, 0
 	MOVLW       4
@@ -2659,14 +2659,14 @@ L_tune126:
 	DECFSZ      R11, 1, 1
 	BRA         L_tune126
 	NOP
-;main.h,511 :: 		get_swr();
+;main.h,513 :: 		get_swr();
 	CALL        _get_swr+0, 0
-;main.h,512 :: 		swr_a = SWR;
+;main.h,514 :: 		swr_a = SWR;
 	MOVF        _SWR+0, 0 
 	MOVWF       _swr_a+0 
 	MOVF        _SWR+1, 0 
 	MOVWF       _swr_a+1 
-;main.h,513 :: 		if (SWR < 110)
+;main.h,515 :: 		if (SWR < 110)
 	MOVLW       128
 	XORWF       _SWR+1, 0 
 	MOVWF       R0 
@@ -2679,10 +2679,10 @@ L_tune126:
 L__tune596:
 	BTFSC       STATUS+0, 0 
 	GOTO        L_tune127
-;main.h,514 :: 		return;
+;main.h,516 :: 		return;
 	GOTO        L_end_tune
 L_tune127:
-;main.h,515 :: 		if (max_swr > 110 & SWR > max_swr)
+;main.h,517 :: 		if (max_swr > 110 & SWR > max_swr)
 	MOVLW       128
 	MOVWF       R1 
 	MOVLW       128
@@ -2716,12 +2716,12 @@ L__tune598:
 	ANDWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_tune128
-;main.h,517 :: 		return;
+;main.h,519 :: 		return;
 	GOTO        L_end_tune
 L_tune128:
-;main.h,520 :: 		sub_tune();
+;main.h,522 :: 		sub_tune();
 	CALL        _sub_tune+0, 0
-;main.h,521 :: 		if (SWR == 0)
+;main.h,523 :: 		if (SWR == 0)
 	MOVLW       0
 	XORWF       _SWR+1, 0 
 	BTFSS       STATUS+0, 2 
@@ -2731,13 +2731,13 @@ L_tune128:
 L__tune599:
 	BTFSS       STATUS+0, 2 
 	GOTO        L_tune129
-;main.h,523 :: 		atu_reset();
+;main.h,525 :: 		atu_reset();
 	CALL        _atu_reset+0, 0
-;main.h,524 :: 		return;
+;main.h,526 :: 		return;
 	GOTO        L_end_tune
-;main.h,525 :: 		}
+;main.h,527 :: 		}
 L_tune129:
-;main.h,526 :: 		if (SWR < 120)
+;main.h,528 :: 		if (SWR < 120)
 	MOVLW       128
 	XORWF       _SWR+1, 0 
 	MOVWF       R0 
@@ -2750,10 +2750,10 @@ L_tune129:
 L__tune600:
 	BTFSC       STATUS+0, 0 
 	GOTO        L_tune130
-;main.h,527 :: 		return;
+;main.h,529 :: 		return;
 	GOTO        L_end_tune
 L_tune130:
-;main.h,528 :: 		if (C_q == 5 & L_q == 5)
+;main.h,530 :: 		if (C_q == 5 & L_q == 5)
 	MOVF        main_C_q+0, 0 
 	XORLW       5
 	MOVLW       1
@@ -2770,25 +2770,25 @@ L_tune130:
 	ANDWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_tune131
-;main.h,529 :: 		return;
+;main.h,531 :: 		return;
 	GOTO        L_end_tune
 L_tune131:
-;main.h,531 :: 		if (L_q > 5)
+;main.h,533 :: 		if (L_q > 5)
 	MOVF        main_L_q+0, 0 
 	SUBLW       5
 	BTFSC       STATUS+0, 0 
 	GOTO        L_tune132
-;main.h,533 :: 		step_ind = L_mult;
+;main.h,535 :: 		step_ind = L_mult;
 	MOVF        main_L_mult+0, 0 
 	MOVWF       main_step_ind+0 
-;main.h,534 :: 		L_mult = 1;
+;main.h,536 :: 		L_mult = 1;
 	MOVLW       1
 	MOVWF       main_L_mult+0 
-;main.h,535 :: 		sharp_ind();
+;main.h,537 :: 		sharp_ind();
 	CALL        _sharp_ind+0, 0
-;main.h,536 :: 		}
+;main.h,538 :: 		}
 L_tune132:
-;main.h,537 :: 		if (SWR < 120)
+;main.h,539 :: 		if (SWR < 120)
 	MOVLW       128
 	XORWF       _SWR+1, 0 
 	MOVWF       R0 
@@ -2801,107 +2801,107 @@ L_tune132:
 L__tune601:
 	BTFSC       STATUS+0, 0 
 	GOTO        L_tune133
-;main.h,538 :: 		return;
+;main.h,540 :: 		return;
 	GOTO        L_end_tune
 L_tune133:
-;main.h,539 :: 		if (C_q > 5)
+;main.h,542 :: 		if (C_q > 5)
 	MOVF        main_C_q+0, 0 
 	SUBLW       5
 	BTFSC       STATUS+0, 0 
 	GOTO        L_tune134
-;main.h,541 :: 		step_cap = C_mult; // = C_mult
+;main.h,544 :: 		step_cap = C_mult; // = C_mult
 	MOVF        main_C_mult+0, 0 
 	MOVWF       main_step_cap+0 
-;main.h,542 :: 		C_mult = 1;
+;main.h,545 :: 		C_mult = 1;
 	MOVLW       1
 	MOVWF       main_C_mult+0 
-;main.h,543 :: 		sharp_cap();
+;main.h,546 :: 		sharp_cap();
 	CALL        _sharp_cap+0, 0
-;main.h,544 :: 		}
+;main.h,547 :: 		}
 L_tune134:
-;main.h,545 :: 		if (L_q == 5)
+;main.h,548 :: 		if (L_q == 5)
 	MOVF        main_L_q+0, 0 
 	XORLW       5
 	BTFSS       STATUS+0, 2 
 	GOTO        L_tune135
-;main.h,546 :: 		L_mult = 1;
+;main.h,549 :: 		L_mult = 1;
 	MOVLW       1
 	MOVWF       main_L_mult+0 
 	GOTO        L_tune136
 L_tune135:
-;main.h,547 :: 		else if (L_q == 6)
+;main.h,550 :: 		else if (L_q == 6)
 	MOVF        main_L_q+0, 0 
 	XORLW       6
 	BTFSS       STATUS+0, 2 
 	GOTO        L_tune137
-;main.h,548 :: 		L_mult = 2;
+;main.h,551 :: 		L_mult = 2;
 	MOVLW       2
 	MOVWF       main_L_mult+0 
 	GOTO        L_tune138
 L_tune137:
-;main.h,549 :: 		else if (L_q == 7)
+;main.h,552 :: 		else if (L_q == 7)
 	MOVF        main_L_q+0, 0 
 	XORLW       7
 	BTFSS       STATUS+0, 2 
 	GOTO        L_tune139
-;main.h,550 :: 		L_mult = 4;
+;main.h,553 :: 		L_mult = 4;
 	MOVLW       4
 	MOVWF       main_L_mult+0 
 L_tune139:
 L_tune138:
 L_tune136:
-;main.h,551 :: 		if (C_q == 5)
+;main.h,554 :: 		if (C_q == 5)
 	MOVF        main_C_q+0, 0 
 	XORLW       5
 	BTFSS       STATUS+0, 2 
 	GOTO        L_tune140
-;main.h,552 :: 		C_mult = 1;
+;main.h,555 :: 		C_mult = 1;
 	MOVLW       1
 	MOVWF       main_C_mult+0 
 	GOTO        L_tune141
 L_tune140:
-;main.h,553 :: 		else if (C_q == 6)
+;main.h,556 :: 		else if (C_q == 6)
 	MOVF        main_C_q+0, 0 
 	XORLW       6
 	BTFSS       STATUS+0, 2 
 	GOTO        L_tune142
-;main.h,554 :: 		C_mult = 2;
+;main.h,557 :: 		C_mult = 2;
 	MOVLW       2
 	MOVWF       main_C_mult+0 
 	GOTO        L_tune143
 L_tune142:
-;main.h,555 :: 		else if (C_q == 7)
+;main.h,558 :: 		else if (C_q == 7)
 	MOVF        main_C_q+0, 0 
 	XORLW       7
 	BTFSS       STATUS+0, 2 
 	GOTO        L_tune144
-;main.h,556 :: 		C_mult = 4;
+;main.h,559 :: 		C_mult = 4;
 	MOVLW       4
 	MOVWF       main_C_mult+0 
 L_tune144:
 L_tune143:
 L_tune141:
-;main.h,557 :: 		asm CLRWDT;
+;main.h,560 :: 		asm CLRWDT;
 	CLRWDT
-;main.h,558 :: 		return;
-;main.h,559 :: 		}
+;main.h,561 :: 		return;
+;main.h,562 :: 		}
 L_end_tune:
 	RETURN      0
 ; end of _tune
 
 _main:
 
-;main.c,38 :: 		void main() {
-;main.c,40 :: 		if (RCON.B3 == 0)
+;main.c,41 :: 		void main() {
+;main.c,43 :: 		if (RCON.B3 == 0)
 	BTFSC       RCON+0, 3 
 	GOTO        L_main145
-;main.c,41 :: 		Restart = 1;
+;main.c,44 :: 		Restart = 1;
 	MOVLW       1
 	MOVWF       _Restart+0 
 L_main145:
-;main.c,42 :: 		pic_init();
+;main.c,45 :: 		pic_init();
 	CALL        _pic_init+0, 0
-;main.c,44 :: 		Delay_ms(300);
+;main.c,47 :: 		Delay_ms(300);
 	MOVLW       7
 	MOVWF       R11, 0
 	MOVLW       23
@@ -2916,24 +2916,42 @@ L_main146:
 	DECFSZ      R11, 1, 1
 	BRA         L_main146
 	NOP
-;main.c,45 :: 		asm CLRWDT;
+;main.c,48 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,46 :: 		cells_init();
+;main.c,49 :: 		cells_init();
 	CALL        _cells_init+0, 0
-;main.c,47 :: 		Soft_I2C_Init();
+;main.c,50 :: 		Soft_I2C_Init();
 	CALL        _Soft_I2C_Init+0, 0
-;main.c,48 :: 		if (type == 0)
+;main.c,51 :: 		Soft_UART_Init(&PORTA, 7, 6, 19800, 0);
+	MOVLW       PORTA+0
+	MOVWF       FARG_Soft_UART_Init_port+0 
+	MOVLW       hi_addr(PORTA+0)
+	MOVWF       FARG_Soft_UART_Init_port+1 
+	MOVLW       7
+	MOVWF       FARG_Soft_UART_Init_rx_pin+0 
+	MOVLW       6
+	MOVWF       FARG_Soft_UART_Init_tx_pin+0 
+	MOVLW       88
+	MOVWF       FARG_Soft_UART_Init_baud_rate+0 
+	MOVLW       77
+	MOVWF       FARG_Soft_UART_Init_baud_rate+1 
+	MOVLW       0
+	MOVWF       FARG_Soft_UART_Init_baud_rate+2 
+	MOVWF       FARG_Soft_UART_Init_baud_rate+3 
+	CLRF        FARG_Soft_UART_Init_inverted+0 
+	CALL        _Soft_UART_Init+0, 0
+;main.c,53 :: 		if (type == 0)
 	MOVF        _type+0, 0 
 	XORLW       0
 	BTFSS       STATUS+0, 2 
 	GOTO        L_main147
-;main.c,50 :: 		LATB.B6 = 1;
+;main.c,55 :: 		LATB.B6 = 1;
 	BSF         LATB+0, 6 
-;main.c,51 :: 		LATB.B7 = 1;
+;main.c,56 :: 		LATB.B7 = 1;
 	BSF         LATB+0, 7 
-;main.c,52 :: 		}
+;main.c,57 :: 		}
 L_main147:
-;main.c,53 :: 		dysp_cnt = Dysp_delay * dysp_cnt_mult;
+;main.c,58 :: 		dysp_cnt = Dysp_delay * dysp_cnt_mult;
 	MOVF        _Dysp_delay+0, 0 
 	MOVWF       R0 
 	CALL        _byte2double+0, 0
@@ -2951,7 +2969,7 @@ L_main147:
 	MOVWF       _dysp_cnt+0 
 	MOVF        R1, 0 
 	MOVWF       _dysp_cnt+1 
-;main.c,55 :: 		Delay_ms(300);
+;main.c,60 :: 		Delay_ms(300);
 	MOVLW       7
 	MOVWF       R11, 0
 	MOVLW       23
@@ -2966,9 +2984,9 @@ L_main148:
 	DECFSZ      R11, 1, 1
 	BRA         L_main148
 	NOP
-;main.c,56 :: 		asm CLRWDT;
+;main.c,61 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,57 :: 		if (PORTB.B1 == 0 & PORTB.B2 == 0)
+;main.c,62 :: 		if (PORTB.B1 == 0 & PORTB.B2 == 0)
 	BTFSC       PORTB+0, 1 
 	GOTO        L__main603
 	BSF         R4, 0 
@@ -2994,76 +3012,76 @@ L__main607:
 L__main608:
 	BTFSS       R4, 0 
 	GOTO        L_main149
-;main.c,59 :: 		Test = 1;
+;main.c,64 :: 		Test = 1;
 	MOVLW       1
 	MOVWF       _Test+0 
-;main.c,60 :: 		Auto = 0;
+;main.c,65 :: 		Auto = 0;
 	CLRF        _Auto+0 
-;main.c,61 :: 		}
+;main.c,66 :: 		}
 L_main149:
-;main.c,62 :: 		if (L_q == 5)
+;main.c,67 :: 		if (L_q == 5)
 	MOVF        main_L_q+0, 0 
 	XORLW       5
 	BTFSS       STATUS+0, 2 
 	GOTO        L_main150
-;main.c,63 :: 		L_mult = 1;
+;main.c,68 :: 		L_mult = 1;
 	MOVLW       1
 	MOVWF       main_L_mult+0 
 	GOTO        L_main151
 L_main150:
-;main.c,64 :: 		else if (L_q == 6)
+;main.c,69 :: 		else if (L_q == 6)
 	MOVF        main_L_q+0, 0 
 	XORLW       6
 	BTFSS       STATUS+0, 2 
 	GOTO        L_main152
-;main.c,65 :: 		L_mult = 2;
+;main.c,70 :: 		L_mult = 2;
 	MOVLW       2
 	MOVWF       main_L_mult+0 
 	GOTO        L_main153
 L_main152:
-;main.c,66 :: 		else if (L_q == 7)
+;main.c,71 :: 		else if (L_q == 7)
 	MOVF        main_L_q+0, 0 
 	XORLW       7
 	BTFSS       STATUS+0, 2 
 	GOTO        L_main154
-;main.c,67 :: 		L_mult = 4;
+;main.c,72 :: 		L_mult = 4;
 	MOVLW       4
 	MOVWF       main_L_mult+0 
 L_main154:
 L_main153:
 L_main151:
-;main.c,68 :: 		if (C_q == 5)
+;main.c,73 :: 		if (C_q == 5)
 	MOVF        main_C_q+0, 0 
 	XORLW       5
 	BTFSS       STATUS+0, 2 
 	GOTO        L_main155
-;main.c,69 :: 		C_mult = 1;
+;main.c,74 :: 		C_mult = 1;
 	MOVLW       1
 	MOVWF       main_C_mult+0 
 	GOTO        L_main156
 L_main155:
-;main.c,70 :: 		else if (C_q == 6)
+;main.c,75 :: 		else if (C_q == 6)
 	MOVF        main_C_q+0, 0 
 	XORLW       6
 	BTFSS       STATUS+0, 2 
 	GOTO        L_main157
-;main.c,71 :: 		C_mult = 2;
+;main.c,76 :: 		C_mult = 2;
 	MOVLW       2
 	MOVWF       main_C_mult+0 
 	GOTO        L_main158
 L_main157:
-;main.c,72 :: 		else if (C_q == 7)
+;main.c,77 :: 		else if (C_q == 7)
 	MOVF        main_C_q+0, 0 
 	XORLW       7
 	BTFSS       STATUS+0, 2 
 	GOTO        L_main159
-;main.c,73 :: 		C_mult = 4;
+;main.c,78 :: 		C_mult = 4;
 	MOVLW       4
 	MOVWF       main_C_mult+0 
 L_main159:
 L_main158:
 L_main156:
-;main.c,75 :: 		Delay_ms(300);
+;main.c,80 :: 		Delay_ms(300);
 	MOVLW       7
 	MOVWF       R11, 0
 	MOVLW       23
@@ -3078,11 +3096,11 @@ L_main160:
 	DECFSZ      R11, 1, 1
 	BRA         L_main160
 	NOP
-;main.c,76 :: 		asm CLRWDT;
+;main.c,81 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,77 :: 		led_init();
+;main.c,82 :: 		led_init();
 	CALL        _led_init+0, 0
-;main.c,79 :: 		if (Button( & PORTB, 0, 100, 0))
+;main.c,84 :: 		if (Button( & PORTB, 0, 100, 0))
 	MOVLW       PORTB+0
 	MOVWF       FARG_Button_port+0 
 	MOVLW       hi_addr(PORTB+0)
@@ -3095,7 +3113,7 @@ L_main160:
 	MOVF        R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_main161
-;main.c,81 :: 		if (type == 4 | type == 5) {
+;main.c,86 :: 		if (type == 4 | type == 5) {
 	MOVF        _type+0, 0 
 	XORLW       4
 	MOVLW       1
@@ -3112,7 +3130,7 @@ L_main160:
 	IORWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_main162
-;main.c,82 :: 		led_wr_str(0, 6, "Fider Loss", 10); // 128*64
+;main.c,87 :: 		led_wr_str(0, 6, "Fider Loss", 10); // 128*64
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       6
 	MOVWF       FARG_led_wr_str+0 
@@ -3123,7 +3141,7 @@ L_main160:
 	MOVLW       10
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,83 :: 		led_wr_str(2, 6, "input", 5);
+;main.c,88 :: 		led_wr_str(2, 6, "input", 5);
 	MOVLW       2
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       6
@@ -3135,7 +3153,7 @@ L_main160:
 	MOVLW       5
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,84 :: 		led_wr_str(4, 6 + 3 * 12, "dB", 2);
+;main.c,89 :: 		led_wr_str(4, 6 + 3 * 12, "dB", 2);
 	MOVLW       4
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       42
@@ -3147,14 +3165,14 @@ L_main160:
 	MOVLW       2
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,85 :: 		} else if (type != 0) {
+;main.c,90 :: 		} else if (type != 0) {
 	GOTO        L_main163
 L_main162:
 	MOVF        _type+0, 0 
 	XORLW       0
 	BTFSC       STATUS+0, 2 
 	GOTO        L_main164
-;main.c,86 :: 		led_wr_str(0, 0, "Fider Loss input", 16); // 1602 | 128*32
+;main.c,91 :: 		led_wr_str(0, 0, "Fider Loss input", 16); // 1602 | 128*32
 	CLRF        FARG_led_wr_str+0 
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       ?lstr4_main+0
@@ -3164,7 +3182,7 @@ L_main162:
 	MOVLW       16
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,87 :: 		led_wr_str(1, 3, "dB", 2);
+;main.c,92 :: 		led_wr_str(1, 3, "dB", 2);
 	MOVLW       1
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       3
@@ -3176,10 +3194,10 @@ L_main162:
 	MOVLW       2
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,88 :: 		}
+;main.c,93 :: 		}
 L_main164:
 L_main163:
-;main.c,89 :: 		Fid_loss = Bcd2Dec(EEPROM_Read(0x34));
+;main.c,94 :: 		Fid_loss = Bcd2Dec(EEPROM_Read(0x34));
 	MOVLW       52
 	MOVWF       FARG_EEPROM_Read_address+0 
 	CALL        _EEPROM_Read+0, 0
@@ -3188,11 +3206,11 @@ L_main163:
 	CALL        _Bcd2Dec+0, 0
 	MOVF        R0, 0 
 	MOVWF       _Fid_loss+0 
-;main.c,90 :: 		show_loss();
+;main.c,95 :: 		show_loss();
 	CALL        _show_loss+0, 0
-;main.c,92 :: 		while (1) {
+;main.c,97 :: 		while (1) {
 L_main165:
-;main.c,93 :: 		if (Button( & PORTB, 2, 50, 0)) { // BYP button
+;main.c,98 :: 		if (Button( & PORTB, 2, 50, 0)) { // BYP button
 	MOVLW       PORTB+0
 	MOVWF       FARG_Button_port+0 
 	MOVLW       hi_addr(PORTB+0)
@@ -3206,16 +3224,16 @@ L_main165:
 	MOVF        R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_main167
-;main.c,94 :: 		if (Fid_loss < 99) {
+;main.c,99 :: 		if (Fid_loss < 99) {
 	MOVLW       99
 	SUBWF       _Fid_loss+0, 0 
 	BTFSC       STATUS+0, 0 
 	GOTO        L_main168
-;main.c,95 :: 		Fid_loss++;
+;main.c,100 :: 		Fid_loss++;
 	INCF        _Fid_loss+0, 1 
-;main.c,96 :: 		show_loss();
+;main.c,101 :: 		show_loss();
 	CALL        _show_loss+0, 0
-;main.c,97 :: 		EEPROM_Write(0x34, Dec2Bcd(Fid_loss));
+;main.c,102 :: 		EEPROM_Write(0x34, Dec2Bcd(Fid_loss));
 	MOVF        _Fid_loss+0, 0 
 	MOVWF       FARG_Dec2Bcd_decnum+0 
 	CALL        _Dec2Bcd+0, 0
@@ -3224,9 +3242,9 @@ L_main165:
 	MOVLW       52
 	MOVWF       FARG_EEPROM_Write_address+0 
 	CALL        _EEPROM_Write+0, 0
-;main.c,98 :: 		}
+;main.c,103 :: 		}
 L_main168:
-;main.c,99 :: 		while (Button( & PORTB, 2, 50, 0)) asm CLRWDT;
+;main.c,104 :: 		while (Button( & PORTB, 2, 50, 0)) asm CLRWDT;
 L_main169:
 	MOVLW       PORTB+0
 	MOVWF       FARG_Button_port+0 
@@ -3244,9 +3262,9 @@ L_main169:
 	CLRWDT
 	GOTO        L_main169
 L_main170:
-;main.c,100 :: 		}
+;main.c,105 :: 		}
 L_main167:
-;main.c,102 :: 		if (Button( & PORTB, 1, 50, 0)) { // AUTO button
+;main.c,107 :: 		if (Button( & PORTB, 1, 50, 0)) { // AUTO button
 	MOVLW       PORTB+0
 	MOVWF       FARG_Button_port+0 
 	MOVLW       hi_addr(PORTB+0)
@@ -3260,16 +3278,16 @@ L_main167:
 	MOVF        R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_main171
-;main.c,103 :: 		if (Fid_loss > 0) {
+;main.c,108 :: 		if (Fid_loss > 0) {
 	MOVF        _Fid_loss+0, 0 
 	SUBLW       0
 	BTFSC       STATUS+0, 0 
 	GOTO        L_main172
-;main.c,104 :: 		Fid_loss--;
+;main.c,109 :: 		Fid_loss--;
 	DECF        _Fid_loss+0, 1 
-;main.c,105 :: 		show_loss();
+;main.c,110 :: 		show_loss();
 	CALL        _show_loss+0, 0
-;main.c,106 :: 		EEPROM_Write(0x34, Dec2Bcd(Fid_loss));
+;main.c,111 :: 		EEPROM_Write(0x34, Dec2Bcd(Fid_loss));
 	MOVF        _Fid_loss+0, 0 
 	MOVWF       FARG_Dec2Bcd_decnum+0 
 	CALL        _Dec2Bcd+0, 0
@@ -3278,9 +3296,9 @@ L_main167:
 	MOVLW       52
 	MOVWF       FARG_EEPROM_Write_address+0 
 	CALL        _EEPROM_Write+0, 0
-;main.c,107 :: 		}
+;main.c,112 :: 		}
 L_main172:
-;main.c,108 :: 		while (Button( & PORTB, 1, 50, 0)) asm CLRWDT;
+;main.c,113 :: 		while (Button( & PORTB, 1, 50, 0)) asm CLRWDT;
 L_main173:
 	MOVLW       PORTB+0
 	MOVWF       FARG_Button_port+0 
@@ -3298,63 +3316,63 @@ L_main173:
 	CLRWDT
 	GOTO        L_main173
 L_main174:
-;main.c,109 :: 		}
+;main.c,114 :: 		}
 L_main171:
-;main.c,110 :: 		asm CLRWDT;
+;main.c,115 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,111 :: 		}
+;main.c,116 :: 		}
 	GOTO        L_main165
-;main.c,113 :: 		} //  Fider loss input
+;main.c,118 :: 		} //  Fider loss input
 L_main161:
-;main.c,115 :: 		if (Test == 0) {
+;main.c,120 :: 		if (Test == 0) {
 	MOVF        _Test+0, 0 
 	XORLW       0
 	BTFSS       STATUS+0, 2 
 	GOTO        L_main175
-;main.c,124 :: 		read_i2c_inputs();
+;main.c,129 :: 		read_i2c_inputs();
 	CALL        _read_i2c_inputs+0, 0
-;main.c,125 :: 		load_settings();
+;main.c,130 :: 		load_settings();
 	CALL        _load_settings+0, 0
-;main.c,126 :: 		if (Restart == 1)
+;main.c,131 :: 		if (Restart == 1)
 	MOVF        _Restart+0, 0 
 	XORLW       1
 	BTFSS       STATUS+0, 2 
 	GOTO        L_main176
-;main.c,127 :: 		lcd_prep_short = 1;
+;main.c,132 :: 		lcd_prep_short = 1;
 	MOVLW       1
 	MOVWF       _lcd_prep_short+0 
 L_main176:
-;main.c,128 :: 		lcd_prep();
+;main.c,133 :: 		lcd_prep();
 	CALL        _lcd_prep+0, 0
-;main.c,129 :: 		} else
+;main.c,134 :: 		} else
 	GOTO        L_main177
 L_main175:
-;main.c,130 :: 		Test_init();
+;main.c,135 :: 		Test_init();
 	CALL        _test_init+0, 0
 L_main177:
-;main.c,132 :: 		lcd_ind();
+;main.c,137 :: 		lcd_ind();
 	CALL        _lcd_ind+0, 0
-;main.c,136 :: 		while (1)
+;main.c,141 :: 		while (1)
 L_main178:
-;main.c,139 :: 		asm CLRWDT;
+;main.c,144 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,140 :: 		lcd_pwr();
+;main.c,145 :: 		lcd_pwr();
 	CALL        _lcd_pwr+0, 0
-;main.c,142 :: 		if (Test == 0)
+;main.c,147 :: 		if (Test == 0)
 	MOVF        _Test+0, 0 
 	XORLW       0
 	BTFSS       STATUS+0, 2 
 	GOTO        L_main180
-;main.c,144 :: 		button_proc();	// główna procedura
+;main.c,149 :: 		button_proc();	// główna procedura
 	CALL        _button_proc+0, 0
-;main.c,145 :: 		}
+;main.c,150 :: 		}
 	GOTO        L_main181
 L_main180:
-;main.c,148 :: 		button_proc_test();
+;main.c,153 :: 		button_proc_test();
 	CALL        _button_proc_test+0, 0
-;main.c,149 :: 		}
+;main.c,154 :: 		}
 L_main181:
-;main.c,152 :: 		if (dysp_cnt != 0)
+;main.c,157 :: 		if (dysp_cnt != 0)
 	MOVLW       0
 	XORWF       _dysp_cnt+1, 0 
 	BTFSS       STATUS+0, 2 
@@ -3364,14 +3382,14 @@ L_main181:
 L__main609:
 	BTFSC       STATUS+0, 2 
 	GOTO        L_main182
-;main.c,153 :: 		dysp_cnt--;
+;main.c,158 :: 		dysp_cnt--;
 	MOVLW       1
 	SUBWF       _dysp_cnt+0, 1 
 	MOVLW       0
 	SUBWFB      _dysp_cnt+1, 1 
 	GOTO        L_main183
 L_main182:
-;main.c,154 :: 		else if (Test == 0 & Dysp_delay != 0)
+;main.c,159 :: 		else if (Test == 0 & Dysp_delay != 0)
 	MOVF        _Test+0, 0 
 	XORLW       0
 	MOVLW       1
@@ -3388,37 +3406,37 @@ L_main182:
 	ANDWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_main184
-;main.c,155 :: 		dysp_off();
+;main.c,160 :: 		dysp_off();
 	CALL        _dysp_off+0, 0
 L_main184:
 L_main183:
-;main.c,157 :: 		offset = mem_offset;
+;main.c,162 :: 		offset = mem_offset;
 	MOVF        _mem_offset+0, 0 
 	MOVWF       main_offset_L0+0 
-;main.c,158 :: 		read_i2c_inputs();
+;main.c,163 :: 		read_i2c_inputs();
 	CALL        _read_i2c_inputs+0, 0
-;main.c,160 :: 		if (offset != mem_offset) {
+;main.c,165 :: 		if (offset != mem_offset) {
 	MOVF        main_offset_L0+0, 0 
 	XORWF       _mem_offset+0, 0 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_main185
-;main.c,161 :: 		load_settings();
+;main.c,166 :: 		load_settings();
 	CALL        _load_settings+0, 0
-;main.c,162 :: 		lcd_ind();
+;main.c,167 :: 		lcd_ind();
 	CALL        _lcd_ind+0, 0
-;main.c,163 :: 		}
-L_main185:
 ;main.c,168 :: 		}
+L_main185:
+;main.c,173 :: 		}
 	GOTO        L_main178
-;main.c,169 :: 		}
+;main.c,174 :: 		}
 L_end_main:
 	GOTO        $+0
 ; end of _main
 
 _button_proc_test:
 
-;main.c,173 :: 		void button_proc_test(void) {
-;main.c,174 :: 		if (Button( & PORTB, 0, 50, 0)) { // Tune btn
+;main.c,178 :: 		void button_proc_test(void) {
+;main.c,179 :: 		if (Button( & PORTB, 0, 50, 0)) { // Tune btn
 	MOVLW       PORTB+0
 	MOVWF       FARG_Button_port+0 
 	MOVLW       hi_addr(PORTB+0)
@@ -3431,7 +3449,7 @@ _button_proc_test:
 	MOVF        R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_button_proc_test186
-;main.c,175 :: 		Delay_ms(250);
+;main.c,180 :: 		Delay_ms(250);
 	MOVLW       6
 	MOVWF       R11, 0
 	MOVLW       19
@@ -3447,102 +3465,51 @@ L_button_proc_test187:
 	BRA         L_button_proc_test187
 	NOP
 	NOP
-;main.c,176 :: 		asm CLRWDT;
+;main.c,181 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,177 :: 		if (PORTB.B0 == 1) { // short press button
+;main.c,182 :: 		if (PORTB.B0 == 1) { // short press button
 	BTFSS       PORTB+0, 0 
 	GOTO        L_button_proc_test188
-;main.c,178 :: 		if (SW == 0)
+;main.c,183 :: 		if (SW == 0)
 	MOVF        main_SW+0, 0 
 	XORLW       0
 	BTFSS       STATUS+0, 2 
 	GOTO        L_button_proc_test189
-;main.c,179 :: 		SW = 1;
+;main.c,184 :: 		SW = 1;
 	MOVLW       1
 	MOVWF       main_SW+0 
 	GOTO        L_button_proc_test190
 L_button_proc_test189:
-;main.c,181 :: 		SW = 0;
+;main.c,186 :: 		SW = 0;
 	CLRF        main_SW+0 
 L_button_proc_test190:
-;main.c,182 :: 		set_sw(SW);
+;main.c,187 :: 		set_sw(SW);
 	MOVF        main_SW+0, 0 
 	MOVWF       FARG_set_sw_SW+0 
 	CALL        _set_sw+0, 0
-;main.c,183 :: 		lcd_ind();
+;main.c,188 :: 		lcd_ind();
 	CALL        _lcd_ind+0, 0
-;main.c,184 :: 		} else { // long press button
+;main.c,189 :: 		} else { // long press button
 	GOTO        L_button_proc_test191
 L_button_proc_test188:
-;main.c,185 :: 		if (L == 1)
+;main.c,190 :: 		if (L == 1)
 	MOVF        _L+0, 0 
 	XORLW       1
 	BTFSS       STATUS+0, 2 
 	GOTO        L_button_proc_test192
-;main.c,186 :: 		L = 0;
+;main.c,191 :: 		L = 0;
 	CLRF        _L+0 
 	GOTO        L_button_proc_test193
 L_button_proc_test192:
-;main.c,188 :: 		L = 1;
+;main.c,193 :: 		L = 1;
 	MOVLW       1
 	MOVWF       _L+0 
 L_button_proc_test193:
-;main.c,189 :: 		if (L == 1) {
+;main.c,194 :: 		if (L == 1) {
 	MOVF        _L+0, 0 
 	XORLW       1
 	BTFSS       STATUS+0, 2 
 	GOTO        L_button_proc_test194
-;main.c,190 :: 		if (type == 4 | type == 5) // 128*64 OLED
-	MOVF        _type+0, 0 
-	XORLW       4
-	MOVLW       1
-	BTFSS       STATUS+0, 2 
-	MOVLW       0
-	MOVWF       R1 
-	MOVF        _type+0, 0 
-	XORLW       5
-	MOVLW       1
-	BTFSS       STATUS+0, 2 
-	MOVLW       0
-	MOVWF       R0 
-	MOVF        R1, 0 
-	IORWF       R0, 1 
-	BTFSC       STATUS+0, 2 
-	GOTO        L_button_proc_test195
-;main.c,191 :: 		led_wr_str(0, 16 + 12 * 8, "l", 1);
-	CLRF        FARG_led_wr_str+0 
-	MOVLW       112
-	MOVWF       FARG_led_wr_str+0 
-	MOVLW       ?lstr6_main+0
-	MOVWF       FARG_led_wr_str+0 
-	MOVLW       hi_addr(?lstr6_main+0)
-	MOVWF       FARG_led_wr_str+1 
-	MOVLW       1
-	MOVWF       FARG_led_wr_str+0 
-	CALL        _led_wr_str+0, 0
-	GOTO        L_button_proc_test196
-L_button_proc_test195:
-;main.c,192 :: 		else if (type != 0) // 1602 LCD & 128*32 OLED
-	MOVF        _type+0, 0 
-	XORLW       0
-	BTFSC       STATUS+0, 2 
-	GOTO        L_button_proc_test197
-;main.c,193 :: 		led_wr_str(0, 8, "l", 1);
-	CLRF        FARG_led_wr_str+0 
-	MOVLW       8
-	MOVWF       FARG_led_wr_str+0 
-	MOVLW       ?lstr7_main+0
-	MOVWF       FARG_led_wr_str+0 
-	MOVLW       hi_addr(?lstr7_main+0)
-	MOVWF       FARG_led_wr_str+1 
-	MOVLW       1
-	MOVWF       FARG_led_wr_str+0 
-	CALL        _led_wr_str+0, 0
-L_button_proc_test197:
-L_button_proc_test196:
-;main.c,194 :: 		} else {
-	GOTO        L_button_proc_test198
-L_button_proc_test194:
 ;main.c,195 :: 		if (type == 4 | type == 5) // 128*64 OLED
 	MOVF        _type+0, 0 
 	XORLW       4
@@ -3559,8 +3526,59 @@ L_button_proc_test194:
 	MOVF        R1, 0 
 	IORWF       R0, 1 
 	BTFSC       STATUS+0, 2 
+	GOTO        L_button_proc_test195
+;main.c,196 :: 		led_wr_str(0, 16 + 12 * 8, "l", 1);
+	CLRF        FARG_led_wr_str+0 
+	MOVLW       112
+	MOVWF       FARG_led_wr_str+0 
+	MOVLW       ?lstr6_main+0
+	MOVWF       FARG_led_wr_str+0 
+	MOVLW       hi_addr(?lstr6_main+0)
+	MOVWF       FARG_led_wr_str+1 
+	MOVLW       1
+	MOVWF       FARG_led_wr_str+0 
+	CALL        _led_wr_str+0, 0
+	GOTO        L_button_proc_test196
+L_button_proc_test195:
+;main.c,197 :: 		else if (type != 0) // 1602 LCD & 128*32 OLED
+	MOVF        _type+0, 0 
+	XORLW       0
+	BTFSC       STATUS+0, 2 
+	GOTO        L_button_proc_test197
+;main.c,198 :: 		led_wr_str(0, 8, "l", 1);
+	CLRF        FARG_led_wr_str+0 
+	MOVLW       8
+	MOVWF       FARG_led_wr_str+0 
+	MOVLW       ?lstr7_main+0
+	MOVWF       FARG_led_wr_str+0 
+	MOVLW       hi_addr(?lstr7_main+0)
+	MOVWF       FARG_led_wr_str+1 
+	MOVLW       1
+	MOVWF       FARG_led_wr_str+0 
+	CALL        _led_wr_str+0, 0
+L_button_proc_test197:
+L_button_proc_test196:
+;main.c,199 :: 		} else {
+	GOTO        L_button_proc_test198
+L_button_proc_test194:
+;main.c,200 :: 		if (type == 4 | type == 5) // 128*64 OLED
+	MOVF        _type+0, 0 
+	XORLW       4
+	MOVLW       1
+	BTFSS       STATUS+0, 2 
+	MOVLW       0
+	MOVWF       R1 
+	MOVF        _type+0, 0 
+	XORLW       5
+	MOVLW       1
+	BTFSS       STATUS+0, 2 
+	MOVLW       0
+	MOVWF       R0 
+	MOVF        R1, 0 
+	IORWF       R0, 1 
+	BTFSC       STATUS+0, 2 
 	GOTO        L_button_proc_test199
-;main.c,196 :: 		led_wr_str(0, 16 + 12 * 8, "c", 1);
+;main.c,201 :: 		led_wr_str(0, 16 + 12 * 8, "c", 1);
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       112
 	MOVWF       FARG_led_wr_str+0 
@@ -3573,12 +3591,12 @@ L_button_proc_test194:
 	CALL        _led_wr_str+0, 0
 	GOTO        L_button_proc_test200
 L_button_proc_test199:
-;main.c,197 :: 		else if (type != 0) // 1602 LCD & 128*32 OLED
+;main.c,202 :: 		else if (type != 0) // 1602 LCD & 128*32 OLED
 	MOVF        _type+0, 0 
 	XORLW       0
 	BTFSC       STATUS+0, 2 
 	GOTO        L_button_proc_test201
-;main.c,198 :: 		led_wr_str(0, 8, "c", 1);
+;main.c,203 :: 		led_wr_str(0, 8, "c", 1);
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
@@ -3591,11 +3609,11 @@ L_button_proc_test199:
 	CALL        _led_wr_str+0, 0
 L_button_proc_test201:
 L_button_proc_test200:
-;main.c,199 :: 		}
+;main.c,204 :: 		}
 L_button_proc_test198:
-;main.c,200 :: 		}
+;main.c,205 :: 		}
 L_button_proc_test191:
-;main.c,201 :: 		while (Button( & PORTB, 0, 50, 0))
+;main.c,206 :: 		while (Button( & PORTB, 0, 50, 0))
 L_button_proc_test202:
 	MOVLW       PORTB+0
 	MOVWF       FARG_Button_port+0 
@@ -3609,16 +3627,16 @@ L_button_proc_test202:
 	MOVF        R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_button_proc_test203
-;main.c,203 :: 		lcd_pwr();
+;main.c,208 :: 		lcd_pwr();
 	CALL        _lcd_pwr+0, 0
-;main.c,204 :: 		asm CLRWDT;
+;main.c,209 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,205 :: 		}
+;main.c,210 :: 		}
 	GOTO        L_button_proc_test202
 L_button_proc_test203:
-;main.c,206 :: 		} // END Tune btn
+;main.c,211 :: 		} // END Tune btn
 L_button_proc_test186:
-;main.c,208 :: 		if (Button( & PORTB, 2, 50, 0)) { // BYP button
+;main.c,213 :: 		if (Button( & PORTB, 2, 50, 0)) { // BYP button
 	MOVLW       PORTB+0
 	MOVWF       FARG_Button_port+0 
 	MOVLW       hi_addr(PORTB+0)
@@ -3632,13 +3650,13 @@ L_button_proc_test186:
 	MOVF        R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_button_proc_test204
-;main.c,209 :: 		asm CLRWDT;
+;main.c,214 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,210 :: 		while (PORTB.B2 == 0)
+;main.c,215 :: 		while (PORTB.B2 == 0)
 L_button_proc_test205:
 	BTFSC       PORTB+0, 2 
 	GOTO        L_button_proc_test206
-;main.c,212 :: 		if (L & ind < 32 * L_mult - 1)
+;main.c,217 :: 		if (L & ind < 32 * L_mult - 1)
 	MOVLW       5
 	MOVWF       R2 
 	MOVF        main_L_mult+0, 0 
@@ -3678,16 +3696,16 @@ L__button_proc_test613:
 	ANDWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_button_proc_test207
-;main.c,214 :: 		ind++;
+;main.c,219 :: 		ind++;
 	INCF        main_ind+0, 1 
-;main.c,215 :: 		set_ind(ind);
+;main.c,220 :: 		set_ind(ind);
 	MOVF        main_ind+0, 0 
 	MOVWF       FARG_set_ind_Ind+0 
 	CALL        _set_ind+0, 0
-;main.c,216 :: 		}
+;main.c,221 :: 		}
 	GOTO        L_button_proc_test208
 L_button_proc_test207:
-;main.c,217 :: 		else if (!L & cap < 32 * L_mult - 1)
+;main.c,222 :: 		else if (!L & cap < 32 * L_mult - 1)
 	MOVF        _L+0, 1 
 	MOVLW       1
 	BTFSS       STATUS+0, 2 
@@ -3732,20 +3750,20 @@ L__button_proc_test616:
 	ANDWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_button_proc_test209
-;main.c,219 :: 		cap++;
+;main.c,224 :: 		cap++;
 	INCF        main_cap+0, 1 
-;main.c,220 :: 		set_cap(cap);
+;main.c,225 :: 		set_cap(cap);
 	MOVF        main_cap+0, 0 
 	MOVWF       FARG_set_cap_Cap+0 
 	CALL        _set_cap+0, 0
-;main.c,221 :: 		}
+;main.c,226 :: 		}
 L_button_proc_test209:
 L_button_proc_test208:
-;main.c,222 :: 		lcd_ind();
+;main.c,227 :: 		lcd_ind();
 	CALL        _lcd_ind+0, 0
-;main.c,223 :: 		lcd_pwr();
+;main.c,228 :: 		lcd_pwr();
 	CALL        _lcd_pwr+0, 0
-;main.c,224 :: 		Delay_ms(30);
+;main.c,229 :: 		Delay_ms(30);
 	MOVLW       156
 	MOVWF       R12, 0
 	MOVLW       215
@@ -3755,14 +3773,14 @@ L_button_proc_test210:
 	BRA         L_button_proc_test210
 	DECFSZ      R12, 1, 1
 	BRA         L_button_proc_test210
-;main.c,225 :: 		asm CLRWDT;
+;main.c,230 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,226 :: 		}
+;main.c,231 :: 		}
 	GOTO        L_button_proc_test205
 L_button_proc_test206:
-;main.c,227 :: 		} // end of BYP button
+;main.c,232 :: 		} // end of BYP button
 L_button_proc_test204:
-;main.c,229 :: 		if (Button( & PORTB, 1, 50, 0) & Bypas == 0)
+;main.c,234 :: 		if (Button( & PORTB, 1, 50, 0) & Bypas == 0)
 	MOVLW       PORTB+0
 	MOVWF       FARG_Button_port+0 
 	MOVLW       hi_addr(PORTB+0)
@@ -3783,13 +3801,13 @@ L_button_proc_test204:
 	ANDWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_button_proc_test211
-;main.c,231 :: 		asm CLRWDT;
+;main.c,236 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,232 :: 		while (PORTB.B1 == 0) {
+;main.c,237 :: 		while (PORTB.B1 == 0) {
 L_button_proc_test212:
 	BTFSC       PORTB+0, 1 
 	GOTO        L_button_proc_test213
-;main.c,233 :: 		if (L & ind > 0) {
+;main.c,238 :: 		if (L & ind > 0) {
 	MOVF        main_ind+0, 0 
 	SUBLW       0
 	MOVLW       1
@@ -3800,13 +3818,13 @@ L_button_proc_test212:
 	ANDWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_button_proc_test214
-;main.c,234 :: 		ind--;
+;main.c,239 :: 		ind--;
 	DECF        main_ind+0, 1 
-;main.c,235 :: 		set_ind(ind);
+;main.c,240 :: 		set_ind(ind);
 	MOVF        main_ind+0, 0 
 	MOVWF       FARG_set_ind_Ind+0 
 	CALL        _set_ind+0, 0
-;main.c,236 :: 		} else if (!L & cap > 0) {
+;main.c,241 :: 		} else if (!L & cap > 0) {
 	GOTO        L_button_proc_test215
 L_button_proc_test214:
 	MOVF        _L+0, 1 
@@ -3824,20 +3842,20 @@ L_button_proc_test214:
 	ANDWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_button_proc_test216
-;main.c,237 :: 		cap--;
+;main.c,242 :: 		cap--;
 	DECF        main_cap+0, 1 
-;main.c,238 :: 		set_cap(cap);
+;main.c,243 :: 		set_cap(cap);
 	MOVF        main_cap+0, 0 
 	MOVWF       FARG_set_cap_Cap+0 
 	CALL        _set_cap+0, 0
-;main.c,239 :: 		}
+;main.c,244 :: 		}
 L_button_proc_test216:
 L_button_proc_test215:
-;main.c,240 :: 		lcd_ind();
+;main.c,245 :: 		lcd_ind();
 	CALL        _lcd_ind+0, 0
-;main.c,241 :: 		lcd_pwr();
+;main.c,246 :: 		lcd_pwr();
 	CALL        _lcd_pwr+0, 0
-;main.c,242 :: 		Delay_ms(30);
+;main.c,247 :: 		Delay_ms(30);
 	MOVLW       156
 	MOVWF       R12, 0
 	MOVLW       215
@@ -3847,23 +3865,23 @@ L_button_proc_test217:
 	BRA         L_button_proc_test217
 	DECFSZ      R12, 1, 1
 	BRA         L_button_proc_test217
-;main.c,243 :: 		asm CLRWDT;
+;main.c,248 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,244 :: 		}
+;main.c,249 :: 		}
 	GOTO        L_button_proc_test212
 L_button_proc_test213:
-;main.c,245 :: 		}
+;main.c,250 :: 		}
 L_button_proc_test211:
-;main.c,246 :: 		return;
-;main.c,247 :: 		}
+;main.c,251 :: 		return;
+;main.c,252 :: 		}
 L_end_button_proc_test:
 	RETURN      0
 ; end of _button_proc_test
 
 _button_proc:
 
-;main.c,249 :: 		void button_proc(void)
-;main.c,251 :: 		if (Button( & PORTB, 0, 50, 0) | Soft_tune)
+;main.c,254 :: 		void button_proc(void)
+;main.c,256 :: 		if (Button( & PORTB, 0, 50, 0) | Soft_tune)
 	MOVLW       PORTB+0
 	MOVWF       FARG_Button_port+0 
 	MOVLW       hi_addr(PORTB+0)
@@ -3877,9 +3895,9 @@ _button_proc:
 	IORWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_button_proc218
-;main.c,253 :: 		dysp_on();
+;main.c,258 :: 		dysp_on();
 	CALL        _dysp_on+0, 0
-;main.c,254 :: 		dysp_cnt = Dysp_delay * dysp_cnt_mult;
+;main.c,259 :: 		dysp_cnt = Dysp_delay * dysp_cnt_mult;
 	MOVF        _Dysp_delay+0, 0 
 	MOVWF       R0 
 	CALL        _byte2double+0, 0
@@ -3897,7 +3915,7 @@ _button_proc:
 	MOVWF       _dysp_cnt+0 
 	MOVF        R1, 0 
 	MOVWF       _dysp_cnt+1 
-;main.c,255 :: 		Delay_ms(250);
+;main.c,260 :: 		Delay_ms(250);
 	MOVLW       6
 	MOVWF       R11, 0
 	MOVLW       19
@@ -3913,9 +3931,9 @@ L_button_proc219:
 	BRA         L_button_proc219
 	NOP
 	NOP
-;main.c,256 :: 		asm CLRWDT;
+;main.c,261 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,257 :: 		if (Soft_tune == 0 & PORTB.B0 == 1) { // short press button
+;main.c,262 :: 		if (Soft_tune == 0 & PORTB.B0 == 1) { // short press button
 	MOVF        _Soft_tune+0, 0 
 	XORLW       0
 	MOVLW       1
@@ -3936,16 +3954,16 @@ L__button_proc619:
 	ANDWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_button_proc220
-;main.c,258 :: 		show_reset();
+;main.c,263 :: 		show_reset();
 	CALL        _show_reset+0, 0
-;main.c,259 :: 		bypas = 0;
+;main.c,264 :: 		bypas = 0;
 	CLRF        _bypas+0 
-;main.c,260 :: 		}
+;main.c,265 :: 		}
 	GOTO        L_button_proc221
 L_button_proc220:
-;main.c,264 :: 		n_Tx = 0; // TX request
+;main.c,269 :: 		n_Tx = 0; // TX request
 	BCF         LATA6_bit+0, BitPos(LATA6_bit+0) 
-;main.c,265 :: 		Delay_ms(250); //
+;main.c,270 :: 		Delay_ms(250); //
 	MOVLW       6
 	MOVWF       R11, 0
 	MOVLW       19
@@ -3961,11 +3979,11 @@ L_button_proc222:
 	BRA         L_button_proc222
 	NOP
 	NOP
-;main.c,266 :: 		btn_push();
+;main.c,271 :: 		btn_push();		// tutaj rozpoczęcie procedury strojenia
 	CALL        _btn_push+0, 0
-;main.c,267 :: 		bypas = 0;
+;main.c,272 :: 		bypas = 0;
 	CLRF        _bypas+0 
-;main.c,268 :: 		while (Button( & PORTB, 0, 50, 0))
+;main.c,273 :: 		while (Button( & PORTB, 0, 50, 0))
 L_button_proc223:
 	MOVLW       PORTB+0
 	MOVWF       FARG_Button_port+0 
@@ -3979,20 +3997,20 @@ L_button_proc223:
 	MOVF        R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_button_proc224
-;main.c,270 :: 		lcd_pwr();
+;main.c,275 :: 		lcd_pwr();
 	CALL        _lcd_pwr+0, 0
-;main.c,271 :: 		asm CLRWDT;
+;main.c,276 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,272 :: 		}
+;main.c,277 :: 		}
 	GOTO        L_button_proc223
 L_button_proc224:
-;main.c,273 :: 		Soft_tune = 0;
+;main.c,278 :: 		Soft_tune = 0;
 	CLRF        _Soft_tune+0 
-;main.c,274 :: 		}
+;main.c,279 :: 		}
 L_button_proc221:
-;main.c,276 :: 		}
+;main.c,281 :: 		}
 L_button_proc218:
-;main.c,278 :: 		if (Button( & PORTB, 2, 50, 0)) { // BYP button
+;main.c,283 :: 		if (Button( & PORTB, 2, 50, 0)) { // BYP button
 	MOVLW       PORTB+0
 	MOVWF       FARG_Button_port+0 
 	MOVLW       hi_addr(PORTB+0)
@@ -4006,9 +4024,9 @@ L_button_proc218:
 	MOVF        R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_button_proc225
-;main.c,279 :: 		dysp_on();
+;main.c,284 :: 		dysp_on();
 	CALL        _dysp_on+0, 0
-;main.c,280 :: 		dysp_cnt = Dysp_delay * dysp_cnt_mult;
+;main.c,285 :: 		dysp_cnt = Dysp_delay * dysp_cnt_mult;
 	MOVF        _Dysp_delay+0, 0 
 	MOVWF       R0 
 	CALL        _byte2double+0, 0
@@ -4026,96 +4044,96 @@ L_button_proc218:
 	MOVWF       _dysp_cnt+0 
 	MOVF        R1, 0 
 	MOVWF       _dysp_cnt+1 
-;main.c,281 :: 		asm CLRWDT;
+;main.c,286 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,282 :: 		if (bypas == 0) {
+;main.c,287 :: 		if (bypas == 0) {
 	MOVF        _bypas+0, 0 
 	XORLW       0
 	BTFSS       STATUS+0, 2 
 	GOTO        L_button_proc226
-;main.c,283 :: 		bypas = 1;
+;main.c,288 :: 		bypas = 1;
 	MOVLW       1
 	MOVWF       _bypas+0 
-;main.c,284 :: 		cap_mem = cap;
+;main.c,289 :: 		cap_mem = cap;
 	MOVF        main_cap+0, 0 
 	MOVWF       _cap_mem+0 
-;main.c,285 :: 		ind_mem = ind;
+;main.c,290 :: 		ind_mem = ind;
 	MOVF        main_ind+0, 0 
 	MOVWF       _ind_mem+0 
-;main.c,286 :: 		SW_mem = SW;
+;main.c,291 :: 		SW_mem = SW;
 	MOVF        main_SW+0, 0 
 	MOVWF       _SW_mem+0 
-;main.c,287 :: 		cap = 0;
+;main.c,292 :: 		cap = 0;
 	CLRF        main_cap+0 
-;main.c,288 :: 		ind = 0;
+;main.c,293 :: 		ind = 0;
 	CLRF        main_ind+0 
-;main.c,289 :: 		SW = 1;
+;main.c,294 :: 		SW = 1;
 	MOVLW       1
 	MOVWF       main_SW+0 
-;main.c,290 :: 		set_ind(ind);
+;main.c,295 :: 		set_ind(ind);
 	CLRF        FARG_set_ind_Ind+0 
 	CALL        _set_ind+0, 0
-;main.c,291 :: 		set_cap(cap);
+;main.c,296 :: 		set_cap(cap);
 	MOVF        main_cap+0, 0 
 	MOVWF       FARG_set_cap_Cap+0 
 	CALL        _set_cap+0, 0
-;main.c,292 :: 		set_SW(SW);
+;main.c,297 :: 		set_SW(SW);
 	MOVF        main_SW+0, 0 
 	MOVWF       FARG_set_sw_SW+0 
 	CALL        _set_sw+0, 0
-;main.c,293 :: 		if (Loss_mode == 0)
+;main.c,298 :: 		if (Loss_mode == 0)
 	MOVF        _Loss_mode+0, 0 
 	XORLW       0
 	BTFSS       STATUS+0, 2 
 	GOTO        L_button_proc227
-;main.c,294 :: 		lcd_ind();
+;main.c,299 :: 		lcd_ind();
 	CALL        _lcd_ind+0, 0
 L_button_proc227:
-;main.c,295 :: 		Auto_mem = Auto;
+;main.c,300 :: 		Auto_mem = Auto;
 	MOVF        _Auto+0, 0 
 	MOVWF       _Auto_mem+0 
-;main.c,296 :: 		Auto = 0;
+;main.c,301 :: 		Auto = 0;
 	CLRF        _Auto+0 
-;main.c,297 :: 		} else {
+;main.c,302 :: 		} else {
 	GOTO        L_button_proc228
 L_button_proc226:
-;main.c,298 :: 		bypas = 0;
+;main.c,303 :: 		bypas = 0;
 	CLRF        _bypas+0 
-;main.c,299 :: 		cap = cap_mem;
+;main.c,304 :: 		cap = cap_mem;
 	MOVF        _cap_mem+0, 0 
 	MOVWF       main_cap+0 
-;main.c,300 :: 		ind = ind_mem;
+;main.c,305 :: 		ind = ind_mem;
 	MOVF        _ind_mem+0, 0 
 	MOVWF       main_ind+0 
-;main.c,301 :: 		SW = SW_mem;
+;main.c,306 :: 		SW = SW_mem;
 	MOVF        _SW_mem+0, 0 
 	MOVWF       main_SW+0 
-;main.c,302 :: 		set_cap(cap);
+;main.c,307 :: 		set_cap(cap);
 	MOVF        _cap_mem+0, 0 
 	MOVWF       FARG_set_cap_Cap+0 
 	CALL        _set_cap+0, 0
-;main.c,303 :: 		set_ind(ind);
+;main.c,308 :: 		set_ind(ind);
 	MOVF        main_ind+0, 0 
 	MOVWF       FARG_set_ind_Ind+0 
 	CALL        _set_ind+0, 0
-;main.c,304 :: 		set_SW(SW);
+;main.c,309 :: 		set_SW(SW);
 	MOVF        main_SW+0, 0 
 	MOVWF       FARG_set_sw_SW+0 
 	CALL        _set_sw+0, 0
-;main.c,305 :: 		if (Loss_mode == 0)
+;main.c,310 :: 		if (Loss_mode == 0)
 	MOVF        _Loss_mode+0, 0 
 	XORLW       0
 	BTFSS       STATUS+0, 2 
 	GOTO        L_button_proc229
-;main.c,306 :: 		lcd_ind();
+;main.c,311 :: 		lcd_ind();
 	CALL        _lcd_ind+0, 0
 L_button_proc229:
-;main.c,307 :: 		Auto = Auto_mem;
+;main.c,312 :: 		Auto = Auto_mem;
 	MOVF        _Auto_mem+0, 0 
 	MOVWF       _Auto+0 
-;main.c,308 :: 		}
+;main.c,313 :: 		}
 L_button_proc228:
-;main.c,309 :: 		if (type == 4 | type == 5) { // 128*64 OLED
+;main.c,314 :: 		if (type == 4 | type == 5) { // 128*64 OLED
 	MOVF        _type+0, 0 
 	XORLW       4
 	MOVLW       1
@@ -4132,7 +4150,7 @@ L_button_proc228:
 	IORWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_button_proc230
-;main.c,310 :: 		if (Auto & !Bypas)
+;main.c,315 :: 		if (Auto & !Bypas)
 	MOVF        _bypas+0, 1 
 	MOVLW       1
 	BTFSS       STATUS+0, 2 
@@ -4142,7 +4160,7 @@ L_button_proc228:
 	ANDWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_button_proc231
-;main.c,311 :: 		led_wr_str(0, 16 + 8 * 12, ".", 1);
+;main.c,316 :: 		led_wr_str(0, 16 + 8 * 12, ".", 1);
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       112
 	MOVWF       FARG_led_wr_str+0 
@@ -4155,7 +4173,7 @@ L_button_proc228:
 	CALL        _led_wr_str+0, 0
 	GOTO        L_button_proc232
 L_button_proc231:
-;main.c,312 :: 		else if (!Auto & Bypas)
+;main.c,317 :: 		else if (!Auto & Bypas)
 	MOVF        _Auto+0, 1 
 	MOVLW       1
 	BTFSS       STATUS+0, 2 
@@ -4165,7 +4183,7 @@ L_button_proc231:
 	ANDWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_button_proc233
-;main.c,313 :: 		led_wr_str(0, 16 + 8 * 12, "_", 1);
+;main.c,318 :: 		led_wr_str(0, 16 + 8 * 12, "_", 1);
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       112
 	MOVWF       FARG_led_wr_str+0 
@@ -4178,7 +4196,7 @@ L_button_proc231:
 	CALL        _led_wr_str+0, 0
 	GOTO        L_button_proc234
 L_button_proc233:
-;main.c,315 :: 		led_wr_str(0, 16 + 8 * 12, " ", 1);
+;main.c,320 :: 		led_wr_str(0, 16 + 8 * 12, " ", 1);
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       112
 	MOVWF       FARG_led_wr_str+0 
@@ -4191,14 +4209,14 @@ L_button_proc233:
 	CALL        _led_wr_str+0, 0
 L_button_proc234:
 L_button_proc232:
-;main.c,316 :: 		} else if (type != 0) { //  1602 LCD  or 128*32 OLED
+;main.c,321 :: 		} else if (type != 0) { //  1602 LCD  or 128*32 OLED
 	GOTO        L_button_proc235
 L_button_proc230:
 	MOVF        _type+0, 0 
 	XORLW       0
 	BTFSC       STATUS+0, 2 
 	GOTO        L_button_proc236
-;main.c,317 :: 		if (Auto & !Bypas)
+;main.c,322 :: 		if (Auto & !Bypas)
 	MOVF        _bypas+0, 1 
 	MOVLW       1
 	BTFSS       STATUS+0, 2 
@@ -4208,7 +4226,7 @@ L_button_proc230:
 	ANDWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_button_proc237
-;main.c,318 :: 		led_wr_str(0, 8, ".", 1);
+;main.c,323 :: 		led_wr_str(0, 8, ".", 1);
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
@@ -4221,7 +4239,7 @@ L_button_proc230:
 	CALL        _led_wr_str+0, 0
 	GOTO        L_button_proc238
 L_button_proc237:
-;main.c,319 :: 		else if (!Auto & Bypas)
+;main.c,324 :: 		else if (!Auto & Bypas)
 	MOVF        _Auto+0, 1 
 	MOVLW       1
 	BTFSS       STATUS+0, 2 
@@ -4231,7 +4249,7 @@ L_button_proc237:
 	ANDWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_button_proc239
-;main.c,320 :: 		led_wr_str(0, 8, "_", 1);
+;main.c,325 :: 		led_wr_str(0, 8, "_", 1);
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
@@ -4244,7 +4262,7 @@ L_button_proc237:
 	CALL        _led_wr_str+0, 0
 	GOTO        L_button_proc240
 L_button_proc239:
-;main.c,322 :: 		led_wr_str(0, 8, " ", 1);
+;main.c,327 :: 		led_wr_str(0, 8, " ", 1);
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
@@ -4257,12 +4275,12 @@ L_button_proc239:
 	CALL        _led_wr_str+0, 0
 L_button_proc240:
 L_button_proc238:
-;main.c,323 :: 		}
+;main.c,328 :: 		}
 L_button_proc236:
 L_button_proc235:
-;main.c,324 :: 		asm CLRWDT;
+;main.c,329 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,325 :: 		while (Button( & PORTB, 2, 50, 0)) {
+;main.c,330 :: 		while (Button( & PORTB, 2, 50, 0)) {
 L_button_proc241:
 	MOVLW       PORTB+0
 	MOVWF       FARG_Button_port+0 
@@ -4277,16 +4295,16 @@ L_button_proc241:
 	MOVF        R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_button_proc242
-;main.c,326 :: 		lcd_pwr();
+;main.c,331 :: 		lcd_pwr();
 	CALL        _lcd_pwr+0, 0
-;main.c,327 :: 		asm CLRWDT;
+;main.c,332 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,328 :: 		}
+;main.c,333 :: 		}
 	GOTO        L_button_proc241
 L_button_proc242:
-;main.c,329 :: 		}
+;main.c,334 :: 		}
 L_button_proc225:
-;main.c,331 :: 		if (Button( & PORTB, 1, 50, 0) & Bypas == 0) { // Auto button
+;main.c,336 :: 		if (Button( & PORTB, 1, 50, 0) & Bypas == 0) { // Auto button
 	MOVLW       PORTB+0
 	MOVWF       FARG_Button_port+0 
 	MOVLW       hi_addr(PORTB+0)
@@ -4307,9 +4325,9 @@ L_button_proc225:
 	ANDWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_button_proc243
-;main.c,332 :: 		dysp_on();
+;main.c,337 :: 		dysp_on();
 	CALL        _dysp_on+0, 0
-;main.c,333 :: 		dysp_cnt = Dysp_delay * dysp_cnt_mult;
+;main.c,338 :: 		dysp_cnt = Dysp_delay * dysp_cnt_mult;
 	MOVF        _Dysp_delay+0, 0 
 	MOVWF       R0 
 	CALL        _byte2double+0, 0
@@ -4327,28 +4345,28 @@ L_button_proc225:
 	MOVWF       _dysp_cnt+0 
 	MOVF        R1, 0 
 	MOVWF       _dysp_cnt+1 
-;main.c,334 :: 		asm CLRWDT;
+;main.c,339 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,335 :: 		if (Auto == 0)
+;main.c,340 :: 		if (Auto == 0)
 	MOVF        _Auto+0, 0 
 	XORLW       0
 	BTFSS       STATUS+0, 2 
 	GOTO        L_button_proc244
-;main.c,336 :: 		Auto = 1;
+;main.c,341 :: 		Auto = 1;
 	MOVLW       1
 	MOVWF       _Auto+0 
 	GOTO        L_button_proc245
 L_button_proc244:
-;main.c,338 :: 		Auto = 0;
+;main.c,343 :: 		Auto = 0;
 	CLRF        _Auto+0 
 L_button_proc245:
-;main.c,339 :: 		EEPROM_Write(2, Auto);
+;main.c,344 :: 		EEPROM_Write(2, Auto);
 	MOVLW       2
 	MOVWF       FARG_EEPROM_Write_address+0 
 	MOVF        _Auto+0, 0 
 	MOVWF       FARG_EEPROM_Write_data_+0 
 	CALL        _EEPROM_Write+0, 0
-;main.c,340 :: 		if (type == 4 | type == 5) { // 128*64 OLED
+;main.c,345 :: 		if (type == 4 | type == 5) { // 128*64 OLED
 	MOVF        _type+0, 0 
 	XORLW       4
 	MOVLW       1
@@ -4365,7 +4383,7 @@ L_button_proc245:
 	IORWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_button_proc246
-;main.c,341 :: 		if (Auto & !Bypas)
+;main.c,346 :: 		if (Auto & !Bypas)
 	MOVF        _bypas+0, 1 
 	MOVLW       1
 	BTFSS       STATUS+0, 2 
@@ -4375,7 +4393,7 @@ L_button_proc245:
 	ANDWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_button_proc247
-;main.c,342 :: 		led_wr_str(0, 16 + 8 * 12, ".", 1);
+;main.c,347 :: 		led_wr_str(0, 16 + 8 * 12, ".", 1);
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       112
 	MOVWF       FARG_led_wr_str+0 
@@ -4388,7 +4406,7 @@ L_button_proc245:
 	CALL        _led_wr_str+0, 0
 	GOTO        L_button_proc248
 L_button_proc247:
-;main.c,343 :: 		else if (!Auto & Bypas)
+;main.c,348 :: 		else if (!Auto & Bypas)
 	MOVF        _Auto+0, 1 
 	MOVLW       1
 	BTFSS       STATUS+0, 2 
@@ -4398,7 +4416,7 @@ L_button_proc247:
 	ANDWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_button_proc249
-;main.c,344 :: 		led_wr_str(0, 16 + 8 * 12, "_", 1);
+;main.c,349 :: 		led_wr_str(0, 16 + 8 * 12, "_", 1);
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       112
 	MOVWF       FARG_led_wr_str+0 
@@ -4411,7 +4429,7 @@ L_button_proc247:
 	CALL        _led_wr_str+0, 0
 	GOTO        L_button_proc250
 L_button_proc249:
-;main.c,346 :: 		led_wr_str(0, 16 + 8 * 12, " ", 1);
+;main.c,351 :: 		led_wr_str(0, 16 + 8 * 12, " ", 1);
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       112
 	MOVWF       FARG_led_wr_str+0 
@@ -4424,14 +4442,14 @@ L_button_proc249:
 	CALL        _led_wr_str+0, 0
 L_button_proc250:
 L_button_proc248:
-;main.c,347 :: 		} else if (type != 0) { //  1602 LCD  or 128*32 OLED
+;main.c,352 :: 		} else if (type != 0) { //  1602 LCD  or 128*32 OLED
 	GOTO        L_button_proc251
 L_button_proc246:
 	MOVF        _type+0, 0 
 	XORLW       0
 	BTFSC       STATUS+0, 2 
 	GOTO        L_button_proc252
-;main.c,348 :: 		if (Auto & !Bypas)
+;main.c,353 :: 		if (Auto & !Bypas)
 	MOVF        _bypas+0, 1 
 	MOVLW       1
 	BTFSS       STATUS+0, 2 
@@ -4441,7 +4459,7 @@ L_button_proc246:
 	ANDWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_button_proc253
-;main.c,349 :: 		led_wr_str(0, 8, ".", 1);
+;main.c,354 :: 		led_wr_str(0, 8, ".", 1);
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
@@ -4454,7 +4472,7 @@ L_button_proc246:
 	CALL        _led_wr_str+0, 0
 	GOTO        L_button_proc254
 L_button_proc253:
-;main.c,350 :: 		else if (!Auto & Bypas)
+;main.c,355 :: 		else if (!Auto & Bypas)
 	MOVF        _Auto+0, 1 
 	MOVLW       1
 	BTFSS       STATUS+0, 2 
@@ -4464,7 +4482,7 @@ L_button_proc253:
 	ANDWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_button_proc255
-;main.c,351 :: 		led_wr_str(0, 8, "_", 1);
+;main.c,356 :: 		led_wr_str(0, 8, "_", 1);
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
@@ -4477,7 +4495,7 @@ L_button_proc253:
 	CALL        _led_wr_str+0, 0
 	GOTO        L_button_proc256
 L_button_proc255:
-;main.c,353 :: 		led_wr_str(0, 8, " ", 1);
+;main.c,358 :: 		led_wr_str(0, 8, " ", 1);
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
@@ -4490,12 +4508,12 @@ L_button_proc255:
 	CALL        _led_wr_str+0, 0
 L_button_proc256:
 L_button_proc254:
-;main.c,354 :: 		}
+;main.c,359 :: 		}
 L_button_proc252:
 L_button_proc251:
-;main.c,355 :: 		asm CLRWDT;
+;main.c,360 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,356 :: 		while (Button( & PORTB, 1, 50, 0)) {
+;main.c,361 :: 		while (Button( & PORTB, 1, 50, 0)) {
 L_button_proc257:
 	MOVLW       PORTB+0
 	MOVWF       FARG_Button_port+0 
@@ -4510,34 +4528,34 @@ L_button_proc257:
 	MOVF        R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_button_proc258
-;main.c,357 :: 		lcd_pwr();
+;main.c,362 :: 		lcd_pwr();
 	CALL        _lcd_pwr+0, 0
-;main.c,358 :: 		asm CLRWDT;
+;main.c,363 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,359 :: 		}
+;main.c,364 :: 		}
 	GOTO        L_button_proc257
 L_button_proc258:
-;main.c,360 :: 		}
+;main.c,365 :: 		}
 L_button_proc243:
-;main.c,361 :: 		return;
-;main.c,362 :: 		}
+;main.c,366 :: 		return;
+;main.c,367 :: 		}
 L_end_button_proc:
 	RETURN      0
 ; end of _button_proc
 
 _show_reset:
 
-;main.c,364 :: 		void show_reset() {
-;main.c,365 :: 		atu_reset();
+;main.c,369 :: 		void show_reset() {
+;main.c,370 :: 		atu_reset();
 	CALL        _atu_reset+0, 0
-;main.c,366 :: 		SW = 1;
+;main.c,371 :: 		SW = 1;
 	MOVLW       1
 	MOVWF       main_SW+0 
-;main.c,367 :: 		set_sw(SW);
+;main.c,372 :: 		set_sw(SW);
 	MOVLW       1
 	MOVWF       FARG_set_sw_SW+0 
 	CALL        _set_sw+0, 0
-;main.c,368 :: 		EEPROM_Write(255 - mem_offset * 5, 0);
+;main.c,373 :: 		EEPROM_Write(255 - mem_offset * 5, 0);
 	MOVLW       5
 	MULWF       _mem_offset+0 
 	MOVF        PRODL+0, 0 
@@ -4547,7 +4565,7 @@ _show_reset:
 	MOVWF       FARG_EEPROM_Write_address+0 
 	CLRF        FARG_EEPROM_Write_data_+0 
 	CALL        _EEPROM_Write+0, 0
-;main.c,369 :: 		EEPROM_Write(254 - mem_offset * 5, 0);
+;main.c,374 :: 		EEPROM_Write(254 - mem_offset * 5, 0);
 	MOVLW       5
 	MULWF       _mem_offset+0 
 	MOVF        PRODL+0, 0 
@@ -4557,7 +4575,7 @@ _show_reset:
 	MOVWF       FARG_EEPROM_Write_address+0 
 	CLRF        FARG_EEPROM_Write_data_+0 
 	CALL        _EEPROM_Write+0, 0
-;main.c,370 :: 		EEPROM_Write(253 - mem_offset * 5, 1);
+;main.c,375 :: 		EEPROM_Write(253 - mem_offset * 5, 1);
 	MOVLW       5
 	MULWF       _mem_offset+0 
 	MOVF        PRODL+0, 0 
@@ -4568,7 +4586,7 @@ _show_reset:
 	MOVLW       1
 	MOVWF       FARG_EEPROM_Write_data_+0 
 	CALL        _EEPROM_Write+0, 0
-;main.c,371 :: 		EEPROM_Write(252 - mem_offset * 5, 0);
+;main.c,376 :: 		EEPROM_Write(252 - mem_offset * 5, 0);
 	MOVLW       5
 	MULWF       _mem_offset+0 
 	MOVF        PRODL+0, 0 
@@ -4578,7 +4596,7 @@ _show_reset:
 	MOVWF       FARG_EEPROM_Write_address+0 
 	CLRF        FARG_EEPROM_Write_data_+0 
 	CALL        _EEPROM_Write+0, 0
-;main.c,372 :: 		EEPROM_Write(251 - mem_offset * 5, 0);
+;main.c,377 :: 		EEPROM_Write(251 - mem_offset * 5, 0);
 	MOVLW       5
 	MULWF       _mem_offset+0 
 	MOVF        PRODL+0, 0 
@@ -4588,22 +4606,22 @@ _show_reset:
 	MOVWF       FARG_EEPROM_Write_address+0 
 	CLRF        FARG_EEPROM_Write_data_+0 
 	CALL        _EEPROM_Write+0, 0
-;main.c,373 :: 		lcd_ind();
+;main.c,378 :: 		lcd_ind();
 	CALL        _lcd_ind+0, 0
-;main.c,374 :: 		Loss_mode = 0;
+;main.c,379 :: 		Loss_mode = 0;
 	CLRF        _Loss_mode+0 
-;main.c,376 :: 		n_Tx = 1;
+;main.c,381 :: 		n_Tx = 1;
 	BSF         LATA6_bit+0, BitPos(LATA6_bit+0) 
-;main.c,377 :: 		SWR = 0;
+;main.c,382 :: 		SWR = 0;
 	CLRF        _SWR+0 
 	CLRF        _SWR+1 
-;main.c,378 :: 		PWR = 0;
+;main.c,383 :: 		PWR = 0;
 	CLRF        _PWR+0 
 	CLRF        _PWR+1 
-;main.c,379 :: 		SWR_fixed_old = 0;
+;main.c,384 :: 		SWR_fixed_old = 0;
 	CLRF        _SWR_fixed_old+0 
 	CLRF        _SWR_fixed_old+1 
-;main.c,380 :: 		if (type == 4 | type == 5) { // 128*64 OLED
+;main.c,385 :: 		if (type == 4 | type == 5) { // 128*64 OLED
 	MOVF        _type+0, 0 
 	XORLW       4
 	MOVLW       1
@@ -4620,7 +4638,7 @@ _show_reset:
 	IORWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_show_reset259
-;main.c,381 :: 		led_wr_str(2, 16, "RESET   ", 8);
+;main.c,386 :: 		led_wr_str(2, 16, "RESET   ", 8);
 	MOVLW       2
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       16
@@ -4632,9 +4650,9 @@ _show_reset:
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,382 :: 		asm CLRWDT;
+;main.c,387 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,383 :: 		delay_ms(600);
+;main.c,388 :: 		delay_ms(600);
 	MOVLW       13
 	MOVWF       R11, 0
 	MOVLW       45
@@ -4650,7 +4668,7 @@ L_show_reset260:
 	BRA         L_show_reset260
 	NOP
 	NOP
-;main.c,384 :: 		led_wr_str(2, 16, "SWR=0.00", 8);
+;main.c,389 :: 		led_wr_str(2, 16, "SWR=0.00", 8);
 	MOVLW       2
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       16
@@ -4662,16 +4680,16 @@ L_show_reset260:
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,385 :: 		asm CLRWDT;
+;main.c,390 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,386 :: 		} else if (type != 0) { // 1602 LCD & 128*32 OLED
+;main.c,391 :: 		} else if (type != 0) { // 1602 LCD & 128*32 OLED
 	GOTO        L_show_reset261
 L_show_reset259:
 	MOVF        _type+0, 0 
 	XORLW       0
 	BTFSC       STATUS+0, 2 
 	GOTO        L_show_reset262
-;main.c,387 :: 		led_wr_str(1, 0, "RESET   ", 8);
+;main.c,392 :: 		led_wr_str(1, 0, "RESET   ", 8);
 	MOVLW       1
 	MOVWF       FARG_led_wr_str+0 
 	CLRF        FARG_led_wr_str+0 
@@ -4682,9 +4700,9 @@ L_show_reset259:
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,388 :: 		asm CLRWDT;
+;main.c,393 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,389 :: 		delay_ms(600);
+;main.c,394 :: 		delay_ms(600);
 	MOVLW       13
 	MOVWF       R11, 0
 	MOVLW       45
@@ -4700,7 +4718,7 @@ L_show_reset263:
 	BRA         L_show_reset263
 	NOP
 	NOP
-;main.c,390 :: 		led_wr_str(1, 0, "SWR=0.00", 8);
+;main.c,395 :: 		led_wr_str(1, 0, "SWR=0.00", 8);
 	MOVLW       1
 	MOVWF       FARG_led_wr_str+0 
 	CLRF        FARG_led_wr_str+0 
@@ -4711,42 +4729,42 @@ L_show_reset263:
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,391 :: 		asm CLRWDT;
+;main.c,396 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,392 :: 		} else {
+;main.c,397 :: 		} else {
 	GOTO        L_show_reset264
 L_show_reset262:
-;main.c,393 :: 		LATB.B6 = 1;
+;main.c,398 :: 		LATB.B6 = 1;
 	BSF         LATB+0, 6 
-;main.c,394 :: 		LATB.B7 = 1;
+;main.c,399 :: 		LATB.B7 = 1;
 	BSF         LATB+0, 7 
-;main.c,395 :: 		}
+;main.c,400 :: 		}
 L_show_reset264:
 L_show_reset261:
-;main.c,396 :: 		SWR_old = 10000;
+;main.c,401 :: 		SWR_old = 10000;
 	MOVLW       16
 	MOVWF       _SWR_old+0 
 	MOVLW       39
 	MOVWF       _SWR_old+1 
-;main.c,397 :: 		Power_old = 10000;
+;main.c,402 :: 		Power_old = 10000;
 	MOVLW       16
 	MOVWF       _Power_old+0 
 	MOVLW       39
 	MOVWF       _Power_old+1 
-;main.c,398 :: 		lcd_pwr();
+;main.c,403 :: 		lcd_pwr();
 	CALL        _lcd_pwr+0, 0
-;main.c,399 :: 		return;
-;main.c,400 :: 		}
+;main.c,404 :: 		return;
+;main.c,405 :: 		}
 L_end_show_reset:
 	RETURN      0
 ; end of _show_reset
 
 _btn_push:
 
-;main.c,402 :: 		void btn_push()
-;main.c,404 :: 		asm CLRWDT;
+;main.c,410 :: 		void btn_push()
+;main.c,412 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,405 :: 		if (type == 4 | type == 5) { // 128*64 OLED
+;main.c,413 :: 		if (type == 4 | type == 5) { // 128*64 OLED
 	MOVF        _type+0, 0 
 	XORLW       4
 	MOVLW       1
@@ -4763,7 +4781,7 @@ _btn_push:
 	IORWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_btn_push265
-;main.c,406 :: 		led_wr_str(2, 16 + 12 * 4, "TUNE", 4);
+;main.c,414 :: 		led_wr_str(2, 16 + 12 * 4, "TUNE", 4);
 	MOVLW       2
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       64
@@ -4775,14 +4793,14 @@ _btn_push:
 	MOVLW       4
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,407 :: 		} else if (type != 0) { // 1602 LCD & 128*32 OLED
+;main.c,415 :: 		} else if (type != 0) { // 1602 LCD & 128*32 OLED
 	GOTO        L_btn_push266
 L_btn_push265:
 	MOVF        _type+0, 0 
 	XORLW       0
 	BTFSC       STATUS+0, 2 
 	GOTO        L_btn_push267
-;main.c,408 :: 		led_wr_str(1, 4, "TUNE", 4);
+;main.c,416 :: 		led_wr_str(1, 4, "TUNE", 4);
 	MOVLW       1
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       4
@@ -4794,24 +4812,24 @@ L_btn_push265:
 	MOVLW       4
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,409 :: 		} else {
+;main.c,417 :: 		} else {
 	GOTO        L_btn_push268
 L_btn_push267:
-;main.c,410 :: 		LATB.B6 = 1;
+;main.c,418 :: 		LATB.B6 = 1;
 	BSF         LATB+0, 6 
-;main.c,411 :: 		LATB.B7 = 1;
+;main.c,419 :: 		LATB.B7 = 1;
 	BSF         LATB+0, 7 
-;main.c,412 :: 		}
+;main.c,420 :: 		}
 L_btn_push268:
 L_btn_push266:
-;main.c,413 :: 		tune();		// strojenie
+;main.c,421 :: 		tune();		// strojenie
 	CALL        _tune+0, 0
-;main.c,414 :: 		if (type == 0)
+;main.c,422 :: 		if (type == 0)
 	MOVF        _type+0, 0 
 	XORLW       0
 	BTFSS       STATUS+0, 2 
 	GOTO        L_btn_push269
-;main.c,416 :: 		if (swr <= 150) {
+;main.c,424 :: 		if (swr <= 150) {
 	MOVLW       128
 	MOVWF       R0 
 	MOVLW       128
@@ -4824,14 +4842,14 @@ L_btn_push266:
 L__btn_push622:
 	BTFSS       STATUS+0, 0 
 	GOTO        L_btn_push270
-;main.c,417 :: 		LATB.B6 = 0;
+;main.c,425 :: 		LATB.B6 = 0;
 	BCF         LATB+0, 6 
-;main.c,418 :: 		LATB.B7 = 1;
+;main.c,426 :: 		LATB.B7 = 1;
 	BSF         LATB+0, 7 
-;main.c,419 :: 		} // Green
+;main.c,427 :: 		} // Green
 	GOTO        L_btn_push271
 L_btn_push270:
-;main.c,420 :: 		else if (swr <= 250) {
+;main.c,428 :: 		else if (swr <= 250) {
 	MOVLW       128
 	MOVWF       R0 
 	MOVLW       128
@@ -4844,24 +4862,24 @@ L_btn_push270:
 L__btn_push623:
 	BTFSS       STATUS+0, 0 
 	GOTO        L_btn_push272
-;main.c,421 :: 		PORTB.B6 = 0;
+;main.c,429 :: 		PORTB.B6 = 0;
 	BCF         PORTB+0, 6 
-;main.c,422 :: 		PORTB.B7 = 0;
+;main.c,430 :: 		PORTB.B7 = 0;
 	BCF         PORTB+0, 7 
-;main.c,423 :: 		} // Orange
+;main.c,431 :: 		} // Orange
 	GOTO        L_btn_push273
 L_btn_push272:
-;main.c,425 :: 		PORTB.B6 = 1;
+;main.c,433 :: 		PORTB.B6 = 1;
 	BSF         PORTB+0, 6 
-;main.c,426 :: 		PORTB.B7 = 0;
+;main.c,434 :: 		PORTB.B7 = 0;
 	BCF         PORTB+0, 7 
-;main.c,427 :: 		} // Red
+;main.c,435 :: 		} // Red
 L_btn_push273:
 L_btn_push271:
-;main.c,428 :: 		}
+;main.c,436 :: 		}
 	GOTO        L_btn_push274
 L_btn_push269:
-;main.c,429 :: 		else if (Loss_mode == 0 | Loss_ind == 0)
+;main.c,437 :: 		else if (Loss_mode == 0 | Loss_ind == 0)
 	MOVF        _Loss_mode+0, 0 
 	XORLW       0
 	MOVLW       1
@@ -4878,11 +4896,11 @@ L_btn_push269:
 	IORWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_btn_push275
-;main.c,430 :: 		lcd_ind();
+;main.c,438 :: 		lcd_ind();
 	CALL        _lcd_ind+0, 0
 L_btn_push275:
 L_btn_push274:
-;main.c,431 :: 		EEPROM_Write(255 - mem_offset * 5, cap);
+;main.c,439 :: 		EEPROM_Write(255 - mem_offset * 5, cap);
 	MOVLW       5
 	MULWF       _mem_offset+0 
 	MOVF        PRODL+0, 0 
@@ -4893,7 +4911,7 @@ L_btn_push274:
 	MOVF        main_cap+0, 0 
 	MOVWF       FARG_EEPROM_Write_data_+0 
 	CALL        _EEPROM_Write+0, 0
-;main.c,432 :: 		EEPROM_Write(254 - mem_offset * 5, ind);
+;main.c,440 :: 		EEPROM_Write(254 - mem_offset * 5, ind);
 	MOVLW       5
 	MULWF       _mem_offset+0 
 	MOVF        PRODL+0, 0 
@@ -4904,7 +4922,7 @@ L_btn_push274:
 	MOVF        main_ind+0, 0 
 	MOVWF       FARG_EEPROM_Write_data_+0 
 	CALL        _EEPROM_Write+0, 0
-;main.c,433 :: 		EEPROM_Write(253 - mem_offset * 5, SW);
+;main.c,441 :: 		EEPROM_Write(253 - mem_offset * 5, SW);
 	MOVLW       5
 	MULWF       _mem_offset+0 
 	MOVF        PRODL+0, 0 
@@ -4915,7 +4933,7 @@ L_btn_push274:
 	MOVF        main_SW+0, 0 
 	MOVWF       FARG_EEPROM_Write_data_+0 
 	CALL        _EEPROM_Write+0, 0
-;main.c,434 :: 		EEPROM_Write(252 - mem_offset * 5, swr_a / 256);
+;main.c,442 :: 		EEPROM_Write(252 - mem_offset * 5, swr_a / 256);
 	MOVLW       5
 	MULWF       _mem_offset+0 
 	MOVF        PRODL+0, 0 
@@ -4935,7 +4953,7 @@ L_btn_push274:
 	MOVF        R0, 0 
 	MOVWF       FARG_EEPROM_Write_data_+0 
 	CALL        _EEPROM_Write+0, 0
-;main.c,435 :: 		EEPROM_Write(251 - mem_offset * 5, swr_a % 256);
+;main.c,443 :: 		EEPROM_Write(251 - mem_offset * 5, swr_a % 256);
 	MOVLW       5
 	MULWF       _mem_offset+0 
 	MOVF        PRODL+0, 0 
@@ -4959,39 +4977,39 @@ L_btn_push274:
 	MOVF        R0, 0 
 	MOVWF       FARG_EEPROM_Write_data_+0 
 	CALL        _EEPROM_Write+0, 0
-;main.c,436 :: 		SWR_old = 10000;
+;main.c,444 :: 		SWR_old = 10000;
 	MOVLW       16
 	MOVWF       _SWR_old+0 
 	MOVLW       39
 	MOVWF       _SWR_old+1 
-;main.c,437 :: 		Power_old = 10000;
+;main.c,445 :: 		Power_old = 10000;
 	MOVLW       16
 	MOVWF       _Power_old+0 
 	MOVLW       39
 	MOVWF       _Power_old+1 
-;main.c,438 :: 		lcd_pwr();
+;main.c,446 :: 		lcd_pwr();
 	CALL        _lcd_pwr+0, 0
-;main.c,439 :: 		SWR_fixed_old = SWR;
+;main.c,447 :: 		SWR_fixed_old = SWR;
 	MOVF        _SWR+0, 0 
 	MOVWF       _SWR_fixed_old+0 
 	MOVF        _SWR+1, 0 
 	MOVWF       _SWR_fixed_old+1 
-;main.c,441 :: 		n_Tx = 1;
+;main.c,449 :: 		n_Tx = 1;
 	BSF         LATA6_bit+0, BitPos(LATA6_bit+0) 
-;main.c,442 :: 		asm CLRWDT;
+;main.c,450 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,443 :: 		return;
-;main.c,444 :: 		}
+;main.c,451 :: 		return;
+;main.c,452 :: 		}
 L_end_btn_push:
 	RETURN      0
 ; end of _btn_push
 
 _lcd_prep:
 
-;main.c,446 :: 		void lcd_prep() {
-;main.c,447 :: 		asm CLRWDT;
+;main.c,454 :: 		void lcd_prep() {
+;main.c,455 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,448 :: 		if (type == 4 | type == 5) { // 128*64 OLED
+;main.c,456 :: 		if (type == 4 | type == 5) { // 128*64 OLED
 	MOVF        _type+0, 0 
 	XORLW       4
 	MOVLW       1
@@ -5008,12 +5026,12 @@ _lcd_prep:
 	IORWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_lcd_prep276
-;main.c,449 :: 		if (lcd_prep_short == 0) {
+;main.c,457 :: 		if (lcd_prep_short == 0) {
 	MOVF        _lcd_prep_short+0, 0 
 	XORLW       0
 	BTFSS       STATUS+0, 2 
 	GOTO        L_lcd_prep277
-;main.c,450 :: 		led_wr_str(0, 22, "ATU-100", 7);
+;main.c,458 :: 		led_wr_str(0, 22, "ATU-100", 7);
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       22
 	MOVWF       FARG_led_wr_str+0 
@@ -5024,7 +5042,7 @@ _lcd_prep:
 	MOVLW       7
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,451 :: 		led_wr_str(2, 6, "EXT board", 9);
+;main.c,459 :: 		led_wr_str(2, 6, "EXT board", 9);
 	MOVLW       2
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       6
@@ -5036,7 +5054,7 @@ _lcd_prep:
 	MOVLW       9
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,452 :: 		led_wr_str(4, 16, "by N7DDC", 8);
+;main.c,460 :: 		led_wr_str(4, 16, "by N7DDC", 8);
 	MOVLW       4
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       16
@@ -5048,7 +5066,7 @@ _lcd_prep:
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,453 :: 		led_wr_str(6, 4, "FW ver 3.1m", 11);
+;main.c,461 :: 		led_wr_str(6, 4, "FW ver 3.1m", 11);
 	MOVLW       6
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       4
@@ -5060,9 +5078,9 @@ _lcd_prep:
 	MOVLW       11
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,454 :: 		asm CLRWDT;
+;main.c,462 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,455 :: 		Delay_ms(600);
+;main.c,463 :: 		Delay_ms(600);
 	MOVLW       13
 	MOVWF       R11, 0
 	MOVLW       45
@@ -5078,9 +5096,9 @@ L_lcd_prep278:
 	BRA         L_lcd_prep278
 	NOP
 	NOP
-;main.c,456 :: 		asm CLRWDT;
+;main.c,464 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,457 :: 		Delay_ms(500);
+;main.c,465 :: 		Delay_ms(500);
 	MOVLW       11
 	MOVWF       R11, 0
 	MOVLW       38
@@ -5096,9 +5114,9 @@ L_lcd_prep279:
 	BRA         L_lcd_prep279
 	NOP
 	NOP
-;main.c,458 :: 		asm CLRWDT;
+;main.c,466 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,459 :: 		led_wr_str(0, 16, "        ", 8);
+;main.c,467 :: 		led_wr_str(0, 16, "        ", 8);
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       16
 	MOVWF       FARG_led_wr_str+0 
@@ -5109,7 +5127,7 @@ L_lcd_prep279:
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,460 :: 		led_wr_str(2, 4, "          ", 10);
+;main.c,468 :: 		led_wr_str(2, 4, "          ", 10);
 	MOVLW       2
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       4
@@ -5121,7 +5139,7 @@ L_lcd_prep279:
 	MOVLW       10
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,461 :: 		led_wr_str(4, 16, "        ", 8);
+;main.c,469 :: 		led_wr_str(4, 16, "        ", 8);
 	MOVLW       4
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       16
@@ -5133,7 +5151,7 @@ L_lcd_prep279:
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,462 :: 		led_wr_str(6, 4, "          ", 11);
+;main.c,470 :: 		led_wr_str(6, 4, "          ", 11);
 	MOVLW       6
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       4
@@ -5145,9 +5163,9 @@ L_lcd_prep279:
 	MOVLW       11
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,463 :: 		}
+;main.c,471 :: 		}
 L_lcd_prep277:
-;main.c,464 :: 		Delay_ms(150);
+;main.c,472 :: 		Delay_ms(150);
 	MOVLW       4
 	MOVWF       R11, 0
 	MOVLW       12
@@ -5163,12 +5181,12 @@ L_lcd_prep280:
 	BRA         L_lcd_prep280
 	NOP
 	NOP
-;main.c,465 :: 		if (P_High == 1)
+;main.c,473 :: 		if (P_High == 1)
 	MOVF        main_P_High+0, 0 
 	XORLW       1
 	BTFSS       STATUS+0, 2 
 	GOTO        L_lcd_prep281
-;main.c,466 :: 		led_wr_str(0, 16, "PWR=  0W", 8);
+;main.c,474 :: 		led_wr_str(0, 16, "PWR=  0W", 8);
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       16
 	MOVWF       FARG_led_wr_str+0 
@@ -5181,7 +5199,7 @@ L_lcd_prep280:
 	CALL        _led_wr_str+0, 0
 	GOTO        L_lcd_prep282
 L_lcd_prep281:
-;main.c,468 :: 		led_wr_str(0, 16, "PWR=0.0W", 8);
+;main.c,476 :: 		led_wr_str(0, 16, "PWR=0.0W", 8);
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       16
 	MOVWF       FARG_led_wr_str+0 
@@ -5193,7 +5211,7 @@ L_lcd_prep281:
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
 L_lcd_prep282:
-;main.c,469 :: 		led_wr_str(2, 16, "SWR=0.00", 8);
+;main.c,477 :: 		led_wr_str(2, 16, "SWR=0.00", 8);
 	MOVLW       2
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       16
@@ -5205,11 +5223,11 @@ L_lcd_prep282:
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,470 :: 		if (Auto)
+;main.c,478 :: 		if (Auto)
 	MOVF        _Auto+0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_lcd_prep283
-;main.c,471 :: 		led_wr_str(0, 16 + 8 * 12, ".", 1);
+;main.c,479 :: 		led_wr_str(0, 16 + 8 * 12, ".", 1);
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       112
 	MOVWF       FARG_led_wr_str+0 
@@ -5221,19 +5239,19 @@ L_lcd_prep282:
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
 L_lcd_prep283:
-;main.c,472 :: 		} else if (type != 0) { // 1602 LCD & 128*32 OLED
+;main.c,480 :: 		} else if (type != 0) { // 1602 LCD & 128*32 OLED
 	GOTO        L_lcd_prep284
 L_lcd_prep276:
 	MOVF        _type+0, 0 
 	XORLW       0
 	BTFSC       STATUS+0, 2 
 	GOTO        L_lcd_prep285
-;main.c,473 :: 		if (lcd_prep_short == 0) {
+;main.c,481 :: 		if (lcd_prep_short == 0) {
 	MOVF        _lcd_prep_short+0, 0 
 	XORLW       0
 	BTFSS       STATUS+0, 2 
 	GOTO        L_lcd_prep286
-;main.c,474 :: 		led_wr_str(0, 4, "ATU-100", 7);
+;main.c,482 :: 		led_wr_str(0, 4, "ATU-100", 7);
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       4
 	MOVWF       FARG_led_wr_str+0 
@@ -5244,7 +5262,7 @@ L_lcd_prep276:
 	MOVLW       7
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,475 :: 		led_wr_str(1, 3, "EXT board", 9);
+;main.c,483 :: 		led_wr_str(1, 3, "EXT board", 9);
 	MOVLW       1
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       3
@@ -5256,9 +5274,9 @@ L_lcd_prep276:
 	MOVLW       9
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,476 :: 		asm CLRWDT;
+;main.c,484 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,477 :: 		Delay_ms(700);
+;main.c,485 :: 		Delay_ms(700);
 	MOVLW       15
 	MOVWF       R11, 0
 	MOVLW       53
@@ -5272,9 +5290,9 @@ L_lcd_prep287:
 	BRA         L_lcd_prep287
 	DECFSZ      R11, 1, 1
 	BRA         L_lcd_prep287
-;main.c,478 :: 		asm CLRWDT;
+;main.c,486 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,479 :: 		Delay_ms(500);
+;main.c,487 :: 		Delay_ms(500);
 	MOVLW       11
 	MOVWF       R11, 0
 	MOVLW       38
@@ -5290,9 +5308,9 @@ L_lcd_prep288:
 	BRA         L_lcd_prep288
 	NOP
 	NOP
-;main.c,480 :: 		asm CLRWDT;
+;main.c,488 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,481 :: 		led_wr_str(0, 4, "by N7DDC", 8);
+;main.c,489 :: 		led_wr_str(0, 4, "by N7DDC", 8);
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       4
 	MOVWF       FARG_led_wr_str+0 
@@ -5303,7 +5321,7 @@ L_lcd_prep288:
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,482 :: 		led_wr_str(1, 3, "FW ver 3.1m", 11);
+;main.c,490 :: 		led_wr_str(1, 3, "FW ver 3.1m", 11);
 	MOVLW       1
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       3
@@ -5315,9 +5333,9 @@ L_lcd_prep288:
 	MOVLW       11
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,483 :: 		asm CLRWDT;
+;main.c,491 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,484 :: 		Delay_ms(600);
+;main.c,492 :: 		Delay_ms(600);
 	MOVLW       13
 	MOVWF       R11, 0
 	MOVLW       45
@@ -5333,9 +5351,9 @@ L_lcd_prep289:
 	BRA         L_lcd_prep289
 	NOP
 	NOP
-;main.c,485 :: 		asm CLRWDT;
+;main.c,493 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,486 :: 		Delay_ms(500);
+;main.c,494 :: 		Delay_ms(500);
 	MOVLW       11
 	MOVWF       R11, 0
 	MOVLW       38
@@ -5351,9 +5369,9 @@ L_lcd_prep290:
 	BRA         L_lcd_prep290
 	NOP
 	NOP
-;main.c,487 :: 		asm CLRWDT;
+;main.c,495 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,488 :: 		led_wr_str(0, 4, "        ", 8);
+;main.c,496 :: 		led_wr_str(0, 4, "        ", 8);
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       4
 	MOVWF       FARG_led_wr_str+0 
@@ -5364,7 +5382,7 @@ L_lcd_prep290:
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,489 :: 		led_wr_str(1, 3, "          ", 11);
+;main.c,497 :: 		led_wr_str(1, 3, "          ", 11);
 	MOVLW       1
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       3
@@ -5376,9 +5394,9 @@ L_lcd_prep290:
 	MOVLW       11
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,490 :: 		}
+;main.c,498 :: 		}
 L_lcd_prep286:
-;main.c,491 :: 		Delay_ms(150);
+;main.c,499 :: 		Delay_ms(150);
 	MOVLW       4
 	MOVWF       R11, 0
 	MOVLW       12
@@ -5394,12 +5412,12 @@ L_lcd_prep291:
 	BRA         L_lcd_prep291
 	NOP
 	NOP
-;main.c,492 :: 		if (P_High == 1)
+;main.c,500 :: 		if (P_High == 1)
 	MOVF        main_P_High+0, 0 
 	XORLW       1
 	BTFSS       STATUS+0, 2 
 	GOTO        L_lcd_prep292
-;main.c,493 :: 		led_wr_str(0, 0, "PWR=  0W", 8);
+;main.c,501 :: 		led_wr_str(0, 0, "PWR=  0W", 8);
 	CLRF        FARG_led_wr_str+0 
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       ?lstr46_main+0
@@ -5411,7 +5429,7 @@ L_lcd_prep291:
 	CALL        _led_wr_str+0, 0
 	GOTO        L_lcd_prep293
 L_lcd_prep292:
-;main.c,495 :: 		led_wr_str(0, 0, "PWR=0.0W", 8);
+;main.c,503 :: 		led_wr_str(0, 0, "PWR=0.0W", 8);
 	CLRF        FARG_led_wr_str+0 
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       ?lstr47_main+0
@@ -5422,7 +5440,7 @@ L_lcd_prep292:
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
 L_lcd_prep293:
-;main.c,496 :: 		led_wr_str(1, 0, "SWR=0.00", 8);
+;main.c,504 :: 		led_wr_str(1, 0, "SWR=0.00", 8);
 	MOVLW       1
 	MOVWF       FARG_led_wr_str+0 
 	CLRF        FARG_led_wr_str+0 
@@ -5433,11 +5451,11 @@ L_lcd_prep293:
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,497 :: 		if (Auto)
+;main.c,505 :: 		if (Auto)
 	MOVF        _Auto+0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_lcd_prep294
-;main.c,498 :: 		led_wr_str(0, 8, ".", 1);
+;main.c,506 :: 		led_wr_str(0, 8, ".", 1);
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
@@ -5449,25 +5467,25 @@ L_lcd_prep293:
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
 L_lcd_prep294:
-;main.c,499 :: 		}
+;main.c,507 :: 		}
 L_lcd_prep285:
 L_lcd_prep284:
-;main.c,500 :: 		asm CLRWDT;
+;main.c,508 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,501 :: 		lcd_ind();
+;main.c,509 :: 		lcd_ind();
 	CALL        _lcd_ind+0, 0
-;main.c,502 :: 		return;
-;main.c,503 :: 		}
+;main.c,510 :: 		return;
+;main.c,511 :: 		}
 L_end_lcd_prep:
 	RETURN      0
 ; end of _lcd_prep
 
 _lcd_swr:
 
-;main.c,505 :: 		void lcd_swr(int swr) {
-;main.c,506 :: 		asm CLRWDT;
+;main.c,513 :: 		void lcd_swr(int swr) {
+;main.c,514 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,507 :: 		if (swr != SWR_old) {
+;main.c,515 :: 		if (swr != SWR_old) {
 	MOVF        FARG_lcd_swr_swr+1, 0 
 	XORWF       _SWR_old+1, 0 
 	BTFSS       STATUS+0, 2 
@@ -5477,12 +5495,12 @@ _lcd_swr:
 L__lcd_swr626:
 	BTFSC       STATUS+0, 2 
 	GOTO        L_lcd_swr295
-;main.c,508 :: 		SWR_old = swr;
+;main.c,516 :: 		SWR_old = swr;
 	MOVF        FARG_lcd_swr_swr+0, 0 
 	MOVWF       _SWR_old+0 
 	MOVF        FARG_lcd_swr_swr+1, 0 
 	MOVWF       _SWR_old+1 
-;main.c,509 :: 		if (swr == 1) { // Low power
+;main.c,517 :: 		if (swr == 1) { // Low power
 	MOVLW       0
 	XORWF       FARG_lcd_swr_swr+1, 0 
 	BTFSS       STATUS+0, 2 
@@ -5492,7 +5510,7 @@ L__lcd_swr626:
 L__lcd_swr627:
 	BTFSS       STATUS+0, 2 
 	GOTO        L_lcd_swr296
-;main.c,510 :: 		if (type == 4 | type == 5)
+;main.c,518 :: 		if (type == 4 | type == 5)
 	MOVF        _type+0, 0 
 	XORLW       4
 	MOVLW       1
@@ -5509,7 +5527,7 @@ L__lcd_swr627:
 	IORWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_lcd_swr297
-;main.c,511 :: 		led_wr_str(2, 16 + 4 * 12, "0.00", 4); // 128*64 OLED
+;main.c,519 :: 		led_wr_str(2, 16 + 4 * 12, "0.00", 4); // 128*64 OLED
 	MOVLW       2
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       64
@@ -5523,12 +5541,12 @@ L__lcd_swr627:
 	CALL        _led_wr_str+0, 0
 	GOTO        L_lcd_swr298
 L_lcd_swr297:
-;main.c,512 :: 		else if (type != 0)
+;main.c,520 :: 		else if (type != 0)
 	MOVF        _type+0, 0 
 	XORLW       0
 	BTFSC       STATUS+0, 2 
 	GOTO        L_lcd_swr299
-;main.c,513 :: 		led_wr_str(1, 4, "0.00", 4); // 1602  & 128*32 OLED
+;main.c,521 :: 		led_wr_str(1, 4, "0.00", 4); // 1602  & 128*32 OLED
 	MOVLW       1
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       4
@@ -5542,31 +5560,31 @@ L_lcd_swr297:
 	CALL        _led_wr_str+0, 0
 	GOTO        L_lcd_swr300
 L_lcd_swr299:
-;main.c,514 :: 		else if (type == 0) { // real-time 2-colors led work
+;main.c,522 :: 		else if (type == 0) { // real-time 2-colors led work
 	MOVF        _type+0, 0 
 	XORLW       0
 	BTFSS       STATUS+0, 2 
 	GOTO        L_lcd_swr301
-;main.c,515 :: 		LATB.B6 = 1;
+;main.c,523 :: 		LATB.B6 = 1;
 	BSF         LATB+0, 6 
-;main.c,516 :: 		LATB.B7 = 1;
+;main.c,524 :: 		LATB.B7 = 1;
 	BSF         LATB+0, 7 
-;main.c,517 :: 		}
+;main.c,525 :: 		}
 L_lcd_swr301:
 L_lcd_swr300:
 L_lcd_swr298:
-;main.c,518 :: 		SWR_old = 0;
+;main.c,526 :: 		SWR_old = 0;
 	CLRF        _SWR_old+0 
 	CLRF        _SWR_old+1 
-;main.c,519 :: 		} else {
+;main.c,527 :: 		} else {
 	GOTO        L_lcd_swr302
 L_lcd_swr296:
-;main.c,520 :: 		SWR_old = swr;
+;main.c,528 :: 		SWR_old = swr;
 	MOVF        FARG_lcd_swr_swr+0, 0 
 	MOVWF       _SWR_old+0 
 	MOVF        FARG_lcd_swr_swr+1, 0 
 	MOVWF       _SWR_old+1 
-;main.c,521 :: 		IntToStr(swr, work_str);
+;main.c,529 :: 		IntToStr(swr, work_str);
 	MOVF        FARG_lcd_swr_swr+0, 0 
 	MOVWF       FARG_IntToStr_input+0 
 	MOVF        FARG_lcd_swr_swr+1, 0 
@@ -5576,19 +5594,19 @@ L_lcd_swr296:
 	MOVLW       hi_addr(_work_str+0)
 	MOVWF       FARG_IntToStr_output+1 
 	CALL        _IntToStr+0, 0
-;main.c,522 :: 		work_str_2[0] = work_str[3];
+;main.c,530 :: 		work_str_2[0] = work_str[3];
 	MOVF        _work_str+3, 0 
 	MOVWF       _work_str_2+0 
-;main.c,523 :: 		work_str_2[1] = '.';
+;main.c,531 :: 		work_str_2[1] = '.';
 	MOVLW       46
 	MOVWF       _work_str_2+1 
-;main.c,524 :: 		work_str_2[2] = work_str[4];
+;main.c,532 :: 		work_str_2[2] = work_str[4];
 	MOVF        _work_str+4, 0 
 	MOVWF       _work_str_2+2 
-;main.c,525 :: 		work_str_2[3] = work_str[5];
+;main.c,533 :: 		work_str_2[3] = work_str[5];
 	MOVF        _work_str+5, 0 
 	MOVWF       _work_str_2+3 
-;main.c,526 :: 		if (type == 4 | type == 5)
+;main.c,534 :: 		if (type == 4 | type == 5)
 	MOVF        _type+0, 0 
 	XORLW       4
 	MOVLW       1
@@ -5605,7 +5623,7 @@ L_lcd_swr296:
 	IORWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_lcd_swr303
-;main.c,527 :: 		led_wr_str(2, 16 + 4 * 12, work_str_2, 4); // 128*64 OLED
+;main.c,535 :: 		led_wr_str(2, 16 + 4 * 12, work_str_2, 4); // 128*64 OLED
 	MOVLW       2
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       64
@@ -5619,12 +5637,12 @@ L_lcd_swr296:
 	CALL        _led_wr_str+0, 0
 	GOTO        L_lcd_swr304
 L_lcd_swr303:
-;main.c,528 :: 		else if (type != 0)
+;main.c,536 :: 		else if (type != 0)
 	MOVF        _type+0, 0 
 	XORLW       0
 	BTFSC       STATUS+0, 2 
 	GOTO        L_lcd_swr305
-;main.c,529 :: 		led_wr_str(1, 4, work_str_2, 4); // 1602  & 128*32
+;main.c,537 :: 		led_wr_str(1, 4, work_str_2, 4); // 1602  & 128*32
 	MOVLW       1
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       4
@@ -5638,12 +5656,12 @@ L_lcd_swr303:
 	CALL        _led_wr_str+0, 0
 	GOTO        L_lcd_swr306
 L_lcd_swr305:
-;main.c,530 :: 		else if (type == 0) { // real-time 2-colors led work
+;main.c,538 :: 		else if (type == 0) { // real-time 2-colors led work
 	MOVF        _type+0, 0 
 	XORLW       0
 	BTFSS       STATUS+0, 2 
 	GOTO        L_lcd_swr307
-;main.c,531 :: 		if (swr <= 150) {
+;main.c,539 :: 		if (swr <= 150) {
 	MOVLW       128
 	MOVWF       R0 
 	MOVLW       128
@@ -5656,14 +5674,14 @@ L_lcd_swr305:
 L__lcd_swr628:
 	BTFSS       STATUS+0, 0 
 	GOTO        L_lcd_swr308
-;main.c,532 :: 		LATB.B6 = 0;
+;main.c,540 :: 		LATB.B6 = 0;
 	BCF         LATB+0, 6 
-;main.c,533 :: 		LATB.B7 = 1;
+;main.c,541 :: 		LATB.B7 = 1;
 	BSF         LATB+0, 7 
-;main.c,534 :: 		} // Green
+;main.c,542 :: 		} // Green
 	GOTO        L_lcd_swr309
 L_lcd_swr308:
-;main.c,535 :: 		else if (swr <= 250) {
+;main.c,543 :: 		else if (swr <= 250) {
 	MOVLW       128
 	MOVWF       R0 
 	MOVLW       128
@@ -5676,40 +5694,40 @@ L_lcd_swr308:
 L__lcd_swr629:
 	BTFSS       STATUS+0, 0 
 	GOTO        L_lcd_swr310
-;main.c,536 :: 		PORTB.B6 = 0;
+;main.c,544 :: 		PORTB.B6 = 0;
 	BCF         PORTB+0, 6 
-;main.c,537 :: 		PORTB.B7 = 0;
+;main.c,545 :: 		PORTB.B7 = 0;
 	BCF         PORTB+0, 7 
-;main.c,538 :: 		} // Orange
+;main.c,546 :: 		} // Orange
 	GOTO        L_lcd_swr311
 L_lcd_swr310:
-;main.c,540 :: 		PORTB.B6 = 1;
+;main.c,548 :: 		PORTB.B6 = 1;
 	BSF         PORTB+0, 6 
-;main.c,541 :: 		PORTB.B7 = 0;
+;main.c,549 :: 		PORTB.B7 = 0;
 	BCF         PORTB+0, 7 
-;main.c,542 :: 		} // Red
+;main.c,550 :: 		} // Red
 L_lcd_swr311:
 L_lcd_swr309:
-;main.c,543 :: 		}
+;main.c,551 :: 		}
 L_lcd_swr307:
 L_lcd_swr306:
 L_lcd_swr304:
-;main.c,544 :: 		}
+;main.c,552 :: 		}
 L_lcd_swr302:
-;main.c,545 :: 		}
+;main.c,553 :: 		}
 L_lcd_swr295:
-;main.c,546 :: 		asm CLRWDT;
+;main.c,554 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,547 :: 		return;
-;main.c,548 :: 		}
+;main.c,555 :: 		return;
+;main.c,556 :: 		}
 L_end_lcd_swr:
 	RETURN      0
 ; end of _lcd_swr
 
 _button_delay:
 
-;main.c,550 :: 		void button_delay() {
-;main.c,551 :: 		if ((Button( & PORTB, 0, 25, 0)) | (Button( & PORTB, 1, 25, 0)) |
+;main.c,558 :: 		void button_delay() {
+;main.c,559 :: 		if ((Button( & PORTB, 0, 25, 0)) | (Button( & PORTB, 1, 25, 0)) |
 	MOVLW       PORTB+0
 	MOVWF       FARG_Button_port+0 
 	MOVLW       hi_addr(PORTB+0)
@@ -5733,7 +5751,7 @@ _button_delay:
 	CALL        _Button+0, 0
 	MOVF        R0, 0 
 	IORWF       FLOC__button_delay+0, 1 
-;main.c,552 :: 		(Button( & PORTB, 2, 25, 0))) {
+;main.c,560 :: 		(Button( & PORTB, 2, 25, 0))) {
 	MOVLW       PORTB+0
 	MOVWF       FARG_Button_port+0 
 	MOVLW       hi_addr(PORTB+0)
@@ -5748,23 +5766,23 @@ _button_delay:
 	IORWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_button_delay312
-;main.c,553 :: 		but = 1;
+;main.c,561 :: 		but = 1;
 	MOVLW       1
 	MOVWF       _but+0 
-;main.c,554 :: 		}
+;main.c,562 :: 		}
 L_button_delay312:
-;main.c,555 :: 		return;
-;main.c,556 :: 		}
+;main.c,563 :: 		return;
+;main.c,564 :: 		}
 L_end_button_delay:
 	RETURN      0
 ; end of _button_delay
 
 _show_pwr:
 
-;main.c,558 :: 		void show_pwr(int Power, int SWR) {
-;main.c,562 :: 		asm CLRWDT;
+;main.c,566 :: 		void show_pwr(int Power, int SWR) {
+;main.c,570 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,564 :: 		if (Test == 0 & Loss_ind == 1 & SWR >= 100) {
+;main.c,572 :: 		if (Test == 0 & Loss_ind == 1 & SWR >= 100) {
 	MOVF        _Test+0, 0 
 	XORLW       0
 	MOVLW       1
@@ -5797,12 +5815,12 @@ L__show_pwr632:
 	ANDWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_show_pwr313
-;main.c,565 :: 		if (Loss_mode == 0) { // prepare
+;main.c,573 :: 		if (Loss_mode == 0) { // prepare
 	MOVF        _Loss_mode+0, 0 
 	XORLW       0
 	BTFSS       STATUS+0, 2 
 	GOTO        L_show_pwr314
-;main.c,566 :: 		if (type == 4 | type == 5) { // 128*64 OLED
+;main.c,574 :: 		if (type == 4 | type == 5) { // 128*64 OLED
 	MOVF        _type+0, 0 
 	XORLW       4
 	MOVLW       1
@@ -5819,12 +5837,12 @@ L__show_pwr632:
 	IORWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_show_pwr315
-;main.c,567 :: 		if (P_High == 1)
+;main.c,575 :: 		if (P_High == 1)
 	MOVF        main_P_High+0, 0 
 	XORLW       1
 	BTFSS       STATUS+0, 2 
 	GOTO        L_show_pwr316
-;main.c,568 :: 		led_wr_str(4, 16, "ANT=  0W", 8);
+;main.c,576 :: 		led_wr_str(4, 16, "ANT=  0W", 8);
 	MOVLW       4
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       16
@@ -5838,7 +5856,7 @@ L__show_pwr632:
 	CALL        _led_wr_str+0, 0
 	GOTO        L_show_pwr317
 L_show_pwr316:
-;main.c,570 :: 		led_wr_str(4, 16, "ANT=0.0W", 8);
+;main.c,578 :: 		led_wr_str(4, 16, "ANT=0.0W", 8);
 	MOVLW       4
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       16
@@ -5851,7 +5869,7 @@ L_show_pwr316:
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
 L_show_pwr317:
-;main.c,571 :: 		led_wr_str(6, 16, "EFF=  0%", 8);
+;main.c,579 :: 		led_wr_str(6, 16, "EFF=  0%", 8);
 	MOVLW       6
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       16
@@ -5863,7 +5881,7 @@ L_show_pwr317:
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,572 :: 		} else if (type == 2 | type == 3) { // 128*32 OLED
+;main.c,580 :: 		} else if (type == 2 | type == 3) { // 128*32 OLED
 	GOTO        L_show_pwr318
 L_show_pwr315:
 	MOVF        _type+0, 0 
@@ -5882,12 +5900,12 @@ L_show_pwr315:
 	IORWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_show_pwr319
-;main.c,573 :: 		if (P_High == 1)
+;main.c,581 :: 		if (P_High == 1)
 	MOVF        main_P_High+0, 0 
 	XORLW       1
 	BTFSS       STATUS+0, 2 
 	GOTO        L_show_pwr320
-;main.c,574 :: 		led_wr_str(0, 9, "ANT=  0W", 8);
+;main.c,582 :: 		led_wr_str(0, 9, "ANT=  0W", 8);
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       9
 	MOVWF       FARG_led_wr_str+0 
@@ -5900,7 +5918,7 @@ L_show_pwr315:
 	CALL        _led_wr_str+0, 0
 	GOTO        L_show_pwr321
 L_show_pwr320:
-;main.c,576 :: 		led_wr_str(0, 9, "ANT=0.0W", 8);
+;main.c,584 :: 		led_wr_str(0, 9, "ANT=0.0W", 8);
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       9
 	MOVWF       FARG_led_wr_str+0 
@@ -5912,7 +5930,7 @@ L_show_pwr320:
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
 L_show_pwr321:
-;main.c,577 :: 		led_wr_str(1, 9, "EFF=  0%", 8);
+;main.c,585 :: 		led_wr_str(1, 9, "EFF=  0%", 8);
 	MOVLW       1
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       9
@@ -5924,19 +5942,19 @@ L_show_pwr321:
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,578 :: 		} else if (type == 1) { // 1602 LCD
+;main.c,586 :: 		} else if (type == 1) { // 1602 LCD
 	GOTO        L_show_pwr322
 L_show_pwr319:
 	MOVF        _type+0, 0 
 	XORLW       1
 	BTFSS       STATUS+0, 2 
 	GOTO        L_show_pwr323
-;main.c,579 :: 		if (P_High == 1)
+;main.c,587 :: 		if (P_High == 1)
 	MOVF        main_P_High+0, 0 
 	XORLW       1
 	BTFSS       STATUS+0, 2 
 	GOTO        L_show_pwr324
-;main.c,580 :: 		led_wr_str(0, 9, "AN=  0W", 7);
+;main.c,588 :: 		led_wr_str(0, 9, "AN=  0W", 7);
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       9
 	MOVWF       FARG_led_wr_str+0 
@@ -5949,7 +5967,7 @@ L_show_pwr319:
 	CALL        _led_wr_str+0, 0
 	GOTO        L_show_pwr325
 L_show_pwr324:
-;main.c,582 :: 		led_wr_str(0, 9, "AN=0.0W", 7);
+;main.c,590 :: 		led_wr_str(0, 9, "AN=0.0W", 7);
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       9
 	MOVWF       FARG_led_wr_str+0 
@@ -5961,7 +5979,7 @@ L_show_pwr324:
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
 L_show_pwr325:
-;main.c,583 :: 		led_wr_str(1, 9, "EFF= 0%", 7);
+;main.c,591 :: 		led_wr_str(1, 9, "EFF= 0%", 7);
 	MOVLW       1
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       9
@@ -5973,33 +5991,33 @@ L_show_pwr325:
 	MOVLW       7
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,584 :: 		}
+;main.c,592 :: 		}
 L_show_pwr323:
 L_show_pwr322:
 L_show_pwr318:
-;main.c,585 :: 		}
+;main.c,593 :: 		}
 L_show_pwr314:
-;main.c,586 :: 		Loss_mode = 1;
+;main.c,594 :: 		Loss_mode = 1;
 	MOVLW       1
 	MOVWF       _Loss_mode+0 
-;main.c,587 :: 		} else {
+;main.c,595 :: 		} else {
 	GOTO        L_show_pwr326
 L_show_pwr313:
-;main.c,588 :: 		if (Loss_mode == 1)
+;main.c,596 :: 		if (Loss_mode == 1)
 	MOVF        _Loss_mode+0, 0 
 	XORLW       1
 	BTFSS       STATUS+0, 2 
 	GOTO        L_show_pwr327
-;main.c,589 :: 		lcd_ind();
+;main.c,597 :: 		lcd_ind();
 	CALL        _lcd_ind+0, 0
 L_show_pwr327:
-;main.c,590 :: 		Loss_mode = 0;
+;main.c,598 :: 		Loss_mode = 0;
 	CLRF        _Loss_mode+0 
-;main.c,591 :: 		}
+;main.c,599 :: 		}
 L_show_pwr326:
-;main.c,592 :: 		asm CLRWDT;
+;main.c,600 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,593 :: 		if (Power != Power_old) {
+;main.c,601 :: 		if (Power != Power_old) {
 	MOVF        FARG_show_pwr_Power+1, 0 
 	XORWF       _Power_old+1, 0 
 	BTFSS       STATUS+0, 2 
@@ -6009,17 +6027,17 @@ L_show_pwr326:
 L__show_pwr633:
 	BTFSC       STATUS+0, 2 
 	GOTO        L_show_pwr328
-;main.c,594 :: 		Power_old = Power;
+;main.c,602 :: 		Power_old = Power;
 	MOVF        FARG_show_pwr_Power+0, 0 
 	MOVWF       _Power_old+0 
 	MOVF        FARG_show_pwr_Power+1, 0 
 	MOVWF       _Power_old+1 
-;main.c,596 :: 		if (P_High == 0) {
+;main.c,604 :: 		if (P_High == 0) {
 	MOVF        main_P_High+0, 0 
 	XORLW       0
 	BTFSS       STATUS+0, 2 
 	GOTO        L_show_pwr329
-;main.c,597 :: 		if (Power >= 100) { // > 10 W
+;main.c,605 :: 		if (Power >= 100) { // > 10 W
 	MOVLW       128
 	XORWF       FARG_show_pwr_Power+1, 0 
 	MOVWF       R0 
@@ -6032,7 +6050,7 @@ L__show_pwr633:
 L__show_pwr634:
 	BTFSS       STATUS+0, 0 
 	GOTO        L_show_pwr330
-;main.c,598 :: 		Power += 5; // rounding to 1 W
+;main.c,606 :: 		Power += 5; // rounding to 1 W
 	MOVLW       5
 	ADDWF       FARG_show_pwr_Power+0, 0 
 	MOVWF       R0 
@@ -6043,7 +6061,7 @@ L__show_pwr634:
 	MOVWF       FARG_show_pwr_Power+0 
 	MOVF        R1, 0 
 	MOVWF       FARG_show_pwr_Power+1 
-;main.c,599 :: 		IntToStr(Power, work_str);
+;main.c,607 :: 		IntToStr(Power, work_str);
 	MOVF        R0, 0 
 	MOVWF       FARG_IntToStr_input+0 
 	MOVF        R1, 0 
@@ -6053,22 +6071,22 @@ L__show_pwr634:
 	MOVLW       hi_addr(_work_str+0)
 	MOVWF       FARG_IntToStr_output+1 
 	CALL        _IntToStr+0, 0
-;main.c,600 :: 		work_str_2[0] = work_str[2];
+;main.c,608 :: 		work_str_2[0] = work_str[2];
 	MOVF        _work_str+2, 0 
 	MOVWF       _work_str_2+0 
-;main.c,601 :: 		work_str_2[1] = work_str[3];
+;main.c,609 :: 		work_str_2[1] = work_str[3];
 	MOVF        _work_str+3, 0 
 	MOVWF       _work_str_2+1 
-;main.c,602 :: 		work_str_2[2] = work_str[4];
+;main.c,610 :: 		work_str_2[2] = work_str[4];
 	MOVF        _work_str+4, 0 
 	MOVWF       _work_str_2+2 
-;main.c,603 :: 		work_str_2[3] = 'W';
+;main.c,611 :: 		work_str_2[3] = 'W';
 	MOVLW       87
 	MOVWF       _work_str_2+3 
-;main.c,604 :: 		} else {
+;main.c,612 :: 		} else {
 	GOTO        L_show_pwr331
 L_show_pwr330:
-;main.c,605 :: 		IntToStr(Power, work_str);
+;main.c,613 :: 		IntToStr(Power, work_str);
 	MOVF        FARG_show_pwr_Power+0, 0 
 	MOVWF       FARG_IntToStr_input+0 
 	MOVF        FARG_show_pwr_Power+1, 0 
@@ -6078,46 +6096,46 @@ L_show_pwr330:
 	MOVLW       hi_addr(_work_str+0)
 	MOVWF       FARG_IntToStr_output+1 
 	CALL        _IntToStr+0, 0
-;main.c,606 :: 		if (work_str[4] != ' ')
+;main.c,614 :: 		if (work_str[4] != ' ')
 	MOVF        _work_str+4, 0 
 	XORLW       32
 	BTFSC       STATUS+0, 2 
 	GOTO        L_show_pwr332
-;main.c,607 :: 		work_str_2[0] = work_str[4];
+;main.c,615 :: 		work_str_2[0] = work_str[4];
 	MOVF        _work_str+4, 0 
 	MOVWF       _work_str_2+0 
 	GOTO        L_show_pwr333
 L_show_pwr332:
-;main.c,609 :: 		work_str_2[0] = '0';
+;main.c,617 :: 		work_str_2[0] = '0';
 	MOVLW       48
 	MOVWF       _work_str_2+0 
 L_show_pwr333:
-;main.c,610 :: 		work_str_2[1] = '.';
+;main.c,618 :: 		work_str_2[1] = '.';
 	MOVLW       46
 	MOVWF       _work_str_2+1 
-;main.c,611 :: 		if (work_str[5] != ' ')
+;main.c,619 :: 		if (work_str[5] != ' ')
 	MOVF        _work_str+5, 0 
 	XORLW       32
 	BTFSC       STATUS+0, 2 
 	GOTO        L_show_pwr334
-;main.c,612 :: 		work_str_2[2] = work_str[5];
+;main.c,620 :: 		work_str_2[2] = work_str[5];
 	MOVF        _work_str+5, 0 
 	MOVWF       _work_str_2+2 
 	GOTO        L_show_pwr335
 L_show_pwr334:
-;main.c,614 :: 		work_str_2[2] = '0';
+;main.c,622 :: 		work_str_2[2] = '0';
 	MOVLW       48
 	MOVWF       _work_str_2+2 
 L_show_pwr335:
-;main.c,615 :: 		work_str_2[3] = 'W';
+;main.c,623 :: 		work_str_2[3] = 'W';
 	MOVLW       87
 	MOVWF       _work_str_2+3 
-;main.c,616 :: 		}
+;main.c,624 :: 		}
 L_show_pwr331:
-;main.c,617 :: 		} else { // High Power
+;main.c,625 :: 		} else { // High Power
 	GOTO        L_show_pwr336
 L_show_pwr329:
-;main.c,618 :: 		if (Power < 999) { // 0 - 1500 Watts
+;main.c,626 :: 		if (Power < 999) { // 0 - 1500 Watts
 	MOVLW       128
 	XORWF       FARG_show_pwr_Power+1, 0 
 	MOVWF       R0 
@@ -6131,7 +6149,7 @@ L_show_pwr329:
 L__show_pwr635:
 	BTFSC       STATUS+0, 0 
 	GOTO        L_show_pwr337
-;main.c,619 :: 		IntToStr(Power, work_str);
+;main.c,627 :: 		IntToStr(Power, work_str);
 	MOVF        FARG_show_pwr_Power+0, 0 
 	MOVWF       FARG_IntToStr_input+0 
 	MOVF        FARG_show_pwr_Power+1, 0 
@@ -6141,22 +6159,22 @@ L__show_pwr635:
 	MOVLW       hi_addr(_work_str+0)
 	MOVWF       FARG_IntToStr_output+1 
 	CALL        _IntToStr+0, 0
-;main.c,620 :: 		work_str_2[0] = work_str[3];
+;main.c,628 :: 		work_str_2[0] = work_str[3];
 	MOVF        _work_str+3, 0 
 	MOVWF       _work_str_2+0 
-;main.c,621 :: 		work_str_2[1] = work_str[4];
+;main.c,629 :: 		work_str_2[1] = work_str[4];
 	MOVF        _work_str+4, 0 
 	MOVWF       _work_str_2+1 
-;main.c,622 :: 		work_str_2[2] = work_str[5];
+;main.c,630 :: 		work_str_2[2] = work_str[5];
 	MOVF        _work_str+5, 0 
 	MOVWF       _work_str_2+2 
-;main.c,623 :: 		work_str_2[3] = 'W';
+;main.c,631 :: 		work_str_2[3] = 'W';
 	MOVLW       87
 	MOVWF       _work_str_2+3 
-;main.c,624 :: 		} else {
+;main.c,632 :: 		} else {
 	GOTO        L_show_pwr338
 L_show_pwr337:
-;main.c,625 :: 		IntToStr(Power, work_str);
+;main.c,633 :: 		IntToStr(Power, work_str);
 	MOVF        FARG_show_pwr_Power+0, 0 
 	MOVWF       FARG_IntToStr_input+0 
 	MOVF        FARG_show_pwr_Power+1, 0 
@@ -6166,23 +6184,23 @@ L_show_pwr337:
 	MOVLW       hi_addr(_work_str+0)
 	MOVWF       FARG_IntToStr_output+1 
 	CALL        _IntToStr+0, 0
-;main.c,626 :: 		work_str_2[0] = work_str[2];
+;main.c,634 :: 		work_str_2[0] = work_str[2];
 	MOVF        _work_str+2, 0 
 	MOVWF       _work_str_2+0 
-;main.c,627 :: 		work_str_2[1] = work_str[3];
+;main.c,635 :: 		work_str_2[1] = work_str[3];
 	MOVF        _work_str+3, 0 
 	MOVWF       _work_str_2+1 
-;main.c,628 :: 		work_str_2[2] = work_str[4];
+;main.c,636 :: 		work_str_2[2] = work_str[4];
 	MOVF        _work_str+4, 0 
 	MOVWF       _work_str_2+2 
-;main.c,629 :: 		work_str_2[3] = work_str[5];
+;main.c,637 :: 		work_str_2[3] = work_str[5];
 	MOVF        _work_str+5, 0 
 	MOVWF       _work_str_2+3 
-;main.c,630 :: 		}
+;main.c,638 :: 		}
 L_show_pwr338:
-;main.c,631 :: 		}
+;main.c,639 :: 		}
 L_show_pwr336:
-;main.c,632 :: 		if (type == 4 | type == 5)
+;main.c,640 :: 		if (type == 4 | type == 5)
 	MOVF        _type+0, 0 
 	XORLW       4
 	MOVLW       1
@@ -6199,7 +6217,7 @@ L_show_pwr336:
 	IORWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_show_pwr339
-;main.c,633 :: 		led_wr_str(0, 16 + 4 * 12, work_str_2, 4); // 128*64 OLED
+;main.c,641 :: 		led_wr_str(0, 16 + 4 * 12, work_str_2, 4); // 128*64 OLED
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       64
 	MOVWF       FARG_led_wr_str+0 
@@ -6212,12 +6230,12 @@ L_show_pwr336:
 	CALL        _led_wr_str+0, 0
 	GOTO        L_show_pwr340
 L_show_pwr339:
-;main.c,634 :: 		else if (type != 0)
+;main.c,642 :: 		else if (type != 0)
 	MOVF        _type+0, 0 
 	XORLW       0
 	BTFSC       STATUS+0, 2 
 	GOTO        L_show_pwr341
-;main.c,635 :: 		led_wr_str(0, 4, work_str_2, 4); // 1602  & 128*32
+;main.c,643 :: 		led_wr_str(0, 4, work_str_2, 4); // 1602  & 128*32
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       4
 	MOVWF       FARG_led_wr_str+0 
@@ -6230,14 +6248,14 @@ L_show_pwr339:
 	CALL        _led_wr_str+0, 0
 L_show_pwr341:
 L_show_pwr340:
-;main.c,637 :: 		asm CLRWDT;
+;main.c,645 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,639 :: 		if (Loss_mode == 1) {
+;main.c,647 :: 		if (Loss_mode == 1) {
 	MOVF        _Loss_mode+0, 0 
 	XORLW       1
 	BTFSS       STATUS+0, 2 
 	GOTO        L_show_pwr342
-;main.c,640 :: 		if (ind == 0 & cap == 0)
+;main.c,648 :: 		if (ind == 0 & cap == 0)
 	MOVF        main_ind+0, 0 
 	XORLW       0
 	MOVLW       1
@@ -6254,13 +6272,13 @@ L_show_pwr340:
 	ANDWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_show_pwr343
-;main.c,641 :: 		swr_a = SWR;
+;main.c,649 :: 		swr_a = SWR;
 	MOVF        FARG_show_pwr_SWR+0, 0 
 	MOVWF       _swr_a+0 
 	MOVF        FARG_show_pwr_SWR+1, 0 
 	MOVWF       _swr_a+1 
 L_show_pwr343:
-;main.c,642 :: 		a = 1.0 / ((swr_a / 100.0 + 100.0 / swr_a) * Fid_loss / 10.0 * 0.115 + 1.0); // Fider loss
+;main.c,650 :: 		a = 1.0 / ((swr_a / 100.0 + 100.0 / swr_a) * Fid_loss / 10.0 * 0.115 + 1.0); // Fider loss
 	MOVF        _swr_a+0, 0 
 	MOVWF       R0 
 	MOVF        _swr_a+1, 0 
@@ -6405,7 +6423,7 @@ L_show_pwr343:
 	MOVWF       show_pwr_a_L0+2 
 	MOVF        FLOC__show_pwr+11, 0 
 	MOVWF       show_pwr_a_L0+3 
-;main.c,643 :: 		b = 4.0 / (2.0 + SWR / 100.0 + 100.0 / SWR); // SWR loss
+;main.c,651 :: 		b = 4.0 / (2.0 + SWR / 100.0 + 100.0 / SWR); // SWR loss
 	MOVF        FARG_show_pwr_SWR+0, 0 
 	MOVWF       R0 
 	MOVF        FARG_show_pwr_SWR+1, 0 
@@ -6504,7 +6522,7 @@ L_show_pwr343:
 	MOVWF       show_pwr_b_L0+2 
 	MOVF        R3, 0 
 	MOVWF       show_pwr_b_L0+3 
-;main.c,644 :: 		if (a >= 1.0)
+;main.c,652 :: 		if (a >= 1.0)
 	MOVLW       0
 	MOVWF       R4 
 	MOVLW       0
@@ -6529,7 +6547,7 @@ L_show_pwr343:
 	MOVF        R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_show_pwr344
-;main.c,645 :: 		a = 1.0;
+;main.c,653 :: 		a = 1.0;
 	MOVLW       0
 	MOVWF       show_pwr_a_L0+0 
 	MOVLW       0
@@ -6539,7 +6557,7 @@ L_show_pwr343:
 	MOVLW       127
 	MOVWF       show_pwr_a_L0+3 
 L_show_pwr344:
-;main.c,646 :: 		if (b >= 1.0)
+;main.c,654 :: 		if (b >= 1.0)
 	MOVLW       0
 	MOVWF       R4 
 	MOVLW       0
@@ -6564,7 +6582,7 @@ L_show_pwr344:
 	MOVF        R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_show_pwr345
-;main.c,647 :: 		b = 1.0;
+;main.c,655 :: 		b = 1.0;
 	MOVLW       0
 	MOVWF       show_pwr_b_L0+0 
 	MOVLW       0
@@ -6574,7 +6592,7 @@ L_show_pwr344:
 	MOVLW       127
 	MOVWF       show_pwr_b_L0+3 
 L_show_pwr345:
-;main.c,648 :: 		p_ant = Power * a * b;
+;main.c,656 :: 		p_ant = Power * a * b;
 	MOVF        FARG_show_pwr_Power+0, 0 
 	MOVWF       R0 
 	MOVF        FARG_show_pwr_Power+1, 0 
@@ -6603,7 +6621,7 @@ L_show_pwr345:
 	MOVWF       show_pwr_p_ant_L0+0 
 	MOVF        R1, 0 
 	MOVWF       show_pwr_p_ant_L0+1 
-;main.c,649 :: 		eff = a * b * 100;
+;main.c,657 :: 		eff = a * b * 100;
 	MOVF        show_pwr_a_L0+0, 0 
 	MOVWF       R0 
 	MOVF        show_pwr_a_L0+1, 0 
@@ -6638,7 +6656,7 @@ L_show_pwr345:
 	MOVWF       show_pwr_eff_L0+2 
 	MOVF        R3, 0 
 	MOVWF       show_pwr_eff_L0+3 
-;main.c,650 :: 		if (eff >= 100)
+;main.c,658 :: 		if (eff >= 100)
 	MOVLW       0
 	MOVWF       R4 
 	MOVLW       0
@@ -6655,7 +6673,7 @@ L_show_pwr345:
 	MOVF        R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_show_pwr346
-;main.c,651 :: 		eff = 99;
+;main.c,659 :: 		eff = 99;
 	MOVLW       0
 	MOVWF       show_pwr_eff_L0+0 
 	MOVLW       0
@@ -6665,12 +6683,12 @@ L_show_pwr345:
 	MOVLW       133
 	MOVWF       show_pwr_eff_L0+3 
 L_show_pwr346:
-;main.c,653 :: 		if (P_High == 0) {
+;main.c,661 :: 		if (P_High == 0) {
 	MOVF        main_P_High+0, 0 
 	XORLW       0
 	BTFSS       STATUS+0, 2 
 	GOTO        L_show_pwr347
-;main.c,654 :: 		if (p_ant >= 100) { // > 10 W
+;main.c,662 :: 		if (p_ant >= 100) { // > 10 W
 	MOVLW       128
 	XORWF       show_pwr_p_ant_L0+1, 0 
 	MOVWF       R0 
@@ -6683,7 +6701,7 @@ L_show_pwr346:
 L__show_pwr636:
 	BTFSS       STATUS+0, 0 
 	GOTO        L_show_pwr348
-;main.c,655 :: 		p_ant += 5; // rounding to 1 W
+;main.c,663 :: 		p_ant += 5; // rounding to 1 W
 	MOVLW       5
 	ADDWF       show_pwr_p_ant_L0+0, 0 
 	MOVWF       R0 
@@ -6694,7 +6712,7 @@ L__show_pwr636:
 	MOVWF       show_pwr_p_ant_L0+0 
 	MOVF        R1, 0 
 	MOVWF       show_pwr_p_ant_L0+1 
-;main.c,656 :: 		IntToStr(p_ant, work_str);
+;main.c,664 :: 		IntToStr(p_ant, work_str);
 	MOVF        R0, 0 
 	MOVWF       FARG_IntToStr_input+0 
 	MOVF        R1, 0 
@@ -6704,22 +6722,22 @@ L__show_pwr636:
 	MOVLW       hi_addr(_work_str+0)
 	MOVWF       FARG_IntToStr_output+1 
 	CALL        _IntToStr+0, 0
-;main.c,657 :: 		work_str_2[0] = work_str[2];
+;main.c,665 :: 		work_str_2[0] = work_str[2];
 	MOVF        _work_str+2, 0 
 	MOVWF       _work_str_2+0 
-;main.c,658 :: 		work_str_2[1] = work_str[3];
+;main.c,666 :: 		work_str_2[1] = work_str[3];
 	MOVF        _work_str+3, 0 
 	MOVWF       _work_str_2+1 
-;main.c,659 :: 		work_str_2[2] = work_str[4];
+;main.c,667 :: 		work_str_2[2] = work_str[4];
 	MOVF        _work_str+4, 0 
 	MOVWF       _work_str_2+2 
-;main.c,660 :: 		work_str_2[3] = 'W';
+;main.c,668 :: 		work_str_2[3] = 'W';
 	MOVLW       87
 	MOVWF       _work_str_2+3 
-;main.c,661 :: 		} else {
+;main.c,669 :: 		} else {
 	GOTO        L_show_pwr349
 L_show_pwr348:
-;main.c,662 :: 		IntToStr(p_ant, work_str);
+;main.c,670 :: 		IntToStr(p_ant, work_str);
 	MOVF        show_pwr_p_ant_L0+0, 0 
 	MOVWF       FARG_IntToStr_input+0 
 	MOVF        show_pwr_p_ant_L0+1, 0 
@@ -6729,46 +6747,46 @@ L_show_pwr348:
 	MOVLW       hi_addr(_work_str+0)
 	MOVWF       FARG_IntToStr_output+1 
 	CALL        _IntToStr+0, 0
-;main.c,663 :: 		if (work_str[4] != ' ')
+;main.c,671 :: 		if (work_str[4] != ' ')
 	MOVF        _work_str+4, 0 
 	XORLW       32
 	BTFSC       STATUS+0, 2 
 	GOTO        L_show_pwr350
-;main.c,664 :: 		work_str_2[0] = work_str[4];
+;main.c,672 :: 		work_str_2[0] = work_str[4];
 	MOVF        _work_str+4, 0 
 	MOVWF       _work_str_2+0 
 	GOTO        L_show_pwr351
 L_show_pwr350:
-;main.c,666 :: 		work_str_2[0] = '0';
+;main.c,674 :: 		work_str_2[0] = '0';
 	MOVLW       48
 	MOVWF       _work_str_2+0 
 L_show_pwr351:
-;main.c,667 :: 		work_str_2[1] = '.';
+;main.c,675 :: 		work_str_2[1] = '.';
 	MOVLW       46
 	MOVWF       _work_str_2+1 
-;main.c,668 :: 		if (work_str[5] != ' ')
+;main.c,676 :: 		if (work_str[5] != ' ')
 	MOVF        _work_str+5, 0 
 	XORLW       32
 	BTFSC       STATUS+0, 2 
 	GOTO        L_show_pwr352
-;main.c,669 :: 		work_str_2[2] = work_str[5];
+;main.c,677 :: 		work_str_2[2] = work_str[5];
 	MOVF        _work_str+5, 0 
 	MOVWF       _work_str_2+2 
 	GOTO        L_show_pwr353
 L_show_pwr352:
-;main.c,671 :: 		work_str_2[2] = '0';
+;main.c,679 :: 		work_str_2[2] = '0';
 	MOVLW       48
 	MOVWF       _work_str_2+2 
 L_show_pwr353:
-;main.c,672 :: 		work_str_2[3] = 'W';
+;main.c,680 :: 		work_str_2[3] = 'W';
 	MOVLW       87
 	MOVWF       _work_str_2+3 
-;main.c,673 :: 		}
+;main.c,681 :: 		}
 L_show_pwr349:
-;main.c,674 :: 		} else { // High Power
+;main.c,682 :: 		} else { // High Power
 	GOTO        L_show_pwr354
 L_show_pwr347:
-;main.c,675 :: 		if (p_ant < 999) { // 0 - 1500 Watts
+;main.c,683 :: 		if (p_ant < 999) { // 0 - 1500 Watts
 	MOVLW       128
 	XORWF       show_pwr_p_ant_L0+1, 0 
 	MOVWF       R0 
@@ -6782,7 +6800,7 @@ L_show_pwr347:
 L__show_pwr637:
 	BTFSC       STATUS+0, 0 
 	GOTO        L_show_pwr355
-;main.c,676 :: 		IntToStr(p_ant, work_str);
+;main.c,684 :: 		IntToStr(p_ant, work_str);
 	MOVF        show_pwr_p_ant_L0+0, 0 
 	MOVWF       FARG_IntToStr_input+0 
 	MOVF        show_pwr_p_ant_L0+1, 0 
@@ -6792,22 +6810,22 @@ L__show_pwr637:
 	MOVLW       hi_addr(_work_str+0)
 	MOVWF       FARG_IntToStr_output+1 
 	CALL        _IntToStr+0, 0
-;main.c,677 :: 		work_str_2[0] = work_str[3];
+;main.c,685 :: 		work_str_2[0] = work_str[3];
 	MOVF        _work_str+3, 0 
 	MOVWF       _work_str_2+0 
-;main.c,678 :: 		work_str_2[1] = work_str[4];
+;main.c,686 :: 		work_str_2[1] = work_str[4];
 	MOVF        _work_str+4, 0 
 	MOVWF       _work_str_2+1 
-;main.c,679 :: 		work_str_2[2] = work_str[5];
+;main.c,687 :: 		work_str_2[2] = work_str[5];
 	MOVF        _work_str+5, 0 
 	MOVWF       _work_str_2+2 
-;main.c,680 :: 		work_str_2[3] = 'W';
+;main.c,688 :: 		work_str_2[3] = 'W';
 	MOVLW       87
 	MOVWF       _work_str_2+3 
-;main.c,681 :: 		} else {
+;main.c,689 :: 		} else {
 	GOTO        L_show_pwr356
 L_show_pwr355:
-;main.c,682 :: 		IntToStr(p_ant, work_str);
+;main.c,690 :: 		IntToStr(p_ant, work_str);
 	MOVF        show_pwr_p_ant_L0+0, 0 
 	MOVWF       FARG_IntToStr_input+0 
 	MOVF        show_pwr_p_ant_L0+1, 0 
@@ -6817,23 +6835,23 @@ L_show_pwr355:
 	MOVLW       hi_addr(_work_str+0)
 	MOVWF       FARG_IntToStr_output+1 
 	CALL        _IntToStr+0, 0
-;main.c,683 :: 		work_str_2[0] = work_str[2];
+;main.c,691 :: 		work_str_2[0] = work_str[2];
 	MOVF        _work_str+2, 0 
 	MOVWF       _work_str_2+0 
-;main.c,684 :: 		work_str_2[1] = work_str[3];
+;main.c,692 :: 		work_str_2[1] = work_str[3];
 	MOVF        _work_str+3, 0 
 	MOVWF       _work_str_2+1 
-;main.c,685 :: 		work_str_2[2] = work_str[4];
+;main.c,693 :: 		work_str_2[2] = work_str[4];
 	MOVF        _work_str+4, 0 
 	MOVWF       _work_str_2+2 
-;main.c,686 :: 		work_str_2[3] = work_str[5];
+;main.c,694 :: 		work_str_2[3] = work_str[5];
 	MOVF        _work_str+5, 0 
 	MOVWF       _work_str_2+3 
-;main.c,687 :: 		}
+;main.c,695 :: 		}
 L_show_pwr356:
-;main.c,688 :: 		}
+;main.c,696 :: 		}
 L_show_pwr354:
-;main.c,689 :: 		if (type == 4 | type == 5)
+;main.c,697 :: 		if (type == 4 | type == 5)
 	MOVF        _type+0, 0 
 	XORLW       4
 	MOVLW       1
@@ -6850,7 +6868,7 @@ L_show_pwr354:
 	IORWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_show_pwr357
-;main.c,690 :: 		led_wr_str(4, 16 + 4 * 12, work_str_2, 4); // 128*64 OLED
+;main.c,698 :: 		led_wr_str(4, 16 + 4 * 12, work_str_2, 4); // 128*64 OLED
 	MOVLW       4
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       64
@@ -6864,7 +6882,7 @@ L_show_pwr354:
 	CALL        _led_wr_str+0, 0
 	GOTO        L_show_pwr358
 L_show_pwr357:
-;main.c,691 :: 		else if (type == 2 | type == 3)
+;main.c,699 :: 		else if (type == 2 | type == 3)
 	MOVF        _type+0, 0 
 	XORLW       2
 	MOVLW       1
@@ -6881,7 +6899,7 @@ L_show_pwr357:
 	IORWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_show_pwr359
-;main.c,692 :: 		led_wr_str(0, 13, work_str_2, 4); // 128*32
+;main.c,700 :: 		led_wr_str(0, 13, work_str_2, 4); // 128*32
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       13
 	MOVWF       FARG_led_wr_str+0 
@@ -6894,12 +6912,12 @@ L_show_pwr357:
 	CALL        _led_wr_str+0, 0
 	GOTO        L_show_pwr360
 L_show_pwr359:
-;main.c,693 :: 		else if (type == 1)
+;main.c,701 :: 		else if (type == 1)
 	MOVF        _type+0, 0 
 	XORLW       1
 	BTFSS       STATUS+0, 2 
 	GOTO        L_show_pwr361
-;main.c,694 :: 		led_wr_str(0, 12, work_str_2, 4); // 1602
+;main.c,702 :: 		led_wr_str(0, 12, work_str_2, 4); // 1602
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       12
 	MOVWF       FARG_led_wr_str+0 
@@ -6913,7 +6931,7 @@ L_show_pwr359:
 L_show_pwr361:
 L_show_pwr360:
 L_show_pwr358:
-;main.c,696 :: 		IntToStr(eff, work_str);
+;main.c,704 :: 		IntToStr(eff, work_str);
 	MOVF        show_pwr_eff_L0+0, 0 
 	MOVWF       R0 
 	MOVF        show_pwr_eff_L0+1, 0 
@@ -6932,13 +6950,13 @@ L_show_pwr358:
 	MOVLW       hi_addr(_work_str+0)
 	MOVWF       FARG_IntToStr_output+1 
 	CALL        _IntToStr+0, 0
-;main.c,697 :: 		work_str_2[0] = work_str[4];
+;main.c,705 :: 		work_str_2[0] = work_str[4];
 	MOVF        _work_str+4, 0 
 	MOVWF       _work_str_2+0 
-;main.c,698 :: 		work_str_2[1] = work_str[5];
+;main.c,706 :: 		work_str_2[1] = work_str[5];
 	MOVF        _work_str+5, 0 
 	MOVWF       _work_str_2+1 
-;main.c,699 :: 		if (type == 4 | type == 5)
+;main.c,707 :: 		if (type == 4 | type == 5)
 	MOVF        _type+0, 0 
 	XORLW       4
 	MOVLW       1
@@ -6955,7 +6973,7 @@ L_show_pwr358:
 	IORWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_show_pwr362
-;main.c,700 :: 		led_wr_str(6, 16 + 5 * 12, work_str_2, 2);
+;main.c,708 :: 		led_wr_str(6, 16 + 5 * 12, work_str_2, 2);
 	MOVLW       6
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       76
@@ -6969,7 +6987,7 @@ L_show_pwr358:
 	CALL        _led_wr_str+0, 0
 	GOTO        L_show_pwr363
 L_show_pwr362:
-;main.c,701 :: 		else if (type == 2 | type == 3)
+;main.c,709 :: 		else if (type == 2 | type == 3)
 	MOVF        _type+0, 0 
 	XORLW       2
 	MOVLW       1
@@ -6986,7 +7004,7 @@ L_show_pwr362:
 	IORWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_show_pwr364
-;main.c,702 :: 		led_wr_str(1, 14, work_str_2, 2);
+;main.c,710 :: 		led_wr_str(1, 14, work_str_2, 2);
 	MOVLW       1
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       14
@@ -7000,12 +7018,12 @@ L_show_pwr362:
 	CALL        _led_wr_str+0, 0
 	GOTO        L_show_pwr365
 L_show_pwr364:
-;main.c,703 :: 		else if (type == 1)
+;main.c,711 :: 		else if (type == 1)
 	MOVF        _type+0, 0 
 	XORLW       1
 	BTFSS       STATUS+0, 2 
 	GOTO        L_show_pwr366
-;main.c,704 :: 		led_wr_str(1, 13, work_str_2, 2);
+;main.c,712 :: 		led_wr_str(1, 13, work_str_2, 2);
 	MOVLW       1
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       13
@@ -7020,51 +7038,51 @@ L_show_pwr364:
 L_show_pwr366:
 L_show_pwr365:
 L_show_pwr363:
-;main.c,705 :: 		}
+;main.c,713 :: 		}
 L_show_pwr342:
-;main.c,706 :: 		}
+;main.c,714 :: 		}
 L_show_pwr328:
-;main.c,707 :: 		asm CLRWDT;
+;main.c,715 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,708 :: 		return;
-;main.c,709 :: 		}
+;main.c,716 :: 		return;
+;main.c,717 :: 		}
 L_end_show_pwr:
 	RETURN      0
 ; end of _show_pwr
 
 _lcd_pwr:
 
-;main.c,711 :: 		void lcd_pwr() {
-;main.c,712 :: 		int p = 0;
+;main.c,719 :: 		void lcd_pwr() {
+;main.c,720 :: 		int p = 0;
 	CLRF        lcd_pwr_p_L0+0 
 	CLRF        lcd_pwr_p_L0+1 
 	MOVLW       1
 	MOVWF       lcd_pwr_SWR_fixed_L0+0 
 	MOVLW       0
 	MOVWF       lcd_pwr_SWR_fixed_L0+1 
-;main.c,718 :: 		delta = Auto_delta - 100;
+;main.c,726 :: 		delta = Auto_delta - 100;
 	MOVLW       100
 	SUBWF       _Auto_delta+0, 0 
 	MOVWF       lcd_pwr_delta_L0+0 
 	MOVLW       0
 	SUBWFB      _Auto_delta+1, 0 
 	MOVWF       lcd_pwr_delta_L0+1 
-;main.c,719 :: 		PWR = 0;
+;main.c,727 :: 		PWR = 0;
 	CLRF        _PWR+0 
 	CLRF        _PWR+1 
-;main.c,720 :: 		asm CLRWDT;
+;main.c,728 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,722 :: 		cnt = 120;
+;main.c,730 :: 		cnt = 120;
 	MOVLW       120
 	MOVWF       lcd_pwr_cnt_L0+0 
-;main.c,723 :: 		for (peak_cnt = 0; peak_cnt < cnt; peak_cnt++) {
+;main.c,731 :: 		for (peak_cnt = 0; peak_cnt < cnt; peak_cnt++) {
 	CLRF        lcd_pwr_peak_cnt_L0+0 
 L_lcd_pwr367:
 	MOVF        lcd_pwr_cnt_L0+0, 0 
 	SUBWF       lcd_pwr_peak_cnt_L0+0, 0 
 	BTFSC       STATUS+0, 0 
 	GOTO        L_lcd_pwr368
-;main.c,724 :: 		if (PORTB.B1 == 0 | PORTB.B2 == 0 | PORTB.B0 == 0) {
+;main.c,732 :: 		if (PORTB.B1 == 0 | PORTB.B2 == 0 | PORTB.B0 == 0) {
 	BTFSC       PORTB+0, 1 
 	GOTO        L__lcd_pwr639
 	BSF         R6, 0 
@@ -7106,24 +7124,24 @@ L__lcd_pwr647:
 L__lcd_pwr648:
 	BTFSS       R6, 0 
 	GOTO        L_lcd_pwr370
-;main.c,725 :: 		button_delay();
+;main.c,733 :: 		button_delay();
 	CALL        _button_delay+0, 0
-;main.c,726 :: 		if (but == 1) {
+;main.c,734 :: 		if (but == 1) {
 	MOVF        _but+0, 0 
 	XORLW       1
 	BTFSS       STATUS+0, 2 
 	GOTO        L_lcd_pwr371
-;main.c,727 :: 		but = 0;
+;main.c,735 :: 		but = 0;
 	CLRF        _but+0 
-;main.c,728 :: 		return;
+;main.c,736 :: 		return;
 	GOTO        L_end_lcd_pwr
-;main.c,729 :: 		}
+;main.c,737 :: 		}
 L_lcd_pwr371:
-;main.c,730 :: 		}
+;main.c,738 :: 		}
 L_lcd_pwr370:
-;main.c,731 :: 		get_pwr();
+;main.c,739 :: 		get_pwr();
 	CALL        _get_pwr+0, 0
-;main.c,732 :: 		if (PWR > p) {
+;main.c,740 :: 		if (PWR > p) {
 	MOVLW       128
 	XORWF       lcd_pwr_p_L0+1, 0 
 	MOVWF       R0 
@@ -7137,19 +7155,19 @@ L_lcd_pwr370:
 L__lcd_pwr649:
 	BTFSC       STATUS+0, 0 
 	GOTO        L_lcd_pwr372
-;main.c,733 :: 		p = PWR;
+;main.c,741 :: 		p = PWR;
 	MOVF        _PWR+0, 0 
 	MOVWF       lcd_pwr_p_L0+0 
 	MOVF        _PWR+1, 0 
 	MOVWF       lcd_pwr_p_L0+1 
-;main.c,734 :: 		SWR_fixed = SWR;
+;main.c,742 :: 		SWR_fixed = SWR;
 	MOVF        _SWR+0, 0 
 	MOVWF       lcd_pwr_SWR_fixed_L0+0 
 	MOVF        _SWR+1, 0 
 	MOVWF       lcd_pwr_SWR_fixed_L0+1 
-;main.c,735 :: 		}
+;main.c,743 :: 		}
 L_lcd_pwr372:
-;main.c,736 :: 		Delay_ms(3);
+;main.c,744 :: 		Delay_ms(3);
 	MOVLW       16
 	MOVWF       R12, 0
 	MOVLW       148
@@ -7160,25 +7178,25 @@ L_lcd_pwr373:
 	DECFSZ      R12, 1, 1
 	BRA         L_lcd_pwr373
 	NOP
-;main.c,723 :: 		for (peak_cnt = 0; peak_cnt < cnt; peak_cnt++) {
+;main.c,731 :: 		for (peak_cnt = 0; peak_cnt < cnt; peak_cnt++) {
 	INCF        lcd_pwr_peak_cnt_L0+0, 1 
-;main.c,737 :: 		}
+;main.c,745 :: 		}
 	GOTO        L_lcd_pwr367
 L_lcd_pwr368:
-;main.c,738 :: 		asm CLRWDT;
+;main.c,746 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,739 :: 		Power = p;
+;main.c,747 :: 		Power = p;
 	MOVF        lcd_pwr_p_L0+0, 0 
 	MOVWF       _Power+0 
 	MOVF        lcd_pwr_p_L0+1, 0 
 	MOVWF       _Power+1 
-;main.c,740 :: 		lcd_swr(SWR_fixed);
+;main.c,748 :: 		lcd_swr(SWR_fixed);
 	MOVF        lcd_pwr_SWR_fixed_L0+0, 0 
 	MOVWF       FARG_lcd_swr_swr+0 
 	MOVF        lcd_pwr_SWR_fixed_L0+1, 0 
 	MOVWF       FARG_lcd_swr_swr+1 
 	CALL        _lcd_swr+0, 0
-;main.c,741 :: 		if (SWR_fixed >= 100) {
+;main.c,749 :: 		if (SWR_fixed >= 100) {
 	MOVLW       128
 	XORWF       lcd_pwr_SWR_fixed_L0+1, 0 
 	MOVWF       R0 
@@ -7191,9 +7209,9 @@ L_lcd_pwr368:
 L__lcd_pwr650:
 	BTFSS       STATUS+0, 0 
 	GOTO        L_lcd_pwr374
-;main.c,742 :: 		dysp_on(); // dysplay ON
+;main.c,750 :: 		dysp_on(); // dysplay ON
 	CALL        _dysp_on+0, 0
-;main.c,743 :: 		dysp_cnt = Dysp_delay * dysp_cnt_mult;
+;main.c,751 :: 		dysp_cnt = Dysp_delay * dysp_cnt_mult;
 	MOVF        _Dysp_delay+0, 0 
 	MOVWF       R0 
 	CALL        _byte2double+0, 0
@@ -7211,9 +7229,9 @@ L__lcd_pwr650:
 	MOVWF       _dysp_cnt+0 
 	MOVF        R1, 0 
 	MOVWF       _dysp_cnt+1 
-;main.c,744 :: 		}
+;main.c,752 :: 		}
 L_lcd_pwr374:
-;main.c,746 :: 		if (Auto & SWR_fixed >= Auto_delta &
+;main.c,754 :: 		if (Auto & SWR_fixed >= Auto_delta &
 	MOVLW       128
 	XORWF       lcd_pwr_SWR_fixed_L0+1, 0 
 	MOVWF       R0 
@@ -7232,7 +7250,7 @@ L__lcd_pwr651:
 	MOVF        R0, 0 
 	ANDWF       _Auto+0, 0 
 	MOVWF       R5 
-;main.c,747 :: 		((SWR_fixed > SWR_fixed_old & (SWR_fixed - SWR_fixed_old) > delta) |
+;main.c,755 :: 		((SWR_fixed > SWR_fixed_old & (SWR_fixed - SWR_fixed_old) > delta) |
 	MOVLW       128
 	XORWF       _SWR_fixed_old+1, 0 
 	MOVWF       R3 
@@ -7272,7 +7290,7 @@ L__lcd_pwr653:
 	MOVF        R0, 0 
 	ANDWF       R3, 0 
 	MOVWF       R4 
-;main.c,748 :: 		(SWR_fixed < SWR_fixed_old & (SWR_fixed_old - SWR_fixed) > delta) |
+;main.c,756 :: 		(SWR_fixed < SWR_fixed_old & (SWR_fixed_old - SWR_fixed) > delta) |
 	MOVLW       128
 	XORWF       lcd_pwr_SWR_fixed_L0+1, 0 
 	MOVWF       R3 
@@ -7314,7 +7332,7 @@ L__lcd_pwr655:
 	MOVF        R0, 0 
 	IORWF       R4, 0 
 	MOVWF       R1 
-;main.c,749 :: 		SWR_fixed_old == 999))
+;main.c,757 :: 		SWR_fixed_old == 999))
 	MOVF        _SWR_fixed_old+1, 0 
 	XORLW       3
 	BTFSS       STATUS+0, 2 
@@ -7332,11 +7350,11 @@ L__lcd_pwr656:
 	ANDWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_lcd_pwr375
-;main.c,750 :: 		Soft_tune = 1;
+;main.c,758 :: 		Soft_tune = 1;
 	MOVLW       1
 	MOVWF       _Soft_tune+0 
 L_lcd_pwr375:
-;main.c,752 :: 		if (PORTB.B1 == 0 | PORTB.B2 == 0 | PORTB.B0 == 0) {
+;main.c,760 :: 		if (PORTB.B1 == 0 | PORTB.B2 == 0 | PORTB.B0 == 0) {
 	BTFSC       PORTB+0, 1 
 	GOTO        L__lcd_pwr657
 	BSF         R6, 0 
@@ -7378,22 +7396,22 @@ L__lcd_pwr665:
 L__lcd_pwr666:
 	BTFSS       R6, 0 
 	GOTO        L_lcd_pwr376
-;main.c,753 :: 		button_delay();
+;main.c,761 :: 		button_delay();
 	CALL        _button_delay+0, 0
-;main.c,754 :: 		if (but == 1) {
+;main.c,762 :: 		if (but == 1) {
 	MOVF        _but+0, 0 
 	XORLW       1
 	BTFSS       STATUS+0, 2 
 	GOTO        L_lcd_pwr377
-;main.c,755 :: 		but = 0;
+;main.c,763 :: 		but = 0;
 	CLRF        _but+0 
-;main.c,756 :: 		return;
+;main.c,764 :: 		return;
 	GOTO        L_end_lcd_pwr
-;main.c,757 :: 		}
+;main.c,765 :: 		}
 L_lcd_pwr377:
-;main.c,758 :: 		} // Fast return if button pressed
+;main.c,766 :: 		} // Fast return if button pressed
 L_lcd_pwr376:
-;main.c,759 :: 		show_pwr(Power, SWR_fixed);
+;main.c,767 :: 		show_pwr(Power, SWR_fixed);
 	MOVF        _Power+0, 0 
 	MOVWF       FARG_show_pwr_Power+0 
 	MOVF        _Power+1, 0 
@@ -7403,7 +7421,7 @@ L_lcd_pwr376:
 	MOVF        lcd_pwr_SWR_fixed_L0+1, 0 
 	MOVWF       FARG_show_pwr_SWR+1 
 	CALL        _show_pwr+0, 0
-;main.c,761 :: 		if (PORTB.B1 == 0 | PORTB.B2 == 0 | PORTB.B0 == 0) {
+;main.c,769 :: 		if (PORTB.B1 == 0 | PORTB.B2 == 0 | PORTB.B0 == 0) {
 	BTFSC       PORTB+0, 1 
 	GOTO        L__lcd_pwr667
 	BSF         R6, 0 
@@ -7445,29 +7463,29 @@ L__lcd_pwr675:
 L__lcd_pwr676:
 	BTFSS       R6, 0 
 	GOTO        L_lcd_pwr378
-;main.c,762 :: 		button_delay();
+;main.c,770 :: 		button_delay();
 	CALL        _button_delay+0, 0
-;main.c,763 :: 		if (but == 1) {
+;main.c,771 :: 		if (but == 1) {
 	MOVF        _but+0, 0 
 	XORLW       1
 	BTFSS       STATUS+0, 2 
 	GOTO        L_lcd_pwr379
-;main.c,764 :: 		but = 0;
+;main.c,772 :: 		but = 0;
 	CLRF        _but+0 
-;main.c,765 :: 		return;
+;main.c,773 :: 		return;
 	GOTO        L_end_lcd_pwr
-;main.c,766 :: 		}
+;main.c,774 :: 		}
 L_lcd_pwr379:
-;main.c,767 :: 		}
+;main.c,775 :: 		}
 L_lcd_pwr378:
-;main.c,768 :: 		asm CLRWDT;
+;main.c,776 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,769 :: 		if (Overload == 1) {
+;main.c,777 :: 		if (Overload == 1) {
 	MOVF        main_Overload+0, 0 
 	XORLW       1
 	BTFSS       STATUS+0, 2 
 	GOTO        L_lcd_pwr380
-;main.c,770 :: 		if (type == 4 | type == 5) { // 128*64 OLED
+;main.c,778 :: 		if (type == 4 | type == 5) { // 128*64 OLED
 	MOVF        _type+0, 0 
 	XORLW       4
 	MOVLW       1
@@ -7484,7 +7502,7 @@ L_lcd_pwr378:
 	IORWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_lcd_pwr381
-;main.c,771 :: 		led_wr_str(2, 16, "        ", 8);
+;main.c,779 :: 		led_wr_str(2, 16, "        ", 8);
 	MOVLW       2
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       16
@@ -7496,7 +7514,7 @@ L_lcd_pwr378:
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,772 :: 		delay_ms(100);
+;main.c,780 :: 		delay_ms(100);
 	MOVLW       3
 	MOVWF       R11, 0
 	MOVLW       8
@@ -7510,7 +7528,7 @@ L_lcd_pwr382:
 	BRA         L_lcd_pwr382
 	DECFSZ      R11, 1, 1
 	BRA         L_lcd_pwr382
-;main.c,773 :: 		led_wr_str(2, 16, "OVERLOAD", 8);
+;main.c,781 :: 		led_wr_str(2, 16, "OVERLOAD", 8);
 	MOVLW       2
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       16
@@ -7522,7 +7540,7 @@ L_lcd_pwr382:
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,774 :: 		delay_ms(500);
+;main.c,782 :: 		delay_ms(500);
 	MOVLW       11
 	MOVWF       R11, 0
 	MOVLW       38
@@ -7538,9 +7556,9 @@ L_lcd_pwr383:
 	BRA         L_lcd_pwr383
 	NOP
 	NOP
-;main.c,775 :: 		asm CLRWDT;
+;main.c,783 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,776 :: 		led_wr_str(2, 16, "        ", 8);
+;main.c,784 :: 		led_wr_str(2, 16, "        ", 8);
 	MOVLW       2
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       16
@@ -7552,7 +7570,7 @@ L_lcd_pwr383:
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,777 :: 		delay_ms(300);
+;main.c,785 :: 		delay_ms(300);
 	MOVLW       7
 	MOVWF       R11, 0
 	MOVLW       23
@@ -7567,9 +7585,9 @@ L_lcd_pwr384:
 	DECFSZ      R11, 1, 1
 	BRA         L_lcd_pwr384
 	NOP
-;main.c,778 :: 		asm CLRWDT;
+;main.c,786 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,779 :: 		led_wr_str(2, 16, "OVERLOAD", 8);
+;main.c,787 :: 		led_wr_str(2, 16, "OVERLOAD", 8);
 	MOVLW       2
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       16
@@ -7581,7 +7599,7 @@ L_lcd_pwr384:
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,780 :: 		delay_ms(500);
+;main.c,788 :: 		delay_ms(500);
 	MOVLW       11
 	MOVWF       R11, 0
 	MOVLW       38
@@ -7597,9 +7615,9 @@ L_lcd_pwr385:
 	BRA         L_lcd_pwr385
 	NOP
 	NOP
-;main.c,781 :: 		asm CLRWDT;
+;main.c,789 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,782 :: 		led_wr_str(2, 16, "        ", 8);
+;main.c,790 :: 		led_wr_str(2, 16, "        ", 8);
 	MOVLW       2
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       16
@@ -7611,7 +7629,7 @@ L_lcd_pwr385:
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,783 :: 		delay_ms(300);
+;main.c,791 :: 		delay_ms(300);
 	MOVLW       7
 	MOVWF       R11, 0
 	MOVLW       23
@@ -7626,9 +7644,9 @@ L_lcd_pwr386:
 	DECFSZ      R11, 1, 1
 	BRA         L_lcd_pwr386
 	NOP
-;main.c,784 :: 		asm CLRWDT;
+;main.c,792 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,785 :: 		led_wr_str(2, 16, "OVERLOAD", 8);
+;main.c,793 :: 		led_wr_str(2, 16, "OVERLOAD", 8);
 	MOVLW       2
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       16
@@ -7640,7 +7658,7 @@ L_lcd_pwr386:
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,786 :: 		delay_ms(500);
+;main.c,794 :: 		delay_ms(500);
 	MOVLW       11
 	MOVWF       R11, 0
 	MOVLW       38
@@ -7656,9 +7674,9 @@ L_lcd_pwr387:
 	BRA         L_lcd_pwr387
 	NOP
 	NOP
-;main.c,787 :: 		asm CLRWDT;
+;main.c,795 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,788 :: 		led_wr_str(2, 16, "        ", 8);
+;main.c,796 :: 		led_wr_str(2, 16, "        ", 8);
 	MOVLW       2
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       16
@@ -7670,7 +7688,7 @@ L_lcd_pwr387:
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,789 :: 		delay_ms(100);
+;main.c,797 :: 		delay_ms(100);
 	MOVLW       3
 	MOVWF       R11, 0
 	MOVLW       8
@@ -7684,7 +7702,7 @@ L_lcd_pwr388:
 	BRA         L_lcd_pwr388
 	DECFSZ      R11, 1, 1
 	BRA         L_lcd_pwr388
-;main.c,790 :: 		led_wr_str(2, 16, "SWR=    ", 8);
+;main.c,798 :: 		led_wr_str(2, 16, "SWR=    ", 8);
 	MOVLW       2
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       16
@@ -7696,14 +7714,14 @@ L_lcd_pwr388:
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,791 :: 		} else if (type != 0) { // 1602  & 128*32// 1602
+;main.c,799 :: 		} else if (type != 0) { // 1602  & 128*32// 1602
 	GOTO        L_lcd_pwr389
 L_lcd_pwr381:
 	MOVF        _type+0, 0 
 	XORLW       0
 	BTFSC       STATUS+0, 2 
 	GOTO        L_lcd_pwr390
-;main.c,792 :: 		led_wr_str(1, 0, "        ", 8);
+;main.c,800 :: 		led_wr_str(1, 0, "        ", 8);
 	MOVLW       1
 	MOVWF       FARG_led_wr_str+0 
 	CLRF        FARG_led_wr_str+0 
@@ -7714,7 +7732,7 @@ L_lcd_pwr381:
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,793 :: 		delay_ms(100);
+;main.c,801 :: 		delay_ms(100);
 	MOVLW       3
 	MOVWF       R11, 0
 	MOVLW       8
@@ -7728,7 +7746,7 @@ L_lcd_pwr391:
 	BRA         L_lcd_pwr391
 	DECFSZ      R11, 1, 1
 	BRA         L_lcd_pwr391
-;main.c,794 :: 		led_wr_str(1, 0, "OVERLOAD", 8);
+;main.c,802 :: 		led_wr_str(1, 0, "OVERLOAD", 8);
 	MOVLW       1
 	MOVWF       FARG_led_wr_str+0 
 	CLRF        FARG_led_wr_str+0 
@@ -7739,7 +7757,7 @@ L_lcd_pwr391:
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,795 :: 		delay_ms(500);
+;main.c,803 :: 		delay_ms(500);
 	MOVLW       11
 	MOVWF       R11, 0
 	MOVLW       38
@@ -7755,9 +7773,9 @@ L_lcd_pwr392:
 	BRA         L_lcd_pwr392
 	NOP
 	NOP
-;main.c,796 :: 		asm CLRWDT;
+;main.c,804 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,797 :: 		led_wr_str(1, 0, "        ", 8);
+;main.c,805 :: 		led_wr_str(1, 0, "        ", 8);
 	MOVLW       1
 	MOVWF       FARG_led_wr_str+0 
 	CLRF        FARG_led_wr_str+0 
@@ -7768,7 +7786,7 @@ L_lcd_pwr392:
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,798 :: 		delay_ms(300);
+;main.c,806 :: 		delay_ms(300);
 	MOVLW       7
 	MOVWF       R11, 0
 	MOVLW       23
@@ -7783,9 +7801,9 @@ L_lcd_pwr393:
 	DECFSZ      R11, 1, 1
 	BRA         L_lcd_pwr393
 	NOP
-;main.c,799 :: 		asm CLRWDT;
+;main.c,807 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,800 :: 		led_wr_str(1, 0, "OVERLOAD", 8);
+;main.c,808 :: 		led_wr_str(1, 0, "OVERLOAD", 8);
 	MOVLW       1
 	MOVWF       FARG_led_wr_str+0 
 	CLRF        FARG_led_wr_str+0 
@@ -7796,7 +7814,7 @@ L_lcd_pwr393:
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,801 :: 		delay_ms(500);
+;main.c,809 :: 		delay_ms(500);
 	MOVLW       11
 	MOVWF       R11, 0
 	MOVLW       38
@@ -7812,9 +7830,9 @@ L_lcd_pwr394:
 	BRA         L_lcd_pwr394
 	NOP
 	NOP
-;main.c,802 :: 		asm CLRWDT;
+;main.c,810 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,803 :: 		led_wr_str(1, 0, "        ", 8);
+;main.c,811 :: 		led_wr_str(1, 0, "        ", 8);
 	MOVLW       1
 	MOVWF       FARG_led_wr_str+0 
 	CLRF        FARG_led_wr_str+0 
@@ -7825,7 +7843,7 @@ L_lcd_pwr394:
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,804 :: 		delay_ms(300);
+;main.c,812 :: 		delay_ms(300);
 	MOVLW       7
 	MOVWF       R11, 0
 	MOVLW       23
@@ -7840,9 +7858,9 @@ L_lcd_pwr395:
 	DECFSZ      R11, 1, 1
 	BRA         L_lcd_pwr395
 	NOP
-;main.c,805 :: 		asm CLRWDT;
+;main.c,813 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,806 :: 		led_wr_str(1, 0, "OVERLOAD", 8);
+;main.c,814 :: 		led_wr_str(1, 0, "OVERLOAD", 8);
 	MOVLW       1
 	MOVWF       FARG_led_wr_str+0 
 	CLRF        FARG_led_wr_str+0 
@@ -7853,7 +7871,7 @@ L_lcd_pwr395:
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,807 :: 		delay_ms(500);
+;main.c,815 :: 		delay_ms(500);
 	MOVLW       11
 	MOVWF       R11, 0
 	MOVLW       38
@@ -7869,9 +7887,9 @@ L_lcd_pwr396:
 	BRA         L_lcd_pwr396
 	NOP
 	NOP
-;main.c,808 :: 		asm CLRWDT;
+;main.c,816 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,809 :: 		led_wr_str(1, 0, "        ", 8);
+;main.c,817 :: 		led_wr_str(1, 0, "        ", 8);
 	MOVLW       1
 	MOVWF       FARG_led_wr_str+0 
 	CLRF        FARG_led_wr_str+0 
@@ -7882,7 +7900,7 @@ L_lcd_pwr396:
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,810 :: 		delay_ms(100);
+;main.c,818 :: 		delay_ms(100);
 	MOVLW       3
 	MOVWF       R11, 0
 	MOVLW       8
@@ -7896,7 +7914,7 @@ L_lcd_pwr397:
 	BRA         L_lcd_pwr397
 	DECFSZ      R11, 1, 1
 	BRA         L_lcd_pwr397
-;main.c,811 :: 		led_wr_str(1, 0, "SWR=    ", 8);
+;main.c,819 :: 		led_wr_str(1, 0, "SWR=    ", 8);
 	MOVLW       1
 	MOVWF       FARG_led_wr_str+0 
 	CLRF        FARG_led_wr_str+0 
@@ -7907,102 +7925,102 @@ L_lcd_pwr397:
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,812 :: 		}
+;main.c,820 :: 		}
 L_lcd_pwr390:
 L_lcd_pwr389:
-;main.c,813 :: 		asm CLRWDT;
+;main.c,821 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,814 :: 		SWR_old = 10000;
+;main.c,822 :: 		SWR_old = 10000;
 	MOVLW       16
 	MOVWF       _SWR_old+0 
 	MOVLW       39
 	MOVWF       _SWR_old+1 
-;main.c,815 :: 		lcd_swr(SWR_fixed);
+;main.c,823 :: 		lcd_swr(SWR_fixed);
 	MOVF        lcd_pwr_SWR_fixed_L0+0, 0 
 	MOVWF       FARG_lcd_swr_swr+0 
 	MOVF        lcd_pwr_SWR_fixed_L0+1, 0 
 	MOVWF       FARG_lcd_swr_swr+1 
 	CALL        _lcd_swr+0, 0
-;main.c,816 :: 		}
+;main.c,824 :: 		}
 L_lcd_pwr380:
-;main.c,817 :: 		return;
-;main.c,818 :: 		}
+;main.c,825 :: 		return;
+;main.c,826 :: 		}
 L_end_lcd_pwr:
 	RETURN      0
 ; end of _lcd_pwr
 
 _lcd_ind:
 
-;main.c,822 :: 		void lcd_ind() {
-;main.c,824 :: 		asm CLRWDT;
+;main.c,830 :: 		void lcd_ind() {
+;main.c,832 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,826 :: 		work_int = 0;
+;main.c,834 :: 		work_int = 0;
 	CLRF        _work_int+0 
 	CLRF        _work_int+1 
-;main.c,827 :: 		if (ind.B0)
+;main.c,835 :: 		if (ind.B0)
 	BTFSS       main_ind+0, 0 
 	GOTO        L_lcd_ind399
-;main.c,828 :: 		work_int += Ind1;
+;main.c,836 :: 		work_int += Ind1;
 	MOVF        _Ind1+0, 0 
 	ADDWF       _work_int+0, 1 
 	MOVF        _Ind1+1, 0 
 	ADDWFC      _work_int+1, 1 
 L_lcd_ind399:
-;main.c,829 :: 		if (ind.B1)
+;main.c,837 :: 		if (ind.B1)
 	BTFSS       main_ind+0, 1 
 	GOTO        L_lcd_ind400
-;main.c,830 :: 		work_int += Ind2;
+;main.c,838 :: 		work_int += Ind2;
 	MOVF        _Ind2+0, 0 
 	ADDWF       _work_int+0, 1 
 	MOVF        _Ind2+1, 0 
 	ADDWFC      _work_int+1, 1 
 L_lcd_ind400:
-;main.c,831 :: 		if (ind.B2)
+;main.c,839 :: 		if (ind.B2)
 	BTFSS       main_ind+0, 2 
 	GOTO        L_lcd_ind401
-;main.c,832 :: 		work_int += Ind3;
+;main.c,840 :: 		work_int += Ind3;
 	MOVF        _Ind3+0, 0 
 	ADDWF       _work_int+0, 1 
 	MOVF        _Ind3+1, 0 
 	ADDWFC      _work_int+1, 1 
 L_lcd_ind401:
-;main.c,833 :: 		if (ind.B3)
+;main.c,841 :: 		if (ind.B3)
 	BTFSS       main_ind+0, 3 
 	GOTO        L_lcd_ind402
-;main.c,834 :: 		work_int += Ind4;
+;main.c,842 :: 		work_int += Ind4;
 	MOVF        _Ind4+0, 0 
 	ADDWF       _work_int+0, 1 
 	MOVF        _Ind4+1, 0 
 	ADDWFC      _work_int+1, 1 
 L_lcd_ind402:
-;main.c,835 :: 		if (ind.B4)
+;main.c,843 :: 		if (ind.B4)
 	BTFSS       main_ind+0, 4 
 	GOTO        L_lcd_ind403
-;main.c,836 :: 		work_int += Ind5;
+;main.c,844 :: 		work_int += Ind5;
 	MOVF        _Ind5+0, 0 
 	ADDWF       _work_int+0, 1 
 	MOVF        _Ind5+1, 0 
 	ADDWFC      _work_int+1, 1 
 L_lcd_ind403:
-;main.c,837 :: 		if (ind.B5)
+;main.c,845 :: 		if (ind.B5)
 	BTFSS       main_ind+0, 5 
 	GOTO        L_lcd_ind404
-;main.c,838 :: 		work_int += Ind6;
+;main.c,846 :: 		work_int += Ind6;
 	MOVF        _Ind6+0, 0 
 	ADDWF       _work_int+0, 1 
 	MOVF        _Ind6+1, 0 
 	ADDWFC      _work_int+1, 1 
 L_lcd_ind404:
-;main.c,839 :: 		if (ind.B6)
+;main.c,847 :: 		if (ind.B6)
 	BTFSS       main_ind+0, 6 
 	GOTO        L_lcd_ind405
-;main.c,840 :: 		work_int += Ind7;
+;main.c,848 :: 		work_int += Ind7;
 	MOVF        _Ind7+0, 0 
 	ADDWF       _work_int+0, 1 
 	MOVF        _Ind7+1, 0 
 	ADDWFC      _work_int+1, 1 
 L_lcd_ind405:
-;main.c,841 :: 		if (work_int > 9999) { // more then 9999 nH
+;main.c,849 :: 		if (work_int > 9999) { // more then 9999 nH
 	MOVLW       128
 	XORLW       39
 	MOVWF       R0 
@@ -8016,7 +8034,7 @@ L_lcd_ind405:
 L__lcd_ind678:
 	BTFSC       STATUS+0, 0 
 	GOTO        L_lcd_ind406
-;main.c,842 :: 		work_int += 50; // round
+;main.c,850 :: 		work_int += 50; // round
 	MOVLW       50
 	ADDWF       _work_int+0, 0 
 	MOVWF       R0 
@@ -8027,7 +8045,7 @@ L__lcd_ind678:
 	MOVWF       _work_int+0 
 	MOVF        R1, 0 
 	MOVWF       _work_int+1 
-;main.c,843 :: 		IntToStr(work_int, work_str);
+;main.c,851 :: 		IntToStr(work_int, work_str);
 	MOVF        R0, 0 
 	MOVWF       FARG_IntToStr_input+0 
 	MOVF        R1, 0 
@@ -8037,22 +8055,22 @@ L__lcd_ind678:
 	MOVLW       hi_addr(_work_str+0)
 	MOVWF       FARG_IntToStr_output+1 
 	CALL        _IntToStr+0, 0
-;main.c,844 :: 		work_str_2[0] = work_str[1];
+;main.c,852 :: 		work_str_2[0] = work_str[1];
 	MOVF        _work_str+1, 0 
 	MOVWF       _work_str_2+0 
-;main.c,845 :: 		work_str_2[1] = work_str[2];
+;main.c,853 :: 		work_str_2[1] = work_str[2];
 	MOVF        _work_str+2, 0 
 	MOVWF       _work_str_2+1 
-;main.c,846 :: 		work_str_2[2] = '.';
+;main.c,854 :: 		work_str_2[2] = '.';
 	MOVLW       46
 	MOVWF       _work_str_2+2 
-;main.c,847 :: 		work_str_2[3] = work_str[3];
+;main.c,855 :: 		work_str_2[3] = work_str[3];
 	MOVF        _work_str+3, 0 
 	MOVWF       _work_str_2+3 
-;main.c,848 :: 		} else {
+;main.c,856 :: 		} else {
 	GOTO        L_lcd_ind407
 L_lcd_ind406:
-;main.c,849 :: 		IntToStr(work_int, work_str);
+;main.c,857 :: 		IntToStr(work_int, work_str);
 	MOVF        _work_int+0, 0 
 	MOVWF       FARG_IntToStr_input+0 
 	MOVF        _work_int+1, 0 
@@ -8062,54 +8080,54 @@ L_lcd_ind406:
 	MOVLW       hi_addr(_work_str+0)
 	MOVWF       FARG_IntToStr_output+1 
 	CALL        _IntToStr+0, 0
-;main.c,850 :: 		if (work_str[2] != ' ')
+;main.c,858 :: 		if (work_str[2] != ' ')
 	MOVF        _work_str+2, 0 
 	XORLW       32
 	BTFSC       STATUS+0, 2 
 	GOTO        L_lcd_ind408
-;main.c,851 :: 		work_str_2[0] = work_str[2];
+;main.c,859 :: 		work_str_2[0] = work_str[2];
 	MOVF        _work_str+2, 0 
 	MOVWF       _work_str_2+0 
 	GOTO        L_lcd_ind409
 L_lcd_ind408:
-;main.c,853 :: 		work_str_2[0] = '0';
+;main.c,861 :: 		work_str_2[0] = '0';
 	MOVLW       48
 	MOVWF       _work_str_2+0 
 L_lcd_ind409:
-;main.c,854 :: 		work_str_2[1] = '.';
+;main.c,862 :: 		work_str_2[1] = '.';
 	MOVLW       46
 	MOVWF       _work_str_2+1 
-;main.c,855 :: 		if (work_str[3] != ' ')
+;main.c,863 :: 		if (work_str[3] != ' ')
 	MOVF        _work_str+3, 0 
 	XORLW       32
 	BTFSC       STATUS+0, 2 
 	GOTO        L_lcd_ind410
-;main.c,856 :: 		work_str_2[2] = work_str[3];
+;main.c,864 :: 		work_str_2[2] = work_str[3];
 	MOVF        _work_str+3, 0 
 	MOVWF       _work_str_2+2 
 	GOTO        L_lcd_ind411
 L_lcd_ind410:
-;main.c,858 :: 		work_str_2[2] = '0';
+;main.c,866 :: 		work_str_2[2] = '0';
 	MOVLW       48
 	MOVWF       _work_str_2+2 
 L_lcd_ind411:
-;main.c,859 :: 		if (work_str[4] != ' ')
+;main.c,867 :: 		if (work_str[4] != ' ')
 	MOVF        _work_str+4, 0 
 	XORLW       32
 	BTFSC       STATUS+0, 2 
 	GOTO        L_lcd_ind412
-;main.c,860 :: 		work_str_2[3] = work_str[4];
+;main.c,868 :: 		work_str_2[3] = work_str[4];
 	MOVF        _work_str+4, 0 
 	MOVWF       _work_str_2+3 
 	GOTO        L_lcd_ind413
 L_lcd_ind412:
-;main.c,862 :: 		work_str_2[3] = '0';
+;main.c,870 :: 		work_str_2[3] = '0';
 	MOVLW       48
 	MOVWF       _work_str_2+3 
 L_lcd_ind413:
-;main.c,863 :: 		}
+;main.c,871 :: 		}
 L_lcd_ind407:
-;main.c,864 :: 		if (type == 4 | type == 5) { // 128*64 OLED
+;main.c,872 :: 		if (type == 4 | type == 5) { // 128*64 OLED
 	MOVF        _type+0, 0 
 	XORLW       4
 	MOVLW       1
@@ -8126,21 +8144,21 @@ L_lcd_ind407:
 	IORWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_lcd_ind414
-;main.c,865 :: 		if (SW == 1)
+;main.c,873 :: 		if (SW == 1)
 	MOVF        main_SW+0, 0 
 	XORLW       1
 	BTFSS       STATUS+0, 2 
 	GOTO        L_lcd_ind415
-;main.c,866 :: 		column = 4;
+;main.c,874 :: 		column = 4;
 	MOVLW       4
 	MOVWF       lcd_ind_column_L0+0 
 	GOTO        L_lcd_ind416
 L_lcd_ind415:
-;main.c,868 :: 		column = 6;
+;main.c,876 :: 		column = 6;
 	MOVLW       6
 	MOVWF       lcd_ind_column_L0+0 
 L_lcd_ind416:
-;main.c,869 :: 		led_wr_str(column, 16, "L=", 2);
+;main.c,877 :: 		led_wr_str(column, 16, "L=", 2);
 	MOVF        lcd_ind_column_L0+0, 0 
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       16
@@ -8152,7 +8170,7 @@ L_lcd_ind416:
 	MOVLW       2
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,870 :: 		led_wr_str(column, 16 + 6 * 12, "uH", 2);
+;main.c,878 :: 		led_wr_str(column, 16 + 6 * 12, "uH", 2);
 	MOVF        lcd_ind_column_L0+0, 0 
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       88
@@ -8164,7 +8182,7 @@ L_lcd_ind416:
 	MOVLW       2
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,871 :: 		led_wr_str(column, 16 + 2 * 12, work_str_2, 4);
+;main.c,879 :: 		led_wr_str(column, 16 + 2 * 12, work_str_2, 4);
 	MOVF        lcd_ind_column_L0+0, 0 
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       40
@@ -8176,7 +8194,7 @@ L_lcd_ind416:
 	MOVLW       4
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,872 :: 		} else if (type == 2 | type == 3) { // 128*32 OLED
+;main.c,880 :: 		} else if (type == 2 | type == 3) { // 128*32 OLED
 	GOTO        L_lcd_ind417
 L_lcd_ind414:
 	MOVF        _type+0, 0 
@@ -8195,20 +8213,20 @@ L_lcd_ind414:
 	IORWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_lcd_ind418
-;main.c,873 :: 		if (SW == 1)
+;main.c,881 :: 		if (SW == 1)
 	MOVF        main_SW+0, 0 
 	XORLW       1
 	BTFSS       STATUS+0, 2 
 	GOTO        L_lcd_ind419
-;main.c,874 :: 		column = 0;
+;main.c,882 :: 		column = 0;
 	CLRF        lcd_ind_column_L0+0 
 	GOTO        L_lcd_ind420
 L_lcd_ind419:
-;main.c,876 :: 		column = 1;
+;main.c,884 :: 		column = 1;
 	MOVLW       1
 	MOVWF       lcd_ind_column_L0+0 
 L_lcd_ind420:
-;main.c,877 :: 		led_wr_str(column, 9, "L=", 2);
+;main.c,885 :: 		led_wr_str(column, 9, "L=", 2);
 	MOVF        lcd_ind_column_L0+0, 0 
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       9
@@ -8220,7 +8238,7 @@ L_lcd_ind420:
 	MOVLW       2
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,878 :: 		led_wr_str(column, 15, "uH", 2);
+;main.c,886 :: 		led_wr_str(column, 15, "uH", 2);
 	MOVF        lcd_ind_column_L0+0, 0 
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       15
@@ -8230,62 +8248,6 @@ L_lcd_ind420:
 	MOVLW       hi_addr(?lstr80_main+0)
 	MOVWF       FARG_led_wr_str+1 
 	MOVLW       2
-	MOVWF       FARG_led_wr_str+0 
-	CALL        _led_wr_str+0, 0
-;main.c,879 :: 		led_wr_str(column, 11, work_str_2, 4);
-	MOVF        lcd_ind_column_L0+0, 0 
-	MOVWF       FARG_led_wr_str+0 
-	MOVLW       11
-	MOVWF       FARG_led_wr_str+0 
-	MOVLW       _work_str_2+0
-	MOVWF       FARG_led_wr_str+0 
-	MOVLW       hi_addr(_work_str_2+0)
-	MOVWF       FARG_led_wr_str+1 
-	MOVLW       4
-	MOVWF       FARG_led_wr_str+0 
-	CALL        _led_wr_str+0, 0
-;main.c,880 :: 		} else if (type == 1) { //  1602 LCD
-	GOTO        L_lcd_ind421
-L_lcd_ind418:
-	MOVF        _type+0, 0 
-	XORLW       1
-	BTFSS       STATUS+0, 2 
-	GOTO        L_lcd_ind422
-;main.c,881 :: 		if (SW == 1)
-	MOVF        main_SW+0, 0 
-	XORLW       1
-	BTFSS       STATUS+0, 2 
-	GOTO        L_lcd_ind423
-;main.c,882 :: 		column = 0;
-	CLRF        lcd_ind_column_L0+0 
-	GOTO        L_lcd_ind424
-L_lcd_ind423:
-;main.c,884 :: 		column = 1;
-	MOVLW       1
-	MOVWF       lcd_ind_column_L0+0 
-L_lcd_ind424:
-;main.c,885 :: 		led_wr_str(column, 9, "L=", 2);
-	MOVF        lcd_ind_column_L0+0, 0 
-	MOVWF       FARG_led_wr_str+0 
-	MOVLW       9
-	MOVWF       FARG_led_wr_str+0 
-	MOVLW       ?lstr81_main+0
-	MOVWF       FARG_led_wr_str+0 
-	MOVLW       hi_addr(?lstr81_main+0)
-	MOVWF       FARG_led_wr_str+1 
-	MOVLW       2
-	MOVWF       FARG_led_wr_str+0 
-	CALL        _led_wr_str+0, 0
-;main.c,886 :: 		led_wr_str(column, 15, "u", 1);
-	MOVF        lcd_ind_column_L0+0, 0 
-	MOVWF       FARG_led_wr_str+0 
-	MOVLW       15
-	MOVWF       FARG_led_wr_str+0 
-	MOVLW       ?lstr82_main+0
-	MOVWF       FARG_led_wr_str+0 
-	MOVLW       hi_addr(?lstr82_main+0)
-	MOVWF       FARG_led_wr_str+1 
-	MOVLW       1
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
 ;main.c,887 :: 		led_wr_str(column, 11, work_str_2, 4);
@@ -8300,90 +8262,146 @@ L_lcd_ind424:
 	MOVLW       4
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,888 :: 		}
+;main.c,888 :: 		} else if (type == 1) { //  1602 LCD
+	GOTO        L_lcd_ind421
+L_lcd_ind418:
+	MOVF        _type+0, 0 
+	XORLW       1
+	BTFSS       STATUS+0, 2 
+	GOTO        L_lcd_ind422
+;main.c,889 :: 		if (SW == 1)
+	MOVF        main_SW+0, 0 
+	XORLW       1
+	BTFSS       STATUS+0, 2 
+	GOTO        L_lcd_ind423
+;main.c,890 :: 		column = 0;
+	CLRF        lcd_ind_column_L0+0 
+	GOTO        L_lcd_ind424
+L_lcd_ind423:
+;main.c,892 :: 		column = 1;
+	MOVLW       1
+	MOVWF       lcd_ind_column_L0+0 
+L_lcd_ind424:
+;main.c,893 :: 		led_wr_str(column, 9, "L=", 2);
+	MOVF        lcd_ind_column_L0+0, 0 
+	MOVWF       FARG_led_wr_str+0 
+	MOVLW       9
+	MOVWF       FARG_led_wr_str+0 
+	MOVLW       ?lstr81_main+0
+	MOVWF       FARG_led_wr_str+0 
+	MOVLW       hi_addr(?lstr81_main+0)
+	MOVWF       FARG_led_wr_str+1 
+	MOVLW       2
+	MOVWF       FARG_led_wr_str+0 
+	CALL        _led_wr_str+0, 0
+;main.c,894 :: 		led_wr_str(column, 15, "u", 1);
+	MOVF        lcd_ind_column_L0+0, 0 
+	MOVWF       FARG_led_wr_str+0 
+	MOVLW       15
+	MOVWF       FARG_led_wr_str+0 
+	MOVLW       ?lstr82_main+0
+	MOVWF       FARG_led_wr_str+0 
+	MOVLW       hi_addr(?lstr82_main+0)
+	MOVWF       FARG_led_wr_str+1 
+	MOVLW       1
+	MOVWF       FARG_led_wr_str+0 
+	CALL        _led_wr_str+0, 0
+;main.c,895 :: 		led_wr_str(column, 11, work_str_2, 4);
+	MOVF        lcd_ind_column_L0+0, 0 
+	MOVWF       FARG_led_wr_str+0 
+	MOVLW       11
+	MOVWF       FARG_led_wr_str+0 
+	MOVLW       _work_str_2+0
+	MOVWF       FARG_led_wr_str+0 
+	MOVLW       hi_addr(_work_str_2+0)
+	MOVWF       FARG_led_wr_str+1 
+	MOVLW       4
+	MOVWF       FARG_led_wr_str+0 
+	CALL        _led_wr_str+0, 0
+;main.c,896 :: 		}
 L_lcd_ind422:
 L_lcd_ind421:
 L_lcd_ind417:
-;main.c,890 :: 		asm CLRWDT;
+;main.c,898 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,892 :: 		work_int = 0;
+;main.c,900 :: 		work_int = 0;
 	CLRF        _work_int+0 
 	CLRF        _work_int+1 
-;main.c,893 :: 		if (cap.B0)
+;main.c,901 :: 		if (cap.B0)
 	BTFSS       main_cap+0, 0 
 	GOTO        L_lcd_ind426
-;main.c,894 :: 		work_int += Cap1;
+;main.c,902 :: 		work_int += Cap1;
 	MOVF        _Cap1+0, 0 
 	ADDWF       _work_int+0, 1 
 	MOVF        _Cap1+1, 0 
 	ADDWFC      _work_int+1, 1 
 L_lcd_ind426:
-;main.c,895 :: 		if (cap.B1)
+;main.c,903 :: 		if (cap.B1)
 	BTFSS       main_cap+0, 1 
 	GOTO        L_lcd_ind427
-;main.c,896 :: 		work_int += Cap2;
+;main.c,904 :: 		work_int += Cap2;
 	MOVF        _Cap2+0, 0 
 	ADDWF       _work_int+0, 1 
 	MOVF        _Cap2+1, 0 
 	ADDWFC      _work_int+1, 1 
 L_lcd_ind427:
-;main.c,897 :: 		if (cap.B2)
+;main.c,905 :: 		if (cap.B2)
 	BTFSS       main_cap+0, 2 
 	GOTO        L_lcd_ind428
-;main.c,898 :: 		work_int += Cap3;
+;main.c,906 :: 		work_int += Cap3;
 	MOVF        _Cap3+0, 0 
 	ADDWF       _work_int+0, 1 
 	MOVF        _Cap3+1, 0 
 	ADDWFC      _work_int+1, 1 
 L_lcd_ind428:
-;main.c,899 :: 		if (cap.B3)
+;main.c,907 :: 		if (cap.B3)
 	BTFSS       main_cap+0, 3 
 	GOTO        L_lcd_ind429
-;main.c,900 :: 		work_int += Cap4;
+;main.c,908 :: 		work_int += Cap4;
 	MOVF        _Cap4+0, 0 
 	ADDWF       _work_int+0, 1 
 	MOVF        _Cap4+1, 0 
 	ADDWFC      _work_int+1, 1 
 L_lcd_ind429:
-;main.c,901 :: 		if (cap.B4)
+;main.c,909 :: 		if (cap.B4)
 	BTFSS       main_cap+0, 4 
 	GOTO        L_lcd_ind430
-;main.c,902 :: 		work_int += Cap5;
+;main.c,910 :: 		work_int += Cap5;
 	MOVF        _Cap5+0, 0 
 	ADDWF       _work_int+0, 1 
 	MOVF        _Cap5+1, 0 
 	ADDWFC      _work_int+1, 1 
 L_lcd_ind430:
-;main.c,903 :: 		if (cap.B5)
+;main.c,911 :: 		if (cap.B5)
 	BTFSS       main_cap+0, 5 
 	GOTO        L_lcd_ind431
-;main.c,904 :: 		work_int += Cap6;
+;main.c,912 :: 		work_int += Cap6;
 	MOVF        _Cap6+0, 0 
 	ADDWF       _work_int+0, 1 
 	MOVF        _Cap6+1, 0 
 	ADDWFC      _work_int+1, 1 
 L_lcd_ind431:
-;main.c,905 :: 		if (cap.B6)
+;main.c,913 :: 		if (cap.B6)
 	BTFSS       main_cap+0, 6 
 	GOTO        L_lcd_ind432
-;main.c,906 :: 		work_int += Cap7;
+;main.c,914 :: 		work_int += Cap7;
 	MOVF        _Cap7+0, 0 
 	ADDWF       _work_int+0, 1 
 	MOVF        _Cap7+1, 0 
 	ADDWFC      _work_int+1, 1 
 L_lcd_ind432:
-;main.c,907 :: 		if (mem_offset == band_160m)
+;main.c,915 :: 		if (mem_offset == band_160m)
 	MOVF        _mem_offset+0, 0 
 	XORWF       _band_160m+0, 0 
 	BTFSS       STATUS+0, 2 
 	GOTO        L_lcd_ind433
-;main.c,908 :: 		work_int += C8_value;
+;main.c,916 :: 		work_int += C8_value;
 	MOVF        _C8_value+0, 0 
 	ADDWF       _work_int+0, 1 
 	MOVF        _C8_value+1, 0 
 	ADDWFC      _work_int+1, 1 
 L_lcd_ind433:
-;main.c,909 :: 		IntToStr(work_int, work_str);
+;main.c,917 :: 		IntToStr(work_int, work_str);
 	MOVF        _work_int+0, 0 
 	MOVWF       FARG_IntToStr_input+0 
 	MOVF        _work_int+1, 0 
@@ -8393,19 +8411,19 @@ L_lcd_ind433:
 	MOVLW       hi_addr(_work_str+0)
 	MOVWF       FARG_IntToStr_output+1 
 	CALL        _IntToStr+0, 0
-;main.c,910 :: 		work_str_2[0] = work_str[2];
+;main.c,918 :: 		work_str_2[0] = work_str[2];
 	MOVF        _work_str+2, 0 
 	MOVWF       _work_str_2+0 
-;main.c,911 :: 		work_str_2[1] = work_str[3];
+;main.c,919 :: 		work_str_2[1] = work_str[3];
 	MOVF        _work_str+3, 0 
 	MOVWF       _work_str_2+1 
-;main.c,912 :: 		work_str_2[2] = work_str[4];
+;main.c,920 :: 		work_str_2[2] = work_str[4];
 	MOVF        _work_str+4, 0 
 	MOVWF       _work_str_2+2 
-;main.c,913 :: 		work_str_2[3] = work_str[5];
+;main.c,921 :: 		work_str_2[3] = work_str[5];
 	MOVF        _work_str+5, 0 
 	MOVWF       _work_str_2+3 
-;main.c,915 :: 		if (type == 4 | type == 5) { // 128*64 OLED
+;main.c,923 :: 		if (type == 4 | type == 5) { // 128*64 OLED
 	MOVF        _type+0, 0 
 	XORLW       4
 	MOVLW       1
@@ -8422,21 +8440,21 @@ L_lcd_ind433:
 	IORWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_lcd_ind434
-;main.c,916 :: 		if (SW == 1)
+;main.c,924 :: 		if (SW == 1)
 	MOVF        main_SW+0, 0 
 	XORLW       1
 	BTFSS       STATUS+0, 2 
 	GOTO        L_lcd_ind435
-;main.c,917 :: 		column = 6;
+;main.c,925 :: 		column = 6;
 	MOVLW       6
 	MOVWF       lcd_ind_column_L0+0 
 	GOTO        L_lcd_ind436
 L_lcd_ind435:
-;main.c,919 :: 		column = 4;
+;main.c,927 :: 		column = 4;
 	MOVLW       4
 	MOVWF       lcd_ind_column_L0+0 
 L_lcd_ind436:
-;main.c,920 :: 		led_wr_str(column, 16, "C=", 2);
+;main.c,928 :: 		led_wr_str(column, 16, "C=", 2);
 	MOVF        lcd_ind_column_L0+0, 0 
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       16
@@ -8448,7 +8466,7 @@ L_lcd_ind436:
 	MOVLW       2
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,921 :: 		led_wr_str(column, 16 + 6 * 12, "pF", 2);
+;main.c,929 :: 		led_wr_str(column, 16 + 6 * 12, "pF", 2);
 	MOVF        lcd_ind_column_L0+0, 0 
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       88
@@ -8460,7 +8478,7 @@ L_lcd_ind436:
 	MOVLW       2
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,922 :: 		led_wr_str(column, 16 + 2 * 12, work_str_2, 4);
+;main.c,930 :: 		led_wr_str(column, 16 + 2 * 12, work_str_2, 4);
 	MOVF        lcd_ind_column_L0+0, 0 
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       40
@@ -8472,7 +8490,7 @@ L_lcd_ind436:
 	MOVLW       4
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,923 :: 		} else if (type == 2 | type == 3) { // 128*32 OLED
+;main.c,931 :: 		} else if (type == 2 | type == 3) { // 128*32 OLED
 	GOTO        L_lcd_ind437
 L_lcd_ind434:
 	MOVF        _type+0, 0 
@@ -8491,20 +8509,20 @@ L_lcd_ind434:
 	IORWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_lcd_ind438
-;main.c,924 :: 		if (SW == 1)
+;main.c,932 :: 		if (SW == 1)
 	MOVF        main_SW+0, 0 
 	XORLW       1
 	BTFSS       STATUS+0, 2 
 	GOTO        L_lcd_ind439
-;main.c,925 :: 		column = 1;
+;main.c,933 :: 		column = 1;
 	MOVLW       1
 	MOVWF       lcd_ind_column_L0+0 
 	GOTO        L_lcd_ind440
 L_lcd_ind439:
-;main.c,927 :: 		column = 0;
+;main.c,935 :: 		column = 0;
 	CLRF        lcd_ind_column_L0+0 
 L_lcd_ind440:
-;main.c,928 :: 		led_wr_str(column, 9, "C=", 2);
+;main.c,936 :: 		led_wr_str(column, 9, "C=", 2);
 	MOVF        lcd_ind_column_L0+0, 0 
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       9
@@ -8516,7 +8534,7 @@ L_lcd_ind440:
 	MOVLW       2
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,929 :: 		led_wr_str(column, 15, "pF", 2);
+;main.c,937 :: 		led_wr_str(column, 15, "pF", 2);
 	MOVF        lcd_ind_column_L0+0, 0 
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       15
@@ -8526,62 +8544,6 @@ L_lcd_ind440:
 	MOVLW       hi_addr(?lstr86_main+0)
 	MOVWF       FARG_led_wr_str+1 
 	MOVLW       2
-	MOVWF       FARG_led_wr_str+0 
-	CALL        _led_wr_str+0, 0
-;main.c,930 :: 		led_wr_str(column, 11, work_str_2, 4);
-	MOVF        lcd_ind_column_L0+0, 0 
-	MOVWF       FARG_led_wr_str+0 
-	MOVLW       11
-	MOVWF       FARG_led_wr_str+0 
-	MOVLW       _work_str_2+0
-	MOVWF       FARG_led_wr_str+0 
-	MOVLW       hi_addr(_work_str_2+0)
-	MOVWF       FARG_led_wr_str+1 
-	MOVLW       4
-	MOVWF       FARG_led_wr_str+0 
-	CALL        _led_wr_str+0, 0
-;main.c,931 :: 		} else if (type == 1) { // 1602 LCD
-	GOTO        L_lcd_ind441
-L_lcd_ind438:
-	MOVF        _type+0, 0 
-	XORLW       1
-	BTFSS       STATUS+0, 2 
-	GOTO        L_lcd_ind442
-;main.c,932 :: 		if (SW == 1)
-	MOVF        main_SW+0, 0 
-	XORLW       1
-	BTFSS       STATUS+0, 2 
-	GOTO        L_lcd_ind443
-;main.c,933 :: 		column = 1;
-	MOVLW       1
-	MOVWF       lcd_ind_column_L0+0 
-	GOTO        L_lcd_ind444
-L_lcd_ind443:
-;main.c,935 :: 		column = 0;
-	CLRF        lcd_ind_column_L0+0 
-L_lcd_ind444:
-;main.c,936 :: 		led_wr_str(column, 9, "C=", 2);
-	MOVF        lcd_ind_column_L0+0, 0 
-	MOVWF       FARG_led_wr_str+0 
-	MOVLW       9
-	MOVWF       FARG_led_wr_str+0 
-	MOVLW       ?lstr87_main+0
-	MOVWF       FARG_led_wr_str+0 
-	MOVLW       hi_addr(?lstr87_main+0)
-	MOVWF       FARG_led_wr_str+1 
-	MOVLW       2
-	MOVWF       FARG_led_wr_str+0 
-	CALL        _led_wr_str+0, 0
-;main.c,937 :: 		led_wr_str(column, 15, "p", 1);
-	MOVF        lcd_ind_column_L0+0, 0 
-	MOVWF       FARG_led_wr_str+0 
-	MOVLW       15
-	MOVWF       FARG_led_wr_str+0 
-	MOVLW       ?lstr88_main+0
-	MOVWF       FARG_led_wr_str+0 
-	MOVLW       hi_addr(?lstr88_main+0)
-	MOVWF       FARG_led_wr_str+1 
-	MOVLW       1
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
 ;main.c,938 :: 		led_wr_str(column, 11, work_str_2, 4);
@@ -8596,22 +8558,78 @@ L_lcd_ind444:
 	MOVLW       4
 	MOVWF       FARG_led_wr_str+0 
 	CALL        _led_wr_str+0, 0
-;main.c,939 :: 		}
+;main.c,939 :: 		} else if (type == 1) { // 1602 LCD
+	GOTO        L_lcd_ind441
+L_lcd_ind438:
+	MOVF        _type+0, 0 
+	XORLW       1
+	BTFSS       STATUS+0, 2 
+	GOTO        L_lcd_ind442
+;main.c,940 :: 		if (SW == 1)
+	MOVF        main_SW+0, 0 
+	XORLW       1
+	BTFSS       STATUS+0, 2 
+	GOTO        L_lcd_ind443
+;main.c,941 :: 		column = 1;
+	MOVLW       1
+	MOVWF       lcd_ind_column_L0+0 
+	GOTO        L_lcd_ind444
+L_lcd_ind443:
+;main.c,943 :: 		column = 0;
+	CLRF        lcd_ind_column_L0+0 
+L_lcd_ind444:
+;main.c,944 :: 		led_wr_str(column, 9, "C=", 2);
+	MOVF        lcd_ind_column_L0+0, 0 
+	MOVWF       FARG_led_wr_str+0 
+	MOVLW       9
+	MOVWF       FARG_led_wr_str+0 
+	MOVLW       ?lstr87_main+0
+	MOVWF       FARG_led_wr_str+0 
+	MOVLW       hi_addr(?lstr87_main+0)
+	MOVWF       FARG_led_wr_str+1 
+	MOVLW       2
+	MOVWF       FARG_led_wr_str+0 
+	CALL        _led_wr_str+0, 0
+;main.c,945 :: 		led_wr_str(column, 15, "p", 1);
+	MOVF        lcd_ind_column_L0+0, 0 
+	MOVWF       FARG_led_wr_str+0 
+	MOVLW       15
+	MOVWF       FARG_led_wr_str+0 
+	MOVLW       ?lstr88_main+0
+	MOVWF       FARG_led_wr_str+0 
+	MOVLW       hi_addr(?lstr88_main+0)
+	MOVWF       FARG_led_wr_str+1 
+	MOVLW       1
+	MOVWF       FARG_led_wr_str+0 
+	CALL        _led_wr_str+0, 0
+;main.c,946 :: 		led_wr_str(column, 11, work_str_2, 4);
+	MOVF        lcd_ind_column_L0+0, 0 
+	MOVWF       FARG_led_wr_str+0 
+	MOVLW       11
+	MOVWF       FARG_led_wr_str+0 
+	MOVLW       _work_str_2+0
+	MOVWF       FARG_led_wr_str+0 
+	MOVLW       hi_addr(_work_str_2+0)
+	MOVWF       FARG_led_wr_str+1 
+	MOVLW       4
+	MOVWF       FARG_led_wr_str+0 
+	CALL        _led_wr_str+0, 0
+;main.c,947 :: 		}
 L_lcd_ind442:
 L_lcd_ind441:
 L_lcd_ind437:
-;main.c,941 :: 		asm CLRWDT;
+;main.c,949 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,942 :: 		return;
-;main.c,943 :: 		}
+;main.c,950 :: 		return;
+;main.c,951 :: 		}
 L_end_lcd_ind:
 	RETURN      0
 ; end of _lcd_ind
 
 _Test_init:
 
-;main.c,945 :: 		void Test_init(void) { // Test mode
-;main.c,946 :: 		if (type == 4 | type == 5) // 128*64 OLED
+;main.c,953 :: 		void Test_init(void) { // Test mode
+;main.c,954 :: 		if (type == 4 | type == 5) // 128*64 OLED
 	MOVF        _type+0, 0 
 	XORLW       4
 	MOVLW       1
@@ -8628,7 +8646,7 @@ _Test_init:
 	IORWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_Test_init445
-;main.c,947 :: 		led_wr_str(0, 10, "TEST MODE", 9);
+;main.c,955 :: 		led_wr_str(0, 10, "TEST MODE", 9);
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       10
 	MOVWF       FARG_led_wr_str+0 
@@ -8641,12 +8659,12 @@ _Test_init:
 	CALL        _led_wr_str+0, 0
 	GOTO        L_Test_init446
 L_Test_init445:
-;main.c,948 :: 		else if (type != 0) // 1602 LCD  or 128*32 OLED
+;main.c,956 :: 		else if (type != 0) // 1602 LCD  or 128*32 OLED
 	MOVF        _type+0, 0 
 	XORLW       0
 	BTFSC       STATUS+0, 2 
 	GOTO        L_Test_init447
-;main.c,949 :: 		led_wr_str(0, 3, "TEST MODE", 9);
+;main.c,957 :: 		led_wr_str(0, 3, "TEST MODE", 9);
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       3
 	MOVWF       FARG_led_wr_str+0 
@@ -8659,9 +8677,9 @@ L_Test_init445:
 	CALL        _led_wr_str+0, 0
 L_Test_init447:
 L_Test_init446:
-;main.c,950 :: 		asm CLRWDT;
+;main.c,958 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,951 :: 		Delay_ms(500);
+;main.c,959 :: 		Delay_ms(500);
 	MOVLW       11
 	MOVWF       R11, 0
 	MOVLW       38
@@ -8677,9 +8695,9 @@ L_Test_init448:
 	BRA         L_Test_init448
 	NOP
 	NOP
-;main.c,952 :: 		asm CLRWDT;
+;main.c,960 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,953 :: 		Delay_ms(500);
+;main.c,961 :: 		Delay_ms(500);
 	MOVLW       11
 	MOVWF       R11, 0
 	MOVLW       38
@@ -8695,9 +8713,9 @@ L_Test_init449:
 	BRA         L_Test_init449
 	NOP
 	NOP
-;main.c,954 :: 		asm CLRWDT;
+;main.c,962 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,955 :: 		Delay_ms(500);
+;main.c,963 :: 		Delay_ms(500);
 	MOVLW       11
 	MOVWF       R11, 0
 	MOVLW       38
@@ -8713,9 +8731,9 @@ L_Test_init450:
 	BRA         L_Test_init450
 	NOP
 	NOP
-;main.c,956 :: 		asm CLRWDT;
+;main.c,964 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,957 :: 		Delay_ms(500);
+;main.c,965 :: 		Delay_ms(500);
 	MOVLW       11
 	MOVWF       R11, 0
 	MOVLW       38
@@ -8731,9 +8749,9 @@ L_Test_init451:
 	BRA         L_Test_init451
 	NOP
 	NOP
-;main.c,958 :: 		asm CLRWDT;
+;main.c,966 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,959 :: 		if (type == 4 | type == 5) // 128*64 OLED
+;main.c,967 :: 		if (type == 4 | type == 5) // 128*64 OLED
 	MOVF        _type+0, 0 
 	XORLW       4
 	MOVLW       1
@@ -8750,7 +8768,7 @@ L_Test_init451:
 	IORWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_Test_init452
-;main.c,960 :: 		led_wr_str(0, 10, "         ", 9);
+;main.c,968 :: 		led_wr_str(0, 10, "         ", 9);
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       10
 	MOVWF       FARG_led_wr_str+0 
@@ -8763,12 +8781,12 @@ L_Test_init451:
 	CALL        _led_wr_str+0, 0
 	GOTO        L_Test_init453
 L_Test_init452:
-;main.c,961 :: 		else if (type != 0) // 1602 LCD  or 128*32 OLED
+;main.c,969 :: 		else if (type != 0) // 1602 LCD  or 128*32 OLED
 	MOVF        _type+0, 0 
 	XORLW       0
 	BTFSC       STATUS+0, 2 
 	GOTO        L_Test_init454
-;main.c,962 :: 		led_wr_str(0, 3, "         ", 9);
+;main.c,970 :: 		led_wr_str(0, 3, "         ", 9);
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       3
 	MOVWF       FARG_led_wr_str+0 
@@ -8781,16 +8799,16 @@ L_Test_init452:
 	CALL        _led_wr_str+0, 0
 L_Test_init454:
 L_Test_init453:
-;main.c,963 :: 		atu_reset();
+;main.c,971 :: 		atu_reset();
 	CALL        _atu_reset+0, 0
-;main.c,964 :: 		SW = 1; // C to OUT
+;main.c,972 :: 		SW = 1; // C to OUT
 	MOVLW       1
 	MOVWF       main_SW+0 
-;main.c,965 :: 		set_sw(SW);
+;main.c,973 :: 		set_sw(SW);
 	MOVLW       1
 	MOVWF       FARG_set_sw_SW+0 
 	CALL        _set_sw+0, 0
-;main.c,966 :: 		EEPROM_Write(255 - mem_offset * 5, cap);
+;main.c,974 :: 		EEPROM_Write(255 - mem_offset * 5, cap);
 	MOVLW       5
 	MULWF       _mem_offset+0 
 	MOVF        PRODL+0, 0 
@@ -8801,7 +8819,7 @@ L_Test_init453:
 	MOVF        main_cap+0, 0 
 	MOVWF       FARG_EEPROM_Write_data_+0 
 	CALL        _EEPROM_Write+0, 0
-;main.c,967 :: 		EEPROM_Write(254 - mem_offset * 5, ind);
+;main.c,975 :: 		EEPROM_Write(254 - mem_offset * 5, ind);
 	MOVLW       5
 	MULWF       _mem_offset+0 
 	MOVF        PRODL+0, 0 
@@ -8812,7 +8830,7 @@ L_Test_init453:
 	MOVF        main_ind+0, 0 
 	MOVWF       FARG_EEPROM_Write_data_+0 
 	CALL        _EEPROM_Write+0, 0
-;main.c,968 :: 		EEPROM_Write(253 - mem_offset * 5, SW);
+;main.c,976 :: 		EEPROM_Write(253 - mem_offset * 5, SW);
 	MOVLW       5
 	MULWF       _mem_offset+0 
 	MOVF        PRODL+0, 0 
@@ -8823,7 +8841,7 @@ L_Test_init453:
 	MOVF        main_SW+0, 0 
 	MOVWF       FARG_EEPROM_Write_data_+0 
 	CALL        _EEPROM_Write+0, 0
-;main.c,970 :: 		if (type == 4 | type == 5) // 128*64 OLED
+;main.c,978 :: 		if (type == 4 | type == 5) // 128*64 OLED
 	MOVF        _type+0, 0 
 	XORLW       4
 	MOVLW       1
@@ -8840,7 +8858,7 @@ L_Test_init453:
 	IORWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_Test_init455
-;main.c,971 :: 		led_wr_str(0, 16 + 12 * 8, "l", 1);
+;main.c,979 :: 		led_wr_str(0, 16 + 12 * 8, "l", 1);
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       112
 	MOVWF       FARG_led_wr_str+0 
@@ -8853,12 +8871,12 @@ L_Test_init453:
 	CALL        _led_wr_str+0, 0
 	GOTO        L_Test_init456
 L_Test_init455:
-;main.c,972 :: 		else if (type != 0) // 1602 LCD or 128*32 OLED
+;main.c,980 :: 		else if (type != 0) // 1602 LCD or 128*32 OLED
 	MOVF        _type+0, 0 
 	XORLW       0
 	BTFSC       STATUS+0, 2 
 	GOTO        L_Test_init457
-;main.c,973 :: 		led_wr_str(0, 8, "l", 1);
+;main.c,981 :: 		led_wr_str(0, 8, "l", 1);
 	CLRF        FARG_led_wr_str+0 
 	MOVLW       8
 	MOVWF       FARG_led_wr_str+0 
@@ -8871,29 +8889,29 @@ L_Test_init455:
 	CALL        _led_wr_str+0, 0
 L_Test_init457:
 L_Test_init456:
-;main.c,975 :: 		lcd_prep_short = 1;
+;main.c,983 :: 		lcd_prep_short = 1;
 	MOVLW       1
 	MOVWF       _lcd_prep_short+0 
-;main.c,976 :: 		lcd_prep();
+;main.c,984 :: 		lcd_prep();
 	CALL        _lcd_prep+0, 0
-;main.c,977 :: 		return;
-;main.c,978 :: 		}
+;main.c,985 :: 		return;
+;main.c,986 :: 		}
 L_end_Test_init:
 	RETURN      0
 ; end of _Test_init
 
 _cells_init:
 
-;main.c,980 :: 		void cells_init(void) {
-;main.c,982 :: 		asm CLRWDT;
+;main.c,988 :: 		void cells_init(void) {
+;main.c,990 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,984 :: 		type = EEPROM_Read(1); // type of display
+;main.c,992 :: 		type = EEPROM_Read(1); // type of display
 	MOVLW       1
 	MOVWF       FARG_EEPROM_Read_address+0 
 	CALL        _EEPROM_Read+0, 0
 	MOVF        R0, 0 
 	MOVWF       _type+0 
-;main.c,985 :: 		if (EEPROM_Read(2) == 1)
+;main.c,993 :: 		if (EEPROM_Read(2) == 1)
 	MOVLW       2
 	MOVWF       FARG_EEPROM_Read_address+0 
 	CALL        _EEPROM_Read+0, 0
@@ -8901,11 +8919,11 @@ _cells_init:
 	XORLW       1
 	BTFSS       STATUS+0, 2 
 	GOTO        L_cells_init458
-;main.c,986 :: 		Auto = 1;
+;main.c,994 :: 		Auto = 1;
 	MOVLW       1
 	MOVWF       _Auto+0 
 L_cells_init458:
-;main.c,987 :: 		Rel_Del = Bcd2Dec(EEPROM_Read(3)); // Relay's Delay
+;main.c,995 :: 		Rel_Del = Bcd2Dec(EEPROM_Read(3)); // Relay's Delay
 	MOVLW       3
 	MOVWF       FARG_EEPROM_Read_address+0 
 	CALL        _EEPROM_Read+0, 0
@@ -8916,7 +8934,7 @@ L_cells_init458:
 	MOVWF       main_Rel_Del+0 
 	MOVLW       0
 	MOVWF       main_Rel_Del+1 
-;main.c,988 :: 		Auto_delta = Bcd2Dec(EEPROM_Read(4)) * 10; // Auto_delta
+;main.c,996 :: 		Auto_delta = Bcd2Dec(EEPROM_Read(4)) * 10; // Auto_delta
 	MOVLW       4
 	MOVWF       FARG_EEPROM_Read_address+0 
 	CALL        _EEPROM_Read+0, 0
@@ -8929,7 +8947,7 @@ L_cells_init458:
 	MOVWF       _Auto_delta+0 
 	MOVF        PRODH+0, 0 
 	MOVWF       _Auto_delta+1 
-;main.c,989 :: 		min_for_start = Bcd2Dec(EEPROM_Read(5)) * 10; // P_min_for_start
+;main.c,997 :: 		min_for_start = Bcd2Dec(EEPROM_Read(5)) * 10; // P_min_for_start
 	MOVLW       5
 	MOVWF       FARG_EEPROM_Read_address+0 
 	CALL        _EEPROM_Read+0, 0
@@ -8942,7 +8960,7 @@ L_cells_init458:
 	MOVWF       main_min_for_start+0 
 	MOVF        PRODH+0, 0 
 	MOVWF       main_min_for_start+1 
-;main.c,990 :: 		max_for_start = Bcd2Dec(EEPROM_Read(6)) * 10; // P_max_for_start
+;main.c,998 :: 		max_for_start = Bcd2Dec(EEPROM_Read(6)) * 10; // P_max_for_start
 	MOVLW       6
 	MOVWF       FARG_EEPROM_Read_address+0 
 	CALL        _EEPROM_Read+0, 0
@@ -8955,7 +8973,7 @@ L_cells_init458:
 	MOVWF       main_max_for_start+0 
 	MOVF        PRODH+0, 0 
 	MOVWF       main_max_for_start+1 
-;main.c,993 :: 		max_swr = Bcd2Dec(EEPROM_Read(9)) * 10; // Max SWR
+;main.c,1001 :: 		max_swr = Bcd2Dec(EEPROM_Read(9)) * 10; // Max SWR
 	MOVLW       9
 	MOVWF       FARG_EEPROM_Read_address+0 
 	CALL        _EEPROM_Read+0, 0
@@ -8968,45 +8986,45 @@ L_cells_init458:
 	MOVWF       main_max_swr+0 
 	MOVF        PRODH+0, 0 
 	MOVWF       main_max_swr+1 
-;main.c,994 :: 		L_q = EEPROM_Read(10);
+;main.c,1002 :: 		L_q = EEPROM_Read(10);
 	MOVLW       10
 	MOVWF       FARG_EEPROM_Read_address+0 
 	CALL        _EEPROM_Read+0, 0
 	MOVF        R0, 0 
 	MOVWF       main_L_q+0 
-;main.c,995 :: 		L_linear = EEPROM_Read(11);
+;main.c,1003 :: 		L_linear = EEPROM_Read(11);
 	MOVLW       11
 	MOVWF       FARG_EEPROM_Read_address+0 
 	CALL        _EEPROM_Read+0, 0
 	MOVF        R0, 0 
 	MOVWF       main_L_linear+0 
-;main.c,996 :: 		C_q = EEPROM_Read(12);
+;main.c,1004 :: 		C_q = EEPROM_Read(12);
 	MOVLW       12
 	MOVWF       FARG_EEPROM_Read_address+0 
 	CALL        _EEPROM_Read+0, 0
 	MOVF        R0, 0 
 	MOVWF       main_C_q+0 
-;main.c,997 :: 		C_linear = EEPROM_Read(13);
+;main.c,1005 :: 		C_linear = EEPROM_Read(13);
 	MOVLW       13
 	MOVWF       FARG_EEPROM_Read_address+0 
 	CALL        _EEPROM_Read+0, 0
 	MOVF        R0, 0 
 	MOVWF       main_C_linear+0 
-;main.c,998 :: 		D_correction = EEPROM_Read(14);
+;main.c,1006 :: 		D_correction = EEPROM_Read(14);
 	MOVLW       14
 	MOVWF       FARG_EEPROM_Read_address+0 
 	CALL        _EEPROM_Read+0, 0
 	MOVF        R0, 0 
 	MOVWF       main_D_correction+0 
-;main.c,999 :: 		L_invert = EEPROM_Read(15);
+;main.c,1007 :: 		L_invert = EEPROM_Read(15);
 	MOVLW       15
 	MOVWF       FARG_EEPROM_Read_address+0 
 	CALL        _EEPROM_Read+0, 0
 	MOVF        R0, 0 
 	MOVWF       main_L_invert+0 
-;main.c,1001 :: 		asm CLRWDT;
+;main.c,1009 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,1002 :: 		Ind1 = Bcd2Dec(EEPROM_Read(16)) * 100 + Bcd2Dec(EEPROM_Read(17)); // Ind1
+;main.c,1010 :: 		Ind1 = Bcd2Dec(EEPROM_Read(16)) * 100 + Bcd2Dec(EEPROM_Read(17)); // Ind1
 	MOVLW       16
 	MOVWF       FARG_EEPROM_Read_address+0 
 	CALL        _EEPROM_Read+0, 0
@@ -9031,7 +9049,7 @@ L_cells_init458:
 	MOVLW       0
 	ADDWFC      FLOC__cells_init+1, 0 
 	MOVWF       _Ind1+1 
-;main.c,1003 :: 		Ind2 = Bcd2Dec(EEPROM_Read(18)) * 100 + Bcd2Dec(EEPROM_Read(19)); // Ind2
+;main.c,1011 :: 		Ind2 = Bcd2Dec(EEPROM_Read(18)) * 100 + Bcd2Dec(EEPROM_Read(19)); // Ind2
 	MOVLW       18
 	MOVWF       FARG_EEPROM_Read_address+0 
 	CALL        _EEPROM_Read+0, 0
@@ -9056,7 +9074,7 @@ L_cells_init458:
 	MOVLW       0
 	ADDWFC      FLOC__cells_init+1, 0 
 	MOVWF       _Ind2+1 
-;main.c,1004 :: 		Ind3 = Bcd2Dec(EEPROM_Read(20)) * 100 + Bcd2Dec(EEPROM_Read(21)); // Ind3
+;main.c,1012 :: 		Ind3 = Bcd2Dec(EEPROM_Read(20)) * 100 + Bcd2Dec(EEPROM_Read(21)); // Ind3
 	MOVLW       20
 	MOVWF       FARG_EEPROM_Read_address+0 
 	CALL        _EEPROM_Read+0, 0
@@ -9081,7 +9099,7 @@ L_cells_init458:
 	MOVLW       0
 	ADDWFC      FLOC__cells_init+1, 0 
 	MOVWF       _Ind3+1 
-;main.c,1005 :: 		Ind4 = Bcd2Dec(EEPROM_Read(22)) * 100 + Bcd2Dec(EEPROM_Read(23)); // Ind4
+;main.c,1013 :: 		Ind4 = Bcd2Dec(EEPROM_Read(22)) * 100 + Bcd2Dec(EEPROM_Read(23)); // Ind4
 	MOVLW       22
 	MOVWF       FARG_EEPROM_Read_address+0 
 	CALL        _EEPROM_Read+0, 0
@@ -9106,7 +9124,7 @@ L_cells_init458:
 	MOVLW       0
 	ADDWFC      FLOC__cells_init+1, 0 
 	MOVWF       _Ind4+1 
-;main.c,1006 :: 		Ind5 = Bcd2Dec(EEPROM_Read(24)) * 100 + Bcd2Dec(EEPROM_Read(25)); // Ind5
+;main.c,1014 :: 		Ind5 = Bcd2Dec(EEPROM_Read(24)) * 100 + Bcd2Dec(EEPROM_Read(25)); // Ind5
 	MOVLW       24
 	MOVWF       FARG_EEPROM_Read_address+0 
 	CALL        _EEPROM_Read+0, 0
@@ -9131,7 +9149,7 @@ L_cells_init458:
 	MOVLW       0
 	ADDWFC      FLOC__cells_init+1, 0 
 	MOVWF       _Ind5+1 
-;main.c,1007 :: 		Ind6 = Bcd2Dec(EEPROM_Read(26)) * 100 + Bcd2Dec(EEPROM_Read(27)); // Ind6
+;main.c,1015 :: 		Ind6 = Bcd2Dec(EEPROM_Read(26)) * 100 + Bcd2Dec(EEPROM_Read(27)); // Ind6
 	MOVLW       26
 	MOVWF       FARG_EEPROM_Read_address+0 
 	CALL        _EEPROM_Read+0, 0
@@ -9156,7 +9174,7 @@ L_cells_init458:
 	MOVLW       0
 	ADDWFC      FLOC__cells_init+1, 0 
 	MOVWF       _Ind6+1 
-;main.c,1008 :: 		Ind7 = Bcd2Dec(EEPROM_Read(28)) * 100 + Bcd2Dec(EEPROM_Read(29)); // Ind7
+;main.c,1016 :: 		Ind7 = Bcd2Dec(EEPROM_Read(28)) * 100 + Bcd2Dec(EEPROM_Read(29)); // Ind7
 	MOVLW       28
 	MOVWF       FARG_EEPROM_Read_address+0 
 	CALL        _EEPROM_Read+0, 0
@@ -9181,7 +9199,7 @@ L_cells_init458:
 	MOVLW       0
 	ADDWFC      FLOC__cells_init+1, 0 
 	MOVWF       _Ind7+1 
-;main.c,1010 :: 		Cap1 = Bcd2Dec(EEPROM_Read(32)) * 100 + Bcd2Dec(EEPROM_Read(33)); // Cap1
+;main.c,1018 :: 		Cap1 = Bcd2Dec(EEPROM_Read(32)) * 100 + Bcd2Dec(EEPROM_Read(33)); // Cap1
 	MOVLW       32
 	MOVWF       FARG_EEPROM_Read_address+0 
 	CALL        _EEPROM_Read+0, 0
@@ -9206,7 +9224,7 @@ L_cells_init458:
 	MOVLW       0
 	ADDWFC      FLOC__cells_init+1, 0 
 	MOVWF       _Cap1+1 
-;main.c,1011 :: 		Cap2 = Bcd2Dec(EEPROM_Read(34)) * 100 + Bcd2Dec(EEPROM_Read(35)); // Cap2
+;main.c,1019 :: 		Cap2 = Bcd2Dec(EEPROM_Read(34)) * 100 + Bcd2Dec(EEPROM_Read(35)); // Cap2
 	MOVLW       34
 	MOVWF       FARG_EEPROM_Read_address+0 
 	CALL        _EEPROM_Read+0, 0
@@ -9231,7 +9249,7 @@ L_cells_init458:
 	MOVLW       0
 	ADDWFC      FLOC__cells_init+1, 0 
 	MOVWF       _Cap2+1 
-;main.c,1012 :: 		Cap3 = Bcd2Dec(EEPROM_Read(36)) * 100 + Bcd2Dec(EEPROM_Read(37)); // Cap3
+;main.c,1020 :: 		Cap3 = Bcd2Dec(EEPROM_Read(36)) * 100 + Bcd2Dec(EEPROM_Read(37)); // Cap3
 	MOVLW       36
 	MOVWF       FARG_EEPROM_Read_address+0 
 	CALL        _EEPROM_Read+0, 0
@@ -9256,7 +9274,7 @@ L_cells_init458:
 	MOVLW       0
 	ADDWFC      FLOC__cells_init+1, 0 
 	MOVWF       _Cap3+1 
-;main.c,1013 :: 		Cap4 = Bcd2Dec(EEPROM_Read(38)) * 100 + Bcd2Dec(EEPROM_Read(39)); // Cap4
+;main.c,1021 :: 		Cap4 = Bcd2Dec(EEPROM_Read(38)) * 100 + Bcd2Dec(EEPROM_Read(39)); // Cap4
 	MOVLW       38
 	MOVWF       FARG_EEPROM_Read_address+0 
 	CALL        _EEPROM_Read+0, 0
@@ -9281,7 +9299,7 @@ L_cells_init458:
 	MOVLW       0
 	ADDWFC      FLOC__cells_init+1, 0 
 	MOVWF       _Cap4+1 
-;main.c,1014 :: 		Cap5 = Bcd2Dec(EEPROM_Read(40)) * 100 + Bcd2Dec(EEPROM_Read(41)); // Cap5
+;main.c,1022 :: 		Cap5 = Bcd2Dec(EEPROM_Read(40)) * 100 + Bcd2Dec(EEPROM_Read(41)); // Cap5
 	MOVLW       40
 	MOVWF       FARG_EEPROM_Read_address+0 
 	CALL        _EEPROM_Read+0, 0
@@ -9306,7 +9324,7 @@ L_cells_init458:
 	MOVLW       0
 	ADDWFC      FLOC__cells_init+1, 0 
 	MOVWF       _Cap5+1 
-;main.c,1015 :: 		Cap6 = Bcd2Dec(EEPROM_Read(42)) * 100 + Bcd2Dec(EEPROM_Read(43)); // Cap6
+;main.c,1023 :: 		Cap6 = Bcd2Dec(EEPROM_Read(42)) * 100 + Bcd2Dec(EEPROM_Read(43)); // Cap6
 	MOVLW       42
 	MOVWF       FARG_EEPROM_Read_address+0 
 	CALL        _EEPROM_Read+0, 0
@@ -9331,7 +9349,7 @@ L_cells_init458:
 	MOVLW       0
 	ADDWFC      FLOC__cells_init+1, 0 
 	MOVWF       _Cap6+1 
-;main.c,1016 :: 		Cap7 = Bcd2Dec(EEPROM_Read(44)) * 100 + Bcd2Dec(EEPROM_Read(45)); // Cap7
+;main.c,1024 :: 		Cap7 = Bcd2Dec(EEPROM_Read(44)) * 100 + Bcd2Dec(EEPROM_Read(45)); // Cap7
 	MOVLW       44
 	MOVWF       FARG_EEPROM_Read_address+0 
 	CALL        _EEPROM_Read+0, 0
@@ -9356,13 +9374,13 @@ L_cells_init458:
 	MOVLW       0
 	ADDWFC      FLOC__cells_init+1, 0 
 	MOVWF       _Cap7+1 
-;main.c,1018 :: 		P_High = EEPROM_Read(0x30); // High power
+;main.c,1026 :: 		P_High = EEPROM_Read(0x30); // High power
 	MOVLW       48
 	MOVWF       FARG_EEPROM_Read_address+0 
 	CALL        _EEPROM_Read+0, 0
 	MOVF        R0, 0 
 	MOVWF       main_P_High+0 
-;main.c,1019 :: 		K_Mult = Bcd2Dec(EEPROM_Read(0x31)); // Tandem Natch rate
+;main.c,1027 :: 		K_Mult = Bcd2Dec(EEPROM_Read(0x31)); // Tandem Natch rate
 	MOVLW       49
 	MOVWF       FARG_EEPROM_Read_address+0 
 	CALL        _EEPROM_Read+0, 0
@@ -9371,7 +9389,7 @@ L_cells_init458:
 	CALL        _Bcd2Dec+0, 0
 	MOVF        R0, 0 
 	MOVWF       main_K_Mult+0 
-;main.c,1020 :: 		Dysp_delay = Bcd2Dec(EEPROM_Read(0x32)); // Dysplay ON delay
+;main.c,1028 :: 		Dysp_delay = Bcd2Dec(EEPROM_Read(0x32)); // Dysplay ON delay
 	MOVLW       50
 	MOVWF       FARG_EEPROM_Read_address+0 
 	CALL        _EEPROM_Read+0, 0
@@ -9380,13 +9398,13 @@ L_cells_init458:
 	CALL        _Bcd2Dec+0, 0
 	MOVF        R0, 0 
 	MOVWF       _Dysp_delay+0 
-;main.c,1021 :: 		Loss_ind = EEPROM_Read(0x33);
+;main.c,1029 :: 		Loss_ind = EEPROM_Read(0x33);
 	MOVLW       51
 	MOVWF       FARG_EEPROM_Read_address+0 
 	CALL        _EEPROM_Read+0, 0
 	MOVF        R0, 0 
 	MOVWF       main_Loss_ind+0 
-;main.c,1022 :: 		Fid_loss = Bcd2Dec(EEPROM_Read(0x34));
+;main.c,1030 :: 		Fid_loss = Bcd2Dec(EEPROM_Read(0x34));
 	MOVLW       52
 	MOVWF       FARG_EEPROM_Read_address+0 
 	CALL        _EEPROM_Read+0, 0
@@ -9395,18 +9413,18 @@ L_cells_init458:
 	CALL        _Bcd2Dec+0, 0
 	MOVF        R0, 0 
 	MOVWF       _Fid_loss+0 
-;main.c,1023 :: 		asm CLRWDT;
+;main.c,1031 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,1024 :: 		return;
-;main.c,1026 :: 		}
+;main.c,1032 :: 		return;
+;main.c,1034 :: 		}
 L_end_cells_init:
 	RETURN      0
 ; end of _cells_init
 
 _show_loss:
 
-;main.c,1028 :: 		void show_loss(void) {
-;main.c,1029 :: 		IntToStr(Fid_loss, work_str);
+;main.c,1036 :: 		void show_loss(void) {
+;main.c,1037 :: 		IntToStr(Fid_loss, work_str);
 	MOVF        _Fid_loss+0, 0 
 	MOVWF       FARG_IntToStr_input+0 
 	MOVLW       0
@@ -9416,27 +9434,27 @@ _show_loss:
 	MOVLW       hi_addr(_work_str+0)
 	MOVWF       FARG_IntToStr_output+1 
 	CALL        _IntToStr+0, 0
-;main.c,1030 :: 		if (Fid_loss >= 10)
+;main.c,1038 :: 		if (Fid_loss >= 10)
 	MOVLW       10
 	SUBWF       _Fid_loss+0, 0 
 	BTFSS       STATUS+0, 0 
 	GOTO        L_show_loss459
-;main.c,1031 :: 		work_str_2[0] = work_str[4];
+;main.c,1039 :: 		work_str_2[0] = work_str[4];
 	MOVF        _work_str+4, 0 
 	MOVWF       _work_str_2+0 
 	GOTO        L_show_loss460
 L_show_loss459:
-;main.c,1033 :: 		work_str_2[0] = '0';
+;main.c,1041 :: 		work_str_2[0] = '0';
 	MOVLW       48
 	MOVWF       _work_str_2+0 
 L_show_loss460:
-;main.c,1034 :: 		work_str_2[1] = '.';
+;main.c,1042 :: 		work_str_2[1] = '.';
 	MOVLW       46
 	MOVWF       _work_str_2+1 
-;main.c,1035 :: 		work_str_2[2] = work_str[5];
+;main.c,1043 :: 		work_str_2[2] = work_str[5];
 	MOVF        _work_str+5, 0 
 	MOVWF       _work_str_2+2 
-;main.c,1036 :: 		if (type == 4 | type == 5)
+;main.c,1044 :: 		if (type == 4 | type == 5)
 	MOVF        _type+0, 0 
 	XORLW       4
 	MOVLW       1
@@ -9453,7 +9471,7 @@ L_show_loss460:
 	IORWF       R0, 1 
 	BTFSC       STATUS+0, 2 
 	GOTO        L_show_loss461
-;main.c,1037 :: 		led_wr_str(4, 6, work_str_2, 3); // 128*64
+;main.c,1045 :: 		led_wr_str(4, 6, work_str_2, 3); // 128*64
 	MOVLW       4
 	MOVWF       FARG_led_wr_str+0 
 	MOVLW       6
@@ -9467,12 +9485,12 @@ L_show_loss460:
 	CALL        _led_wr_str+0, 0
 	GOTO        L_show_loss462
 L_show_loss461:
-;main.c,1038 :: 		else if (type != 0)
+;main.c,1046 :: 		else if (type != 0)
 	MOVF        _type+0, 0 
 	XORLW       0
 	BTFSC       STATUS+0, 2 
 	GOTO        L_show_loss463
-;main.c,1039 :: 		led_wr_str(1, 0, work_str_2, 3); // 1602 | 128*32
+;main.c,1047 :: 		led_wr_str(1, 0, work_str_2, 3); // 1602 | 128*32
 	MOVLW       1
 	MOVWF       FARG_led_wr_str+0 
 	CLRF        FARG_led_wr_str+0 
@@ -9485,16 +9503,16 @@ L_show_loss461:
 	CALL        _led_wr_str+0, 0
 L_show_loss463:
 L_show_loss462:
-;main.c,1040 :: 		return;
-;main.c,1041 :: 		}
+;main.c,1048 :: 		return;
+;main.c,1049 :: 		}
 L_end_show_loss:
 	RETURN      0
 ; end of _show_loss
 
 _load_settings:
 
-;main.c,1042 :: 		void load_settings()
-;main.c,1044 :: 		cap = EEPROM_Read(255 - mem_offset * 5);
+;main.c,1050 :: 		void load_settings()
+;main.c,1052 :: 		cap = EEPROM_Read(255 - mem_offset * 5);
 	MOVLW       5
 	MULWF       _mem_offset+0 
 	MOVF        PRODL+0, 0 
@@ -9505,7 +9523,7 @@ _load_settings:
 	CALL        _EEPROM_Read+0, 0
 	MOVF        R0, 0 
 	MOVWF       main_cap+0 
-;main.c,1045 :: 		ind = EEPROM_Read(254 - mem_offset * 5);
+;main.c,1053 :: 		ind = EEPROM_Read(254 - mem_offset * 5);
 	MOVLW       5
 	MULWF       _mem_offset+0 
 	MOVF        PRODL+0, 0 
@@ -9516,7 +9534,7 @@ _load_settings:
 	CALL        _EEPROM_Read+0, 0
 	MOVF        R0, 0 
 	MOVWF       main_ind+0 
-;main.c,1046 :: 		SW = EEPROM_Read(253 - mem_offset * 5);
+;main.c,1054 :: 		SW = EEPROM_Read(253 - mem_offset * 5);
 	MOVLW       5
 	MULWF       _mem_offset+0 
 	MOVF        PRODL+0, 0 
@@ -9527,7 +9545,7 @@ _load_settings:
 	CALL        _EEPROM_Read+0, 0
 	MOVF        R0, 0 
 	MOVWF       main_SW+0 
-;main.c,1047 :: 		swr_a = EEPROM_Read(252 - mem_offset * 5) * 256;
+;main.c,1055 :: 		swr_a = EEPROM_Read(252 - mem_offset * 5) * 256;
 	MOVLW       5
 	MULWF       _mem_offset+0 
 	MOVF        PRODL+0, 0 
@@ -9539,7 +9557,7 @@ _load_settings:
 	MOVF        R0, 0 
 	MOVWF       _swr_a+1 
 	CLRF        _swr_a+0 
-;main.c,1048 :: 		swr_a += EEPROM_Read(251 - mem_offset * 5);
+;main.c,1056 :: 		swr_a += EEPROM_Read(251 - mem_offset * 5);
 	MOVLW       5
 	MULWF       _mem_offset+0 
 	MOVF        PRODL+0, 0 
@@ -9552,79 +9570,79 @@ _load_settings:
 	ADDWF       _swr_a+0, 1 
 	MOVLW       0
 	ADDWFC      _swr_a+1, 1 
-;main.c,1049 :: 		set_ind(ind);
+;main.c,1057 :: 		set_ind(ind);
 	MOVF        main_ind+0, 0 
 	MOVWF       FARG_set_ind_Ind+0 
 	CALL        _set_ind+0, 0
-;main.c,1050 :: 		set_cap(cap);
+;main.c,1058 :: 		set_cap(cap);
 	MOVF        main_cap+0, 0 
 	MOVWF       FARG_set_cap_Cap+0 
 	CALL        _set_cap+0, 0
-;main.c,1051 :: 		set_sw(SW);
+;main.c,1059 :: 		set_sw(SW);
 	MOVF        main_SW+0, 0 
 	MOVWF       FARG_set_sw_SW+0 
 	CALL        _set_sw+0, 0
-;main.c,1052 :: 		}
+;main.c,1060 :: 		}
 L_end_load_settings:
 	RETURN      0
 ; end of _load_settings
 
 _read_i2c_inputs:
 
-;main.c,1054 :: 		void read_i2c_inputs(void) {
-;main.c,1057 :: 		_status = ~mem_offset | 0xF0;
+;main.c,1062 :: 		void read_i2c_inputs(void) {
+;main.c,1065 :: 		_status = ~mem_offset | 0xF0;
 	COMF        _mem_offset+0, 0 
 	MOVWF       read_i2c_inputs__status_L0+0 
 	MOVLW       240
 	IORWF       read_i2c_inputs__status_L0+0, 1 
-;main.c,1059 :: 		Delay_us(100);
+;main.c,1067 :: 		Delay_us(100);
 	MOVLW       133
 	MOVWF       R13, 0
 L_read_i2c_inputs464:
 	DECFSZ      R13, 1, 1
 	BRA         L_read_i2c_inputs464
-;main.c,1060 :: 		asm CLRWDT;
+;main.c,1068 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,1062 :: 		Soft_I2C_Start();
+;main.c,1070 :: 		Soft_I2C_Start();
 	CALL        _Soft_I2C_Start+0, 0
-;main.c,1063 :: 		Soft_I2C_Write(0x40); // device addres for write
+;main.c,1071 :: 		Soft_I2C_Write(0x40); // device addres for write
 	MOVLW       64
 	MOVWF       FARG_Soft_I2C_Write+0 
 	CALL        _Soft_I2C_Write+0, 0
-;main.c,1064 :: 		Soft_I2C_Write(_status);
+;main.c,1072 :: 		Soft_I2C_Write(_status);
 	MOVF        read_i2c_inputs__status_L0+0, 0 
 	MOVWF       FARG_Soft_I2C_Write+0 
 	CALL        _Soft_I2C_Write+0, 0
-;main.c,1065 :: 		Soft_I2C_Stop();
+;main.c,1073 :: 		Soft_I2C_Stop();
 	CALL        _Soft_I2C_Stop+0, 0
-;main.c,1066 :: 		asm CLRWDT;
+;main.c,1074 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,1067 :: 		Delay_us(100);
+;main.c,1075 :: 		Delay_us(100);
 	MOVLW       133
 	MOVWF       R13, 0
 L_read_i2c_inputs465:
 	DECFSZ      R13, 1, 1
 	BRA         L_read_i2c_inputs465
-;main.c,1068 :: 		asm CLRWDT;
+;main.c,1076 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,1069 :: 		Soft_I2C_Start();
+;main.c,1077 :: 		Soft_I2C_Start();
 	CALL        _Soft_I2C_Start+0, 0
-;main.c,1070 :: 		Soft_I2C_Write(0x41); // device addres for read
+;main.c,1078 :: 		Soft_I2C_Write(0x41); // device addres for read
 	MOVLW       65
 	MOVWF       FARG_Soft_I2C_Write+0 
 	CALL        _Soft_I2C_Write+0, 0
-;main.c,1071 :: 		_status = Soft_I2C_Read();
+;main.c,1079 :: 		_status = Soft_I2C_Read();
 	CALL        _Soft_I2C_Read+0, 0
 	MOVF        R0, 0 
 	MOVWF       read_i2c_inputs__status_L0+0 
-;main.c,1072 :: 		Soft_I2C_Stop();
+;main.c,1080 :: 		Soft_I2C_Stop();
 	CALL        _Soft_I2C_Stop+0, 0
-;main.c,1073 :: 		asm CLRWDT;
+;main.c,1081 :: 		asm CLRWDT;
 	CLRWDT
-;main.c,1074 :: 		mem_offset = ~_status;
+;main.c,1082 :: 		mem_offset = ~_status;
 	COMF        read_i2c_inputs__status_L0+0, 0 
 	MOVWF       _mem_offset+0 
-;main.c,1075 :: 		mem_offset >>= 4;
+;main.c,1083 :: 		mem_offset >>= 4;
 	RRCF        _mem_offset+0, 1 
 	BCF         _mem_offset+0, 7 
 	RRCF        _mem_offset+0, 1 
@@ -9633,10 +9651,10 @@ L_read_i2c_inputs465:
 	BCF         _mem_offset+0, 7 
 	RRCF        _mem_offset+0, 1 
 	BCF         _mem_offset+0, 7 
-;main.c,1076 :: 		mem_offset &= 0xf;
+;main.c,1084 :: 		mem_offset &= 0xf;
 	MOVLW       15
 	ANDWF       _mem_offset+0, 1 
-;main.c,1077 :: 		}
+;main.c,1085 :: 		}
 L_end_read_i2c_inputs:
 	RETURN      0
 ; end of _read_i2c_inputs

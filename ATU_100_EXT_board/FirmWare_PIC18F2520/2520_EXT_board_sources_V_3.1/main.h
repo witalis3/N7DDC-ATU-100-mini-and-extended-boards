@@ -490,7 +490,9 @@ void sub_tune()
     asm CLRWDT;
     return;
 }
-
+/*
+ * początek algorytmu strojenia
+ */
 void tune()
 // główna procedura strojenia
 {
@@ -536,6 +538,7 @@ void tune()
     }
     if (SWR < 120)
         return;
+
     if (C_q > 5)
     {
         step_cap = C_mult; // = C_mult

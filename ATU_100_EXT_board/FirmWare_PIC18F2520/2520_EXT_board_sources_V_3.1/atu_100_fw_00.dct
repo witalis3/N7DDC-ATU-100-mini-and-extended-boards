@@ -974,6 +974,10 @@ soft_i2c_start
 soft_i2c_stop
 soft_i2c_write
 soft_tune
+soft_uart_break
+soft_uart_init
+soft_uart_read
+soft_uart_write
 sp0
 sp0_bit
 sp1

@@ -5,6 +5,9 @@
  * 2020
  * wersja z obsługą pamięci 16 ustawień na bazie SP4MK
  * sp3jdz
+ * 2021
+ * próba implementacji algorytmu zaproponowanego przez K6JCA
+ * implementacja software serial
  */
 
 #include    "oled_control.h"
@@ -45,6 +48,9 @@ void main() {
     asm CLRWDT;
     cells_init();
     Soft_I2C_Init();
+#ifdef DEBUG
+    Soft_UART_Init(&PORTA, 7, 6, 19200, 0);
+#endif
     if (type == 0)
     { // 2-colors led  reset
         LATB.B6 = 1;
@@ -263,7 +269,7 @@ void button_proc(void)
             // C8: p_Tx = 1; //
             n_Tx = 0; // TX request
             Delay_ms(250); //
-            btn_push();
+            btn_push();		// tutaj rozpoczęcie procedury strojenia
             bypas = 0;
             while (Button( & PORTB, 0, 50, 0))
             {
@@ -398,7 +404,10 @@ void show_reset() {
     lcd_pwr();
     return;
 }
-
+/*
+ * wywołanie strojenia
+ * i zapisanie wyniku w EEPROM
+ */
 void btn_push()
 {
     asm CLRWDT;

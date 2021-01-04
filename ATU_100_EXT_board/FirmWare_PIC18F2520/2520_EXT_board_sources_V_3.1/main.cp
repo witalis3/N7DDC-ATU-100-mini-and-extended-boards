@@ -556,7 +556,7 @@ void sub_tune()
  asm CLRWDT;
  return;
 }
-
+#line 496 "d:/mikroc pro for pic/examples/atu_100_memo/n7ddc-atu-100-mini-and-extended-boards/atu_100_ext_board/firmware_pic18f2520/2520_ext_board_sources_v_3.1/main.h"
 void tune()
 
 {
@@ -602,6 +602,7 @@ void tune()
  }
  if (SWR < 120)
  return;
+
  if (C_q > 5)
  {
  step_cap = C_mult;
@@ -623,7 +624,7 @@ void tune()
  asm CLRWDT;
  return;
 }
-#line 17 "D:/mikroC PRO for PIC/Examples/ATU_100_memo/N7DDC-ATU-100-mini-and-extended-boards/ATU_100_EXT_board/FirmWare_PIC18F2520/2520_EXT_board_sources_V_3.1/main.c"
+#line 20 "D:/mikroC PRO for PIC/Examples/ATU_100_memo/N7DDC-ATU-100-mini-and-extended-boards/ATU_100_EXT_board/FirmWare_PIC18F2520/2520_EXT_board_sources_V_3.1/main.c"
 int SWR_fixed_old = 0, work_int;
 char work_char, work_str[7], work_str_2[7];
 float Forward;
@@ -655,6 +656,8 @@ void main() {
  asm CLRWDT;
  cells_init();
  Soft_I2C_Init();
+ Soft_UART_Init(&PORTA, 7, 6, 19800, 0);
+
  if (type == 0)
  {
  LATB.B6 = 1;
@@ -723,7 +726,7 @@ void main() {
  }
 
  if (Test == 0) {
-#line 124 "D:/mikroC PRO for PIC/Examples/ATU_100_memo/N7DDC-ATU-100-mini-and-extended-boards/ATU_100_EXT_board/FirmWare_PIC18F2520/2520_EXT_board_sources_V_3.1/main.c"
+#line 129 "D:/mikroC PRO for PIC/Examples/ATU_100_memo/N7DDC-ATU-100-mini-and-extended-boards/ATU_100_EXT_board/FirmWare_PIC18F2520/2520_EXT_board_sources_V_3.1/main.c"
  read_i2c_inputs();
  load_settings();
  if (Restart == 1)
@@ -1001,7 +1004,7 @@ void show_reset() {
  lcd_pwr();
  return;
 }
-
+#line 410 "D:/mikroC PRO for PIC/Examples/ATU_100_memo/N7DDC-ATU-100-mini-and-extended-boards/ATU_100_EXT_board/FirmWare_PIC18F2520/2520_EXT_board_sources_V_3.1/main.c"
 void btn_push()
 {
  asm CLRWDT;
@@ -1419,7 +1422,7 @@ void lcd_pwr() {
  }
  return;
 }
-#line 822 "D:/mikroC PRO for PIC/Examples/ATU_100_memo/N7DDC-ATU-100-mini-and-extended-boards/ATU_100_EXT_board/FirmWare_PIC18F2520/2520_EXT_board_sources_V_3.1/main.c"
+#line 830 "D:/mikroC PRO for PIC/Examples/ATU_100_memo/N7DDC-ATU-100-mini-and-extended-boards/ATU_100_EXT_board/FirmWare_PIC18F2520/2520_EXT_board_sources_V_3.1/main.c"
 void lcd_ind() {
  char column;
  asm CLRWDT;

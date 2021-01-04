@@ -6,7 +6,7 @@ Value=0
 [BUILD_TYPE]
 Value=0
 [ACTIVE_TAB]
-Value=main.h
+Value=main.c
 [USE_EEPROM]
 Value=1
 [EEPROM_DEFINITION]
@@ -56,7 +56,8 @@ File0=ADC
 File1=Conversions
 File2=Button
 File3=EEPROM
-Count=4
+File4=Software_UART
+Count=5
 [INTERRUPT_DEFS]
 VECTOR_MODE=0
 IVT_BASE=00000008
@@ -68,6 +69,7 @@ Count=3
 [LIB_EXPANDED_NODES]
 0=mikroE Libraries
 1=System Libraries
+412=Software_UART
 Count=3
 [PROGRAMMER_TYPE]
 Value=mikroE mikroProg
