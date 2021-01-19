@@ -27,7 +27,7 @@ char bypas = 0, cap_mem = 0, ind_mem = 0, SW_mem = 0, Auto_mem = 0;
 int Auto_delta;
 char Restart = 0, Test = 0, lcd_prep_short = 0;
 char L = 1, but = 0;
-int Cap1, Cap2, Cap3, Cap4, Cap5, Cap6, Cap7;
+int Cap1, Cap2, Cap3, Cap4, Cap5, Cap6, Cap7, Cap8;
 int Ind1, Ind2, Ind3, Ind4, Ind5, Ind6, Ind7;
 char Dysp_delay = 0;
 int dysp_cnt = 0;
@@ -77,6 +77,8 @@ void main() {
         C_mult = 2;
     else if (C_q == 7)
         C_mult = 4;
+    else if (C_q == 8)		// 8 kondensatorów
+    	C_mult = 8;
     //
     Delay_ms(300);
     asm CLRWDT;
@@ -220,7 +222,7 @@ void button_proc_test(void) {
                 ind++;
                 set_ind(ind);
             }
-            else if (!L & cap < 32 * L_mult - 1)
+            else if (!L & cap < 32 * C_mult - 1)	// było L_mult
             {
                 cap++;
                 set_cap(cap);
@@ -828,7 +830,8 @@ void lcd_pwr() {
 /*
  * wyświetlenie wartości L i C
  */
-void lcd_ind() {
+void lcd_ind()
+{
     char column;
     asm CLRWDT;
     if (1) {
@@ -913,8 +916,10 @@ void lcd_ind() {
             work_int += Cap6;
         if (cap.B6)
             work_int += Cap7;
-        if (mem_offset == band_160m)
-        	work_int += C8_value;
+        if (cap.B7)
+        	work_int += Cap8;
+       /* if (mem_offset == band_160m)
+        	work_int += C8_value; */
         IntToStr(work_int, work_str);
         work_str_2[0] = work_str[2];
         work_str_2[1] = work_str[3];
@@ -1023,6 +1028,7 @@ void cells_init(void) {
     Cap5 = Bcd2Dec(EEPROM_Read(40)) * 100 + Bcd2Dec(EEPROM_Read(41)); // Cap5
     Cap6 = Bcd2Dec(EEPROM_Read(42)) * 100 + Bcd2Dec(EEPROM_Read(43)); // Cap6
     Cap7 = Bcd2Dec(EEPROM_Read(44)) * 100 + Bcd2Dec(EEPROM_Read(45)); // Cap7
+    Cap8 = Bcd2Dec(EEPROM_Read(46)) * 100 + Bcd2Dec(EEPROM_Read(47)); // Cap8
     //
     P_High = EEPROM_Read(0x30); // High power
     K_Mult = Bcd2Dec(EEPROM_Read(0x31)); // Tandem Natch rate

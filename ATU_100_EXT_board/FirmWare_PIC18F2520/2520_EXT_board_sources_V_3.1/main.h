@@ -209,6 +209,8 @@ void set_cap(char Cap) { // 0 - 31
     Cap_220 = Cap.B4;
     Cap_470 = Cap.B5;
     Cap_1000 = Cap.B6;
+    Cap_1820 = Cap.B7;
+    /*
     if (mem_offset == band_160m)        // kod pasma 160m
     {
             Cap_1820 = 1;
@@ -217,6 +219,7 @@ void set_cap(char Cap) { // 0 - 31
     {
             Cap_1820 = 0;
     }
+    */
     //
     Vdelay_ms(Rel_Del);
 }
@@ -557,6 +560,8 @@ void tune()
         C_mult = 2;
     else if (C_q == 7)
         C_mult = 4;
+    else if (C_q == 8)		// 8 kondensatorów
+    	C_mult = 8;
     asm CLRWDT;
     return;
 }

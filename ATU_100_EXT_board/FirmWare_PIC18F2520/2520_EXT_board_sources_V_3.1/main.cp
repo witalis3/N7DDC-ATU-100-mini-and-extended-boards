@@ -275,15 +275,8 @@ void set_cap(char Cap) {
  Cap_220 = Cap.B4;
  Cap_470 = Cap.B5;
  Cap_1000 = Cap.B6;
- if (mem_offset == band_160m)
- {
- Cap_1820 = 1;
- }
- else
- {
- Cap_1820 = 0;
- }
-
+ Cap_1820 = Cap.B7;
+#line 224 "d:/mikroc pro for pic/examples/atu_100_memo/n7ddc-atu-100-mini-and-extended-boards/atu_100_ext_board/firmware_pic18f2520/2520_ext_board_sources_v_3.1/main.h"
  Vdelay_ms(Rel_Del);
 }
 
@@ -556,7 +549,7 @@ void sub_tune()
  asm CLRWDT;
  return;
 }
-#line 496 "d:/mikroc pro for pic/examples/atu_100_memo/n7ddc-atu-100-mini-and-extended-boards/atu_100_ext_board/firmware_pic18f2520/2520_ext_board_sources_v_3.1/main.h"
+#line 499 "d:/mikroc pro for pic/examples/atu_100_memo/n7ddc-atu-100-mini-and-extended-boards/atu_100_ext_board/firmware_pic18f2520/2520_ext_board_sources_v_3.1/main.h"
 void tune()
 
 {
@@ -621,6 +614,8 @@ void tune()
  C_mult = 2;
  else if (C_q == 7)
  C_mult = 4;
+ else if (C_q == 8)
+ C_mult = 8;
  asm CLRWDT;
  return;
 }
@@ -635,7 +630,7 @@ char bypas = 0, cap_mem = 0, ind_mem = 0, SW_mem = 0, Auto_mem = 0;
 int Auto_delta;
 char Restart = 0, Test = 0, lcd_prep_short = 0;
 char L = 1, but = 0;
-int Cap1, Cap2, Cap3, Cap4, Cap5, Cap6, Cap7;
+int Cap1, Cap2, Cap3, Cap4, Cap5, Cap6, Cap7, Cap8;
 int Ind1, Ind2, Ind3, Ind4, Ind5, Ind6, Ind7;
 char Dysp_delay = 0;
 int dysp_cnt = 0;
@@ -656,8 +651,7 @@ void main() {
  asm CLRWDT;
  cells_init();
  Soft_I2C_Init();
- Soft_UART_Init(&PORTA, 7, 6, 19800, 0);
-
+#line 54 "D:/mikroC PRO for PIC/Examples/ATU_100_memo/N7DDC-ATU-100-mini-and-extended-boards/ATU_100_EXT_board/FirmWare_PIC18F2520/2520_EXT_board_sources_V_3.1/main.c"
  if (type == 0)
  {
  LATB.B6 = 1;
@@ -684,6 +678,8 @@ void main() {
  C_mult = 2;
  else if (C_q == 7)
  C_mult = 4;
+ else if (C_q == 8)
+ C_mult = 8;
 
  Delay_ms(300);
  asm CLRWDT;
@@ -726,7 +722,7 @@ void main() {
  }
 
  if (Test == 0) {
-#line 129 "D:/mikroC PRO for PIC/Examples/ATU_100_memo/N7DDC-ATU-100-mini-and-extended-boards/ATU_100_EXT_board/FirmWare_PIC18F2520/2520_EXT_board_sources_V_3.1/main.c"
+#line 132 "D:/mikroC PRO for PIC/Examples/ATU_100_memo/N7DDC-ATU-100-mini-and-extended-boards/ATU_100_EXT_board/FirmWare_PIC18F2520/2520_EXT_board_sources_V_3.1/main.c"
  read_i2c_inputs();
  load_settings();
  if (Restart == 1)
@@ -820,7 +816,7 @@ void button_proc_test(void) {
  ind++;
  set_ind(ind);
  }
- else if (!L & cap < 32 * L_mult - 1)
+ else if (!L & cap < 32 * C_mult - 1)
  {
  cap++;
  set_cap(cap);
@@ -1004,7 +1000,7 @@ void show_reset() {
  lcd_pwr();
  return;
 }
-#line 410 "D:/mikroC PRO for PIC/Examples/ATU_100_memo/N7DDC-ATU-100-mini-and-extended-boards/ATU_100_EXT_board/FirmWare_PIC18F2520/2520_EXT_board_sources_V_3.1/main.c"
+#line 413 "D:/mikroC PRO for PIC/Examples/ATU_100_memo/N7DDC-ATU-100-mini-and-extended-boards/ATU_100_EXT_board/FirmWare_PIC18F2520/2520_EXT_board_sources_V_3.1/main.c"
 void btn_push()
 {
  asm CLRWDT;
@@ -1422,7 +1418,7 @@ void lcd_pwr() {
  }
  return;
 }
-#line 830 "D:/mikroC PRO for PIC/Examples/ATU_100_memo/N7DDC-ATU-100-mini-and-extended-boards/ATU_100_EXT_board/FirmWare_PIC18F2520/2520_EXT_board_sources_V_3.1/main.c"
+#line 833 "D:/mikroC PRO for PIC/Examples/ATU_100_memo/N7DDC-ATU-100-mini-and-extended-boards/ATU_100_EXT_board/FirmWare_PIC18F2520/2520_EXT_board_sources_V_3.1/main.c"
 void lcd_ind() {
  char column;
  asm CLRWDT;
@@ -1508,8 +1504,9 @@ void lcd_ind() {
  work_int += Cap6;
  if (cap.B6)
  work_int += Cap7;
- if (mem_offset == band_160m)
- work_int += C8_value;
+ if (cap.B7)
+ work_int += Cap8;
+#line 922 "D:/mikroC PRO for PIC/Examples/ATU_100_memo/N7DDC-ATU-100-mini-and-extended-boards/ATU_100_EXT_board/FirmWare_PIC18F2520/2520_EXT_board_sources_V_3.1/main.c"
  IntToStr(work_int, work_str);
  work_str_2[0] = work_str[2];
  work_str_2[1] = work_str[3];
@@ -1618,6 +1615,7 @@ void cells_init(void) {
  Cap5 = Bcd2Dec(EEPROM_Read(40)) * 100 + Bcd2Dec(EEPROM_Read(41));
  Cap6 = Bcd2Dec(EEPROM_Read(42)) * 100 + Bcd2Dec(EEPROM_Read(43));
  Cap7 = Bcd2Dec(EEPROM_Read(44)) * 100 + Bcd2Dec(EEPROM_Read(45));
+ Cap8 = Bcd2Dec(EEPROM_Read(46)) * 100 + Bcd2Dec(EEPROM_Read(47));
 
  P_High = EEPROM_Read(0x30);
  K_Mult = Bcd2Dec(EEPROM_Read(0x31));
